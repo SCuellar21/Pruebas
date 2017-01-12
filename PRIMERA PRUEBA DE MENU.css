@@ -1,0 +1,181 @@
+@charset "utf-8";
+html, body, header{
+	margin: 0px;
+	padding: 0px;
+}
+.navbar.navbar-inverse {
+	border: 0;
+	border-radius: 0;
+	margin: 0px;
+}
+.navbar-brand{
+	background-color: #848484;
+	min-width: 130px;
+}
+#principales {
+	position: absolute;
+	bottom: 7%;/*10%     7%*/
+	width: 100%;
+	text-align: center;
+	padding: 2px;/*5px SIN SER BOTONES DE BOOTSTRAP      2px SIENDO BOTONES*/
+}
+#principales a {
+	border: 2px solid rgba(230,230,230,1.00);
+	background-color: #555353;
+	display: inline-block;
+	min-width: 120px;
+	padding: 10px;
+	text-decoration: none;
+	color: rgba(230,230,230,1.00);
+	margin: 1%;
+}
+#principales a:hover {
+	background-color: rgba(230,230,230,1.00);
+	border-color: rgba(20,20,20,1.00);
+	color: rgba(20,20,20,1.00);
+}
+#enlaces {
+	float: right;
+	clear: left;
+	padding: 20px 0px;        /*ajustar segun la altura deseada*/
+}
+#enlaces a {
+	width: 35px;
+	height: 35px;
+	margin: 5px 0px;
+	display: block;
+	background-color: #555353;
+}
+.navbar ul {
+	text-align: center;
+	/*border-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;*/
+}
+.navbar ul li {
+	display: inline-block;
+	margin-right: 5px;
+	margin-left: 5px;
+	min-width: 150px;
+	/*border-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;*/
+}
+.nav li a {
+	border-left: 2px solid #7C7C7C;
+	border-right: 2px solid #7C7C7C;
+	border-bottom: 0px solid #7C7C7C;
+	border-top: 2px solid #7C7C7C;
+	/*border-radius: 0px;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;*/
+}
+#centro {
+	height: 85vh;
+	min-height: 600px;
+}
+
+
+
+main section {
+	min-height: 90vh;
+	/*min-height: 600px;*/   /*SOLO APLICAR EN MEDIA:WIDTH GRANDE!!! */
+}
+.container-fluid.non {
+	background-color: rgba(130,130,130,1.00);
+}
+.container-fluid.par {
+	background-color: rgba(54,54,54,1.00);
+}
+#main .row div {
+	padding: 15px;
+	
+    display:inline-block;
+    vertical-align:middle;
+}
+footer{
+	padding: 15px;
+	color: rgba(255,255,255,1.00);
+	background-color: rgba(34,34,34,1.00);
+}
+.breadcrumb{
+	background: rgba(34,34,34,0.00)
+}
+.breadcrumb > li + li:before {
+    color: #ccc;
+    content: "\2654  ";   /*   /    \00BB     \21FF    \2502 <ESTE    \2506   \25C8   \2654   \2656   \2659   \2662   \2758   \2759   */
+    padding: 0px 5px;
+}
+#icon{
+	color: black;
+	font-size: 30pt;
+}
+#icon:hover{
+	color: rgba(255,255,255,1.00);
+}
+
+
+
+
+
+
+
+#header.fixed .navbar-form{       /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  */
+	position: fixed;
+	top: 0;
+	right: 0;
+	margin: 10px;
+	z-index: 2;
+}
+#header.fixed .navbar-brand{      /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  */
+	position: fixed;
+	z-index: 2;
+}
+#header.fixed #principales{
+	position: fixed;
+	top: 0;
+	max-height: 70px;
+	background-color: rgba(34,34,34,0.85);
+	z-index: 1;
+}
+#header.fixed .navbar-toggle{
+	position: fixed;
+}
+
+
+
+
+
+
+@media screen and (max-width:767px){
+.navbar-brand {
+	max-width: 130px;
+}
+#principales {
+	position: static;
+}
+#principales a {
+	padding: 5px;
+	float: right;
+}
+#defaultNavbar1   {
+	/*min-height: 390px;*/
+	padding-bottom: 2px;
+}
+.navbar div ul {
+	display: block;
+}
+.navbar ul li {
+	display: block;
+	margin-bottom: 5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.nav li a {
+	border: 2px solid #7C7C7C;
+}
+
+
+}
+#icon {
+}

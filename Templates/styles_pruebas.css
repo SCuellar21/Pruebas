@@ -1,0 +1,285 @@
+body {
+	padding: 0px;
+	margin: 0px;
+	width: 100%;
+	height: 100%;
+	background-repeat: repeat;
+	background-image: url(contenido/AdobeStock_76177832_WM.jpeg);
+}
+#todo {
+	background-color: #FFFFFF;
+	width: 72%;
+	padding: 0px;
+	height: 100%;
+	margin-left: 14%;
+	border-right: medium solid rgba(17,7,248,1.00);
+	border-left: medium solid rgba(17,7,248,1.00);
+}
+#header {
+	margin-bottom: 5px;
+	clear: both;
+	width: 98%;
+	background-color: #1107F8;
+	padding: 1%;
+	overflow-x: auto;
+}
+
+#logo {
+	width: 190px;
+	height: 100px;
+	float: left;
+	margin-right: 10px;
+	background-image: url(contenido/SCuellar_logo.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: 0% 90%;
+}
+
+#header h1 {
+	color: rgba(255,255,255,1.00);
+	font: italic 400 28pt abril-fatface;
+	text-align: right;
+	letter-spacing: 1px;
+	text-shadow: 2px 1px rgba(72,73,71,0.60);
+	margin-top: 61px;
+	margin-bottom: 0px;
+}
+
+#principal {
+	overflow-y: auto;
+	clear: both;
+	padding-right: 1%;
+	padding-left: 1%;
+	padding-bottom: 1%;
+	min-height: 500px;
+	width: 98%;
+}
+#principal h1 {
+	font: bolder x-large Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+	text-shadow: 2px 2px rgba(136,138,135,0.72);
+	text-transform: capitalize;
+	text-align: center;
+	margin: 0px;
+}
+#principal h2 {
+	font-weight: normal;
+	font-size: large;
+	font-style: italic;
+	margin-top: 0px;
+}
+
+#lateral {
+	width: 20%;
+	float: left;
+	height: 600px;
+	margin-right: 1%;
+	background-image: -webkit-repeating-linear-gradient(90deg,rgba(255,255,255,1.00) 0%,rgba(17,7,248,1.00) 100%);
+	background-image: -moz-repeating-linear-gradient(90deg,rgba(255,255,255,1.00) 0%,rgba(17,7,248,1.00) 100%);
+	background-image: -o-repeating-linear-gradient(90deg,rgba(255,255,255,1.00) 0%,rgba(17,7,248,1.00) 100%);
+	background-image: repeating-linear-gradient(0deg,rgba(255,255,255,1.00) 0%,rgba(17,7,248,1.00) 100%);
+	padding-top: 10px;
+}
+.search #busqueda {
+	margin-left: 5px;
+	border-radius: 5px;
+	width: 80%;
+}
+.search #boton_busqueda {
+	width: 25px;
+	height: 27px;
+	position: relative;
+	float: right;
+	margin-right: 5px;
+}
+
+
+
+#menu {
+	padding-bottom: 1%;
+	padding-top: 10px;
+}
+#menu ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+#menu li a {
+	border: thin solid #000000;
+	height: 23px;
+	border-radius: 5px;
+	padding-left: 15px;
+	letter-spacing: 2px;
+	display: block;
+	background-color: #A1A2A0;
+	width: 80%;
+	margin-bottom: 5%;
+	padding-top: 5px;
+	color: rgba(255,255,255,1.00);
+	overflow-y: hidden;
+	text-decoration: none;
+	margin-left: 5%;
+}
+.menu_prim {
+	list-style-type: none;
+	padding-left: 10%;
+}
+#enlaces {
+	margin-right: 5%;
+	margin-left: 5%;
+	margin-bottom: 5%;
+	border-radius: 5px;
+	padding-top: 5%;
+	padding-bottom: 5%;
+	height: 35px;
+}
+#enlaces a {
+	height: 35px;
+	margin-left: 6%;
+	margin-right: 4%;
+	width: 35px;
+	display: inline-block;
+}
+#Fb  {
+	width: 35px;
+	height: 35px;
+	background-image: url(contenido/fb_logo.png);
+	background-size: contain;
+}
+#Twit {
+	background-image: url(contenido/twitter_logo.png);
+	background-size: contain;
+}
+#Linkedin {
+	background-image: url(contenido/linkedin_logo.png);
+	background-size: contain;
+}
+
+#goog {
+	background-image: url(contenido/google_logo.png);
+	background-size: contain;
+}
+
+
+
+#central {
+	overflow-y: auto;
+	float: left;
+	text-align: center;
+	padding-top: 1%;
+	padding-right: 1%;
+	padding-left: 1%;
+	background-color: rgba(16,31,192,0.51);
+	width: 77%;
+	left: auto;
+	border-radius: 10px;
+	right: auto;
+}
+.publicacion_1, .publicacion_2, .publicacion_3   {
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #A5A6A4;
+	border: medium solid #1107F8;
+	margin-bottom: 10px;
+	overflow-y: auto;
+}
+#central footer {
+	padding-top: 10px;
+	border-top: 1px solid rgba(115,117,114,1.00);
+}
+
+
+.publicacion_1 p {
+	margin-left: 10%;
+	max-width: 80%;
+}
+.publicacion_1 footer form label {
+	background-color: rgba(255,255,255,0.30);
+	float: right;
+	margin-left: 3px;
+	margin-right: 10px;
+	height: 26px;
+	padding-top: 4px;
+
+}
+.publicacion_1 footer form input {
+	float: right;
+	border-radius: 15px;
+	background-color: rgba(136,138,135,0.75);
+	border-bottom: thin solid black;
+	border-right: thin solid rgba(0,0,0,1.00);
+}
+
+.publicacion_2 h3 {
+	text-align: left;
+	width: 80%;
+	margin-left: 10%;
+	margin-bottom: 5px;
+	font-weight: bold;
+}
+
+.publicacion_2 a {
+	text-decoration: none;
+	color: rgba(0,0,0,1.00);
+	display: block;
+	width: 80%;
+	margin-left: 10%;
+}
+
+figure {
+	border: 1px solid white;
+	background-color: rgba(255,255,255,0.30);
+	margin: 0px;
+}
+figure img {
+	margin: 0px;
+	/* [disabled]border: thin solid rgba(255,255,255,1.00); */
+	max-width: 100%;
+}
+
+figcaption   {
+	text-align: center;
+	font: bold 16pt Cambria, "Hoefler Text", "Liberation Serif", Times, "Times New Roman", serif;
+	border-top: thin solid rgba(255,255,255,1.00);
+	margin: 0px;
+	padding-top: 5px;
+	max-height: none;
+}
+figure p {
+	text-align: right;
+	margin: 0px;
+	font-size: small;
+}
+
+.publicacion_3 p {
+	text-align: justify;
+	text-indent: 20px;
+}
+.publicacion_3 p:first-letter {
+	font-size: xx-large;
+}
+
+.publicacion_3 img {
+	max-width: 600px;
+	max-height: 600px;
+	border: thin solid #FFFFFF;
+	float: left;
+	margin-right: 10px;
+}
+.comentario textarea  {
+	width: 99%;
+	border: 1px solid gray;
+	border-radius: 5px;
+	background-color: rgba(255,255,255,0.30);
+}
+
+#footer {
+	bottom: 0px;
+	background-color: #888A87;
+	height: 3%;
+	padding: 10px;
+	clear: both;
+	background-image: -webkit-linear-gradient(270deg,rgba(255,255,255,1.00) 0%,rgba(136,138,135,1.00) 27.46%);
+	background-image: -moz-linear-gradient(270deg,rgba(255,255,255,1.00) 0%,rgba(136,138,135,1.00) 27.46%);
+	background-image: -o-linear-gradient(270deg,rgba(255,255,255,1.00) 0%,rgba(136,138,135,1.00) 27.46%);
+	background-image: linear-gradient(180deg,rgba(255,255,255,1.00) 0%,rgba(136,138,135,1.00) 27.46%);
+}

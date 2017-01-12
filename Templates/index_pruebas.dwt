@@ -1,0 +1,98 @@
+<!doctype html>
+<html>
+<head>
+<!-- TemplateBeginEditable name="head" -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Mi página web">
+<meta name="keywords" content="deportes, noticias, tecnologia, football, juegos, mecatronica, nfl, onefa, starcraft"  />
+<meta name="author" content="Sergio Cuéllar Sagaón">
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>Sergio Cuéllar</title>
+<!-- TemplateEndEditable -->
+<!--The following script tag downloads a font from the Adobe Edge Web Fonts server for use within the web page. We recommend that you do not modify it.-->
+<script>var __adobewebfontsappname__="dreamweaver"</script>
+<script src="http://use.edgefonts.net/abril-fatface:n4,i4:default;lato:n4:default;miama:n4:default;sansita-one:n4:default.js" type="text/javascript">
+  </script>
+<!-- TemplateEndEditable -->
+<!-- TemplateParam name="OptionalRegion1" type="boolean" value="true" -->
+<link href="Templates/styles_pruebas.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="todo">
+  <header id="header">
+    <a id="logo" href="../index.html"></a>
+    <h1>Bienvenidos a mi pagina personal</h1>
+  </header>
+  <hr>
+  <main id="principal">
+    <aside id="lateral">
+      <form class="search" action="http://www.sergiocuellar.com/" method="get" target="_blank">
+        <input id="busqueda" type="search" name="search" placeholder="Buscar"><input id="boton_busqueda" type="image" src="../contenido/search-icon-grey.png" width="30" height="30"><!--<input type="submit" value="Buscar">-->
+      </form>
+      <nav id="menu">
+        <ul class="menu_prim">
+          <li><a href="../index.html" accesskey="i">Inicio</a></li>
+          <li><a href="../carrera.html" accesskey="c">Sobre Mi</a></li>
+          <li><a href="../tecnologia.html" accesskey="t">Tecnología</a></li>
+          <li><a href="../deportes.html" accesskey="d">Deportes</a></li>
+          <li><a href="../noticias.html" accesskey="n">Noticias</a></li>
+          <li><a href="../juegos.html" accesskey="j">Juegos</a></li>
+          <li><a href="../innivabroadcast.html">Innova Broadcast</a></li>
+          <li><a href="../contacto.html">Contacto</a></li>
+          <li><a href="../informacion.html">Información</a></li>
+        </ul>
+      </nav>
+      <div id="enlaces">
+        <a id="Fb" href="https://www.fb.com/sergio.cuellarsagaon" target="_blank"></a>
+        <a id="Twit" href="https://www.twitter.com/@SergioArmandoCS" target="_blank"></a>
+        <a id="Linkedin" href="https://www.linkedin.com/sergio" target="_blank"></a>
+        <a id="goog" href="https://www.google.com" target="_blank"><!--<img src="" alt="Twitter"/>--></a>
+      </div>
+    </aside>
+    <section id="central">
+      <!-- TemplateBeginEditable name="EditRegion3" -->
+  <article class="publicacion_1">
+    <h1>Bienvenidos</h1>
+    <h2>Este es mi sitio web</h2>
+    <p>Aqui va la descripción ampliada mia y de la página destacando todas las cualidades y atrivutos y describiendo el contenido de la pagina</p>
+    <footer>
+      <form action="http://wwwsergiocuellar.com/" method="get">
+        <label for="likes">231</label>
+        <input name="likes" type="image" src="" width="50" height="30" value=" ">
+        <label for="comments">21</label>
+        <input name="comments" type="image" src="" width="50" height="30" value=" ">
+        <label for="shares">123</label>
+        <input name="shares" type="image" src="" width="50" height="30" value=" ">
+      </form>
+    </footer>
+  </article>
+  <article class="publicacion_2">
+    <h3>Este es el contenido de la etiqueta H3 de diseño</h3>
+    <a href="https://es.wikipedia.org/wiki/It" target="_blank">
+      <figure> <img src="../contenido/AdobeStock_92222206_WM.jpeg" alt="IT" title="Expreiencia en IT"/>
+        <figcaption>Descripcion del enlace de segunda publicación</figcaption>
+        <p>url de la publicacion (sin vinculo! solo escrita) &nbsp; &nbsp; &nbsp; &nbsp; www.bussinessinsider.com</p>
+      </figure>
+    </a>
+  </article>
+  <article class="publicacion_3"> <img src="../contenido/AdobeStock_90742514_WM.jpeg" alt="Dispositivos" width="300" height="230" title="Dispositivos"/>
+    <h1>Titulo del Tercer tipo de publicacion</h1>
+    <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus</p>
+    <footer>
+      <form class="comentario" action="http://www.sergiocuellar.com/" method="get">
+        <textarea name="comentario" placeholder="Por favor, dame tu comentario..."></textarea>
+      </form>
+    </footer>
+  </article>
+  <!-- TemplateEndEditable -->
+    </section>
+      </main>
+  <footer id="footer">
+    <div id="subnav" align="right"><a href="#">Desarrolladores</a> | <a href="#">Crear anuncio</a> | <a href="#">Empleo</a> | <a href="#">Privacidad</a> | <a href="#">Condiciones</a> | <a href="#">Ayuda</a></div><br>
+	<span class="copyright">INNOVA BROADCAST&reg; es una marca comercial registrada en México y en otros países. <br> Estos términos y todos los materiales asociados, así como logotipos e imágenes son copyright de INNOVA BROADCAST&reg;&copy;.</span>
+  </footer>
+</div>
+</body>
+</html>
+

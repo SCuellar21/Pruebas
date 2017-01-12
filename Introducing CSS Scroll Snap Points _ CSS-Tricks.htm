@@ -1,0 +1,1512 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta name="viewport" content="width=device-width">
+
+  
+  <title>Introducing CSS Scroll Snap Points | CSS-Tricks</title>
+
+  <link rel="apple-touch-icon" href="https://cdn.css-tricks.com/apple-touch-icon.png">
+  <meta name="msapplication-TileColor" content="#00aba9">
+  <meta name="msapplication-TileImage" content="https://cdn.css-tricks.com/mstile-144x144.png">
+
+  <meta property="fb:pages" content="124436167285">
+
+  <link rel="search" type="application/opensearchdescription+xml" href="https://cdn.css-tricks.com/opensearch.xml" title="CSS-Tricks Search">
+
+  <link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://feeds.feedburner.com/CssTricks">
+
+  <!--[if !IE]><!-->
+  <link rel="stylesheet" href="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-14/style.css?v=5.1">
+  <!--<![endif]-->
+  <!--[if lt IE 9]>
+  <link rel="stylesheet" href="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-14/css/oldie.css">
+  <![endif]-->
+  <!--[if IE 9]>
+  <link rel="stylesheet" href="https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-14/style.css?v=5.1>
+  <![endif]-->
+
+  
+    
+  
+<!-- This site is optimized with the Yoast SEO plugin v4.0.2 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="Before this new CSS I&#039;m about to introduce existed, locking an element into the viewport on scroll required rigging up some JavaScript. As you may know, Ja"/>
+<meta name="robots" content="noodp"/>
+<link rel="canonical" href="https://css-tricks.com/introducing-css-scroll-snap-points/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Introducing CSS Scroll Snap Points | CSS-Tricks" />
+<meta property="og:description" content="Before this new CSS I&#039;m about to introduce existed, locking an element into the viewport on scroll required rigging up some JavaScript. As you may know, Ja" />
+<meta property="og:url" content="https://css-tricks.com/introducing-css-scroll-snap-points/" />
+<meta property="og:site_name" content="CSS-Tricks" />
+<meta property="article:publisher" content="https://www.facebook.com/CSSTricks" />
+<meta property="article:section" content="Article" />
+<meta property="article:published_time" content="2016-03-02T06:45:41+00:00" />
+<meta property="article:modified_time" content="2016-03-02T19:32:30+00:00" />
+<meta property="og:updated_time" content="2016-03-02T19:32:30+00:00" />
+<meta property="og:image" content="//css-tricks.com/wp-content/uploads/2016/02/scroll-snap-align-1.jpg" />
+<meta property="og:image" content="//css-tricks.com/wp-content/uploads/2016/02/ssd1.jpg" />
+<meta property="og:image" content="//css-tricks.com/wp-content/uploads/2016/02/ssd.jpg" />
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:description" content="Before this new CSS I&#039;m about to introduce existed, locking an element into the viewport on scroll required rigging up some JavaScript. As you may know, Ja" />
+<meta name="twitter:title" content="Introducing CSS Scroll Snap Points | CSS-Tricks" />
+<meta name="twitter:site" content="@Real_CSS_Tricks" />
+<meta name="twitter:image" content="//css-tricks.com/wp-content/uploads/2016/02/scroll-snap-align-1.jpg" />
+<meta name="twitter:creator" content="@sarah_edo" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel="alternate" type="application/rss+xml" title="CSS-Tricks &raquo; Introducing CSS Scroll Snap Points Comments Feed" href="https://css-tricks.com/introducing-css-scroll-snap-points/feed/" />
+<script type='text/javascript' src='https://cdn.css-tricks.com/wp-content/uploads/minqueue-cache/minqueue-ca14aaa7-9be6b636.js'></script>
+<link rel='https://api.w.org/' href='https://css-tricks.com/wp-json/' />
+<link rel='shortlink' href='https://css-tricks.com/?p=238222' />
+<link rel="alternate" type="application/json+oembed" href="https://css-tricks.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcss-tricks.com%2Fintroducing-css-scroll-snap-points%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://css-tricks.com/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fcss-tricks.com%2Fintroducing-css-scroll-snap-points%2F&#038;format=xml" />
+<!-- Better Art Direction Styles -->
+
+
+
+<link rel='dns-prefetch' href='//v0.wordpress.com'>
+<style type='text/css'>img#wpstats{display:none}</style><link rel="amphtml" href="https://css-tricks.com/introducing-css-scroll-snap-points/amp/" />
+</head>
+
+<body class="post-template-default single single-post postid-238222 single-format-standard">
+
+  <script>
+    (function(){
+      var bsa = document.createElement('script');
+         bsa.async = true;
+         bsa.src = "//s3.buysellads.com/ac/bsa.js";
+      (document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(bsa);
+    })();
+  </script>
+
+  <header id="top" class="top">
+
+  <a href="/" class="logo-link">
+    <svg class="logomorph" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="256 -32 620 180" width="300" height="85">
+  <g>
+    <path id="dash" d="M488.3 65.8h15.1c2.6 0 4.7-2.2 4.7-4.7 0-2.7-2.2-4.8-4.7-4.8h-15.1c-2.6 0-4.7 2.2-4.7 4.8-.1 2.5 2.1 4.7 4.7 4.7z"/>
+    <path id="k" d="M703.4 81.1c0 2.7 2.2 4.9 5 4.9 2.7 0 4.9-2.2 4.9-4.9V69.4l9.2-8.9 18.1 23.1c1 1.4 2.3 2.3 4.2 2.3 2.8 0 5-2.1 5-4.8 0-1.5-.6-2.5-1.4-3.5l-19-23.6 17.5-16.9c1.1-1 1.8-2.2 1.8-3.7 0-2.4-1.8-4.6-4.6-4.6-1.8 0-3 .6-4.1 1.9l-26.7 26.9V33.8c0-2.7-2.2-4.9-4.9-4.9-2.8 0-5 2.2-5 4.9v47.3z"/>
+    <path id="halfstar" class="st0" d="M733 64l-17.2-6.6 17.2-6.7c2.1-.9 4-2.6 4-5.3 0-3.1-2.6-5.7-5.7-5.7-1.6 0-2.8.5-4.3 1.7l-14.9 9.5 1.7-15.5c.5-3.6-1.9-6.4-5.3-6.4s-5.9 2.9-5.3 6.6v44c-.5 3.6 1.9 6.4 5.3 6.4 3.5 0 5.9-2.9 5.3-6.6L712.1 64l14.9 9.5c1.6 1 2.8 1.7 4.1 1.7 3.1 0 5.9-2.6 5.9-5.7 0-2.7-1.9-4.6-4-5.5z"/>
+    <path id="s2" class="st0" d="M457.8 53c-10.9-2.6-13.4-4.5-13.4-8.9v-.2c0-3.7 3.4-6.7 9.2-6.7 4.4 0 8.6 1.4 13 4.3.8.5 1.6.7 2.6.7 2.6 0 4.7-2 4.7-4.6 0-1.9-1-3.3-2.2-3.9-5.1-3.4-10.8-5.2-17.9-5.2-11.2 0-19.2 6.7-19.2 16.3v.2c0 10.4 6.8 13.9 18.7 16.8 10.5 2.4 12.7 4.6 12.7 8.6v.2c0 4.2-3.9 7.1-10 7.1s-11.1-2.1-15.8-5.8c-.6-.5-1.5-.9-2.9-.9-2.6 0-4.7 2-4.7 4.6 0 1.6.8 3 1.9 3.8 6.3 4.7 13.5 7.1 21.2 7.1 11.8 0 20.1-6.3 20.1-16.8v-.2c0-9.4-6.1-13.6-18-16.5z"/>
+    <path id="c1" class="st0" d="M371.1 70.9c-1.2 0-2.3.5-3 1.1-4.1 3.5-8.1 5.4-14.1 5.4-10.8 0-18.6-8.9-18.6-20v-.2c0-11 7.9-19.9 18.6-19.9 5.4 0 9.6 1.9 13.4 5.1.6.5 1.6 1 3 1 2.7 0 4.9-2.1 4.9-4.8 0-1.8-.9-3.1-1.9-3.9-4.9-3.8-10.6-6.4-19.3-6.4-17.1 0-29 13.1-29 29.1v.2c0 16.2 12.2 29 28.6 29 9.1 0 15.1-2.9 20.4-7.6.9-.8 1.6-2 1.6-3.5 0-2.5-2.1-4.6-4.6-4.6z"/>
+    <path id="s1" class="st0" d="M407.9 53c-10.9-2.6-13.4-4.5-13.4-8.9v-.2c0-3.7 3.4-6.7 9.2-6.7 4.4 0 8.6 1.4 13 4.3.8.5 1.6.7 2.6.7 2.6 0 4.7-2 4.7-4.6 0-1.9-1-3.3-2.2-3.9-5.1-3.4-10.8-5.2-17.9-5.2-11.2 0-19.2 6.7-19.2 16.3v.2c0 10.4 6.8 13.9 18.7 16.8 10.5 2.4 12.7 4.6 12.7 8.6v.2c0 4.2-3.9 7.1-10 7.1s-11.1-2.1-15.8-5.8c-.6-.5-1.5-.9-2.9-.9-2.6 0-4.7 2-4.7 4.6 0 1.6.8 3 1.9 3.8 6.3 4.7 13.5 7.1 21.2 7.1 11.8 0 20.1-6.3 20.1-16.8v-.2c0-9.4-6.1-13.6-18-16.5z"/>
+    <path id="t" class="st0" d="M549 29.3h-37.4c-2.6 0-4.6 2.1-4.6 4.6s2 4.6 4.6 4.6h13.7v42.6c0 2.7 2.3 4.9 5 4.9s5-2.2 5-4.9V38.5H549c2.5 0 4.5-2.1 4.5-4.6s-2-4.6-4.5-4.6z"/>
+    <path id="c2" class="st0" d="M688.4 70.9c-1.2 0-2.3.5-3 1.1-4.1 3.5-8.1 5.4-14.1 5.4-10.8 0-18.6-8.9-18.6-20v-.2c0-11 7.9-19.9 18.6-19.9 5.4 0 9.6 1.9 13.4 5.1.6.5 1.6 1 3 1 2.7 0 4.9-2.1 4.9-4.8 0-1.8-.9-3.1-1.9-3.9-4.9-3.8-10.6-6.4-19.3-6.4-17.1 0-29 13.1-29 29.1v.2c0 16.2 12.2 29 28.6 29 9.1 0 15.1-2.9 20.4-7.6.9-.8 1.6-2 1.6-3.5 0-2.5-2.1-4.6-4.6-4.6z"/>
+    <path id="r" class="st0" d="M587.9 29.3h-20.1c-2.8 0-5 2.2-5 5v46.8c0 2.7 2.2 4.9 5 4.9 2.7 0 4.9-2.2 4.9-4.9V66h12.5l13.7 17.5c1.1 1.5 2.6 2.6 4.8 2.6 2.4 0 4.7-1.9 4.7-4.6 0-1.5-.6-2.6-1.6-3.8L596 64.1c7.6-2.3 12.8-7.8 12.8-16.8v-.2c0-4.9-1.7-9.1-4.7-12.1-3.6-3.6-9.1-5.7-16.2-5.7zm10.8 18.5c0 5.7-4.5 9.4-11.6 9.4h-14.5V38.3H587c7.3 0 11.7 3.3 11.7 9.3v.2z"/>
+    <path id="i" class="st0" d="M625.7 28.9c-2.8 0-5 2.2-5 4.9v47.3c0 2.7 2.2 4.9 5 4.9 2.7 0 4.9-2.2 4.9-4.9V33.8c0-2.7-2.2-4.9-4.9-4.9z"/>
+    <path id="i2" class="st0" d="M625.7 28.9c-2.8 0-5 2.2-5 4.9v47.3c0 2.7 2.2 4.9 5 4.9 2.7 0 4.9-2.2 4.9-4.9V33.8c0-2.7-2.2-4.9-4.9-4.9z"/>
+  </g>
+  <g id="newer">
+    <g id="saturn">
+      <g id="satbody">
+        <circle id="body" class="st1" cx="672.1" cy="57.7" r="28.9"/>
+        <path id="shadow" class="st2" d="M672.1 86.6c-24.2-3.9-33.6-29.9-21.8-47.9-4.4 5.1-7.1 11.7-7.1 19 0 15.9 13 28.9 28.9 28.9z"/>
+        <path id="highlight" class="st3" d="M672.1 28.8c-6.3 0-12.1 2-16.8 5.4 3.3-1.3 6.9-2 10.6-2 16 0 28.9 12.9 28.9 28.9 0 9.7-4.1 19.5-12.1 23.5 10.7-4.2 18.3-14.7 18.3-26.9 0-16-12.9-28.9-28.9-28.9z"/>
+      </g>
+      <g id="rings">
+        <path id="ringB" class="st4" d="M618 80.9c1.4 2.8 24.6-2.5 57-14.9 7.1-2.7 54.2-22.1 51.9-26.9-.8-1.6-9.8-.3-28.3 5.3.5 1.1.9 2.2 1 2.4 8.7-2.6 13.3-3.5 13.7-2.6 1 2.7-24.1 13.4-41.7 19.7-23.8 8.4-43.3 14.1-43.9 12.4-.4-1 5.7-4.3 16.5-9-.2-.5-.4-1.2-.6-2-3.3 1.5-27.2 12.4-25.6 15.6z"/>
+        <path id="ringN" class="st5" d="M736.7 36.5c-1.2-3.3-16.6-.7-39.1 6.3.3.4.6 1.1.9 1.7l-.2-.5c10.3-3.1 31.4-9.3 32.9-6.2 2.8 5.6-50.1 26.5-56.1 28.8-6.8 2.6-57.8 21.2-60.5 15.7-1.9-3.8 24.8-15.8 28.7-17.6l.1.6c-.2-.7-.3-1.5-.4-2-21.2 9.4-34.7 17.7-33.5 20.9 1.7 4.5 31.5-2 66.6-15.2 35.2-13.2 62.3-28 60.6-32.5z"/>
+      </g>
+    </g>
+    <g id="burst">
+      <path id="l1" stroke-linecap="round" class="st6" d="M729.5 8.3v24.5"/>
+      <path id="l2" stroke-linecap="round" class="st6" d="M727.5 34l27-15.7"/>
+      <path id="l3" stroke-linecap="round" class="st6" d="M729 31.8l22.5 13.5"/>
+      <path id="l4" stroke-linecap="round" class="st6" d="M729.5 31.3v26"/>
+      <path id="l5" stroke-linecap="round" class="st6" d="M707.5 45.8l24.9-14.5"/>
+      <path id="l6" stroke-linecap="round" class="st6" d="M702.5 16.3l30.2 18"/>
+    </g>
+    <path id="star" d="M704.8 64l-12.9 9.5c-1.6 1-2.8 1.7-4.3 1.7-3.1 0-5.7-2.8-5.7-5.9 0-2.6 2.1-4.5 4-5.3l15.2-6.6-15.2-6.7c-2.1-.9-4-2.8-4-5.3 0-3.1 2.8-5.7 5.9-5.7 1.6 0 2.6.5 4.1 1.7l12.9 9.5-1.7-15.4c-.5-3.6 1.9-6.6 5.3-6.6 3.5 0 5.9 2.8 5.3 6.4L712 50.8l12.9-9.5c1.6-1.2 2.8-1.7 4.3-1.7 3.1 0 5.7 2.6 5.7 5.7 0 2.8-1.9 4.5-4 5.3l-15.2 6.7 15.2 6.6c2.1.9 4 2.8 4 5.5 0 3.1-2.8 5.7-5.9 5.7-1.4 0-2.6-.7-4.1-1.7L712 63.9l1.7 15.4c.5 3.6-1.9 6.6-5.3 6.6s-5.9-2.8-5.3-6.4l1.7-15.5z"/>
+    <g id="zg">
+      <path id="lbracket" class="st7" d="M784.8 97.3l-26-12.7c-2.2-1-3.5-2.7-3.5-4.8v-.6c0-2.2 1.3-3.8 3.5-4.8l26-12.7c.7-.4 1.4-.6 2.2-.6 1.9-.1 3.5 1.6 3.5 3.7 0 1.7-.9 2.9-2.4 3.6l-23.7 11.1 23.7 11.2c1.5.7 2.4 2 2.4 3.7 0 2.2-1.7 3.7-3.8 3.7-.6-.2-1.3-.5-1.9-.8z"/>
+      <path id="rbracket" class="st7" d="M773.8 15.6l25.9 12.7c2.2 1 3.5 2.7 3.5 4.8v.6c0 2.2-1.3 3.8-3.5 4.8l-25.9 12.7c-.7.4-1.4.6-2.2.6-1.9.1-3.5-1.6-3.5-3.7 0-1.7.9-2.9 2.4-3.5l23.7-11.2-23.7-11.2c-1.5-.7-2.4-2-2.4-3.7 0-2.2 1.7-3.7 3.8-3.7.6.2 1.3.5 1.9.8z"/>
+      <path id="z1" d="M801 37.6c1.2-1.5 1.8-3 1.8-4.7v-.2c0-2.4-2.1-4.5-4.6-4.5H760c-2.4 0-4.5 2.1-4.5 4.6s2.1 4.5 4.5 4.5h29.1l-14.7 17.8 7.7 5.3L801 37.6z"/>
+      <path id="z2" d="M798.5 77.2h-30.2l14-16.8-7.7-5.3-17.9 21.7c-1.2 1.4-1.9 3-1.9 4.7v.2c0 2.4 2.2 4.5 4.6 4.5h39.2c2.5 0 4.6-2 4.6-4.5s-2.2-4.5-4.7-4.5z"/>
+    </g>
+    <g id="sg">
+      <path id="sl1" class="st0" d="M767.8 44.1v-.2c0-3.7 3.4-6.7 9.2-6.7 4.4 0 8.6 1.4 13 4.3.8.5 1.6.7 2.6.7 2.6 0 4.7-2 4.7-4.6 0-1.9-1-3.3-2.2-3.9-5.1-3.4-10.8-5.2-17.9-5.2-11.2 0-19.2 6.7-19.2 16.3v.2c0 10.1 6.5 13.7 17.9 16.6l4.8-8.7c-10.5-2.6-12.9-4.5-12.9-8.8z"/>
+      <path id="sl2" class="st0" d="M781.2 53c-.2 0-.3-.1-.5-.1l-4.8 8.7c.3.1.6.1.8.2 10.5 2.4 12.7 4.6 12.7 8.6v.2c0 4.2-3.9 7.1-10 7.1s-11.1-2.1-15.8-5.8c-.6-.5-1.5-.9-2.9-.9-2.6 0-4.7 2-4.7 4.6 0 1.6.8 3 1.9 3.8 6.3 4.7 13.5 7.1 21.2 7.1 11.8 0 20.1-6.3 20.1-16.8v-.2c0-9.4-6.1-13.6-18-16.5z"/>
+    </g>
+    <path id="kturn" d="M647.7 51.4c-2.7 0-4.9 2.2-4.9 5 0 2.7 2.2 4.9 4.9 4.9h11.7l8.9 9.2-23 18.2c-1.4 1-2.3 2.3-2.3 4.2 0 2.8 2.1 5 4.8 5 1.5 0 2.5-.6 3.5-1.4l23.5-19.1 16.9 17.5c1 1.1 2.2 1.8 3.7 1.8 2.4 0 4.6-1.8 4.6-4.6 0-1.8-.6-3-1.9-4.1l-27-26.6 23.8-.1c2.7 0 4.9-2.2 4.9-4.9 0-2.8-2.2-5-4.9-5h-47.2z"/>
+    <path id="bracket" d="M687.5 68.8c-1.1 0-4-.1-5.2-.1-5.3 0-7.6 1.9-7.8 6.8-.1 2.2-1.5 3.6-3.5 3.6-1.9 0-3.3-1.4-3.5-3.6-.1-4.9-2.5-6.8-7.8-6.8-1.2 0-4.1.1-5.2.1-7.1 0-11.5-3-14-14.1-.5-2.2.9-4 3-4 1.7 0 2.7 1.2 3 2.1 2.2 6.9 4.4 7.9 9.3 7.9 1.4 0 3.8-.1 5.3-.1 5.6 0 8.4 2.7 9.9 7.5 1.6-4.8 4.2-7.5 9.9-7.5 1.5 0 3.9.1 5.3.1 4.9 0 7.1-1 9.3-7.9.3-.9 1.2-2.1 3-2.1 2.1 0 3.5 1.7 3 4-2.5 11.1-7 14.1-14 14.1z"/>
+    <path id="repofill" class="st11" d="M551.4,36.7c0-3.9-3.1-7-7-7c-3.9,0-7,3.1-7,7c0,2.6,1.4,4.9,3.5,6.1v5.8l-10.6,11.7 l-10.6-11.7v-5.8c2.1-1.2,3.5-3.5,3.5-6.1c0-3.9-3.1-7-7-7s-7,3.1-7,7c0,2.6,1.4,4.9,3.5,6.1v8.6l14.1,15.5v6 c-2.1,1.2-3.5,3.5-3.5,6.1c0,3.9,3.1,7,7,7c3.9,0,7-3.1,7-7c0-2.6-1.4-4.9-3.5-6.1v-6l14.1-15.5v-8.6 C550,41.6,551.4,39.4,551.4,36.7z"/>
+    <path id="repodot3" class="st12" d="M544.7,32.9c1.9,0,3.5,1.6,3.5,3.5c0,1.9-1.6,3.5-3.5,3.5s-3.5-1.6-3.5-3.5 C541.2,34.5,542.8,32.9,544.7,32.9z"/>
+    <path id="repodot2" class="st12" d="M516.2,33.1c1.9,0,3.5,1.6,3.5,3.5c0,1.9-1.6,3.5-3.5,3.5c-1.9,0-3.5-1.6-3.5-3.5 C512.7,34.7,514.3,33.1,516.2,33.1z"/>
+    <path id="repodot1" class="st12" d="M530.3,75.7c1.9,0,3.5,1.6,3.5,3.5s-1.6,3.5-3.5,3.5c-1.9,0-3.5-1.6-3.5-3.5 S528.4,75.7,530.3,75.7z"/>
+    <path id="slash" class="st7" d="M807.1 80.3l41-50.2c.9-1.1 2.2-1.6 3.7-1.3 2 .3 3.4 1.9 3.1 3.5-.1.6-.4 1.1-.7 1.5L813.3 84c-.9 1.1-2.1 1.6-3.6 1.3-2-.3-3.5-1.9-3.2-3.5 0-.6.3-1.2.6-1.5z"/>
+    <path id="link" class="st0" d="M405.6 73.7c-1.4 1.1-1.6 3.2-.5 4.6l2.4 3c2.1 2.7 5.2 4.2 8.4 4.6 3.2.4 6.5-.5 9.2-2.6 2.6-2.1 4.3-5 4.6-8.3.4-3.3-.6-6.6-2.7-9.2L418.3 55c-5.4-6.7-12.3-8.4-17.6-4.2-1.4 1.1-1.7 3.2-.5 4.6 1.1 1.4 3.2 1.7 4.6.5 3.1-2.4 6.6 1 8.4 3.2l8.7 10.8c1 1.2 1.4 2.8 1.2 4.3-.2 1.6-1 3-2.2 3.9-2.6 2-6.3 1.6-8.4-.9l-2.4-3c-1.1-1.4-3.1-1.6-4.5-.5zm-25.5-32.3c-.4 3.3.6 6.6 2.7 9.2l9.3 11.6c2.9 3.6 6.1 5.6 9.3 5.9 2.6.3 5.3-.5 7.7-2.4 1.4-1.1 1.7-3.2.5-4.6-1.1-1.4-3.2-1.7-4.6-.5-1.1.8-3.6 2.8-7.8-2.5l-9.3-11.6c-1-1.2-1.4-2.8-1.3-4.3.2-1.6 1-2.9 2.2-3.9 2.3-1.8 5.6-2.5 7.8.2l3 3.7c1.1 1.4 3.2 1.6 4.6.5 1.4-1.1 1.6-3.2.5-4.6l-2.9-3.7c-4.2-5.2-11.3-5.7-17-1.3-2.7 2-4.3 5-4.7 8.3z"/>
+  </g>
+  <circle id="dotExpand" fill="#E18728" cx="503" cy="61" r="3.9"/>
+  <circle id="dotActivate" fill="#E18728" cx="503" cy="61" r="3.9"/>
+</svg>
+  </a>
+
+  <section class="search" role="search">
+
+    <form id="search-form" action="/search-results/">
+
+      <div class="flexy-search">
+        <input aria-labelledby="search-label" id="q" required type="search" name="q" class="search-field" value="" placeholder="e.g. flexbox">
+        <label for="q" id="search-label">
+          <span class="screen-reader">Search</span>
+          <svg viewBox="0 0 100 100" class="shape-search" width="26px" height="26px">
+            <use xlink:href="#shape-search"></use>
+          </svg>
+        </label>
+      </div>
+
+    </form>
+
+  </section>
+
+  <div class="user-account-area">
+
+    <img alt='' src='https://secure.gravatar.com/avatar/?s=46&#038;d=mm&#038;r=pg' srcset='https://secure.gravatar.com/avatar/?s=92&amp;d=mm&amp;r=pg 2x' class='avatar avatar-46 photo avatar-default' height='46' width='46' />
+    <ul class="user-dropdown">
+
+      
+      <li>
+        <a href="/wp-login.php">Log In</a>
+      </li>
+      <li>
+        <a href="/wp-login.php?action=register">Sign Up</a>
+      </li>
+
+      
+    </ul>
+
+  </div>
+
+  <nav class="main-nav" id="main-nav">
+  <ul>
+    <li class="home">
+      <a href="/">
+        Blog
+      </a>
+    </li>
+    <li class="videos">
+      <a href="/video-screencasts/">
+        Videos
+      </a>
+    </li>
+    <li class="almanac">
+      <a href="/almanac/">
+        Almanac
+      </a>
+    </li>
+    <li class="snippets">
+      <a href="/snippets/">
+        Snippets
+      </a>
+    </li>  
+    <li class="forums">
+      <a href="/forums/">
+        Forums
+      </a>
+    </li>
+    <li class="shop">
+      <a href="/shop/">
+        Shop
+      </a>
+    </li>
+    <li class="lodge">
+      <a href="/lodge/">
+        Lodge
+      </a>
+    </li>
+    <li class="jobs">
+      <a href="/jobs/">
+        Jobs
+      </a>
+    </li>
+  </ul>
+</nav>
+</header>
+
+  <div class="page-wrap" id="page-wrap">
+
+<div class="main-and-sidebar-wrap">
+
+  <main class="main-col">
+
+    <header class="mega-header">
+
+      <h1 class="p-name">Introducing CSS Scroll Snap Points</h1>
+
+      <p class="author-byline">
+        <span class="author-byline-inside">
+          <a href="https://css-tricks.com/author/sdrasner/">
+            <img alt='' src='https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=200&#038;d=mm&#038;r=pg' srcset='https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=400&amp;d=mm&amp;r=pg 2x' class='avatar avatar-200 photo' height='200' width='200' />            <span class="p-author">
+              Sarah Drasner            </span>
+          </a>
+          <span class="slashes">//</span>
+          <time datetime="2016-03-02" class="dt-published">
+            March 2, 2016          </time>
+        </span>
+      </p>
+
+    </header>
+
+    <div class="module-main blog-posts no-relative">
+
+      <article id="post-238222" role="main" class="instapaper_body h-entry e-content">
+
+          <div class="google-ad">
+    <div id="bsap_1279518" class="bsarocks bsap_3469a2a501a9e18091036aa0c89f9dcb"></div>
+  </div>
+
+        <p>Before this new CSS I'm about to introduce existed, locking an element into the viewport <em>on scroll</em> required rigging up some JavaScript. As you may know, JavaScript has a well-earned reputation to be tricky when paired with scrolling behavior.</p>
+<p>The new <a href="https://drafts.csswg.org/css-snappoints/">CSS Scroll Snap Points spec</a> promises to help, allowing for this kind of behavior using very few lines of CSS. </p>
+<p>As happens with very new web tech, this spec has changed over time. There is "old" and "new" properties and values. It's promising though, as <a href="http://caniuse.com/#feat=css-snappoints">support</a>has shot up quickly. I'll teach you how to get the widest support in this in-between stage.</p>
+<p><span id="more-238222"></span></p>
+<h3>Polyfilled Demo</h3>
+<p>The demo below has horizontal scrolling. It's responsive: each "panel" is the width and height of the viewport (thanks to <code>vh</code> and <code>vw</code> units). </p>
+<p>It uses a <a href="https://github.com/ckrack/scrollsnap-polyfill">polyfill</a>, but in order to use it (and support is still low enough that I suggest you do), you have to support the "old" values, which is why I'll cover them, too. </p>
+<p data-height="400" data-theme-id="1" data-slug-hash="qbzmpw" data-default-tab="result" data-user="sdras" class='codepen'>See the Pen <a href='http://codepen.io/sdras/pen/qbzmpw/'>Simple Responsive Scroll Snap Point Demo</a> by Sarah Drasner (<a href='http://codepen.io/sdras'>@sdras</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<ul>
+<li><strong>If you're looking in Firefox:</strong> it has the best current support, so you can mostly clearly see how the native behavior looks and feels.</li>
+<li><strong>If you're looking Chrome or Opera:</strong> don't have any support, so any behavior you notice in those browsers can be attributed to the polyfill entirely.</li>
+<li><strong>If you're looking in Edge or IE:</strong> it probably won't work at all. These browsers <a href="https://dl.dropboxusercontent.com/u/444684/openwebref/CSS/scroll-snap-points/support.html">have partial support</a>, but apparently not enough to make this work.</li>
+<li><strong>If you're looking on a mobile device:</strong> iOS 9 supports it (tested on an iPhone 6), but I've seen the easing behavior act pretty weird. No Chrome/Android support, but the polyfill kicks in and handles it pretty well (tested on a Android Nexus 6).
+</li>
+</ul>
+<p>Note I'm using <a href="https://css-tricks.com/autoprefixer/">Autoprefixer</a> in the Pen to automatically give me all the necessary vendor prefixed properties.</p>
+<p>Here's the code used to make the magic:</p>
+<pre rel="CSS"><code class="language-css">.scroller {
+  
+  scroll-snap-type: mandatory;
+
+  /* older spec implementation */
+  scroll-snap-destination: 0% 100%;
+  scroll-snap-points-x: repeat(100%);
+}</code></pre>
+<p>Pretty slim! Let's break down these properties one by one.</p>
+<h3>Current CSS Scroll Snap Properties</h3>
+<h4>scroll-snap-type</h4>
+<pre rel="CSS"><code class="language-css">scroll-snap-type: none | mandatory | proximity; </code></pre>
+<p>A <code>mandatory</code> value is what you might think it would mean: that the element <em>must</em> come to rest on a snap point even when there are no active scrolling actions taken. If content is somehow modified or updated, the page finds the snap point again.</p>
+<p>The <code>proximity</code> value is close to <code>mandatory</code>, but less strict. If the browser changes in size or content is added, it may or may not find the snap point again, depending on how close to a snap point it is.</p>
+<p>From what I’ve seen playing around with this, <code>mandatory</code> is more commonly supported in browsers at this time with more consistent behavior.</p>
+<h4>scroll-snap-align</h4>
+<pre rel="CSS"><code class="language-css">scroll-snap-align: [none | start | end | center] [none | start | end | center]; </code></pre>
+<p>This property refers to how an element’s scroll snap margin aligns with its parent scroll container. It uses two values, <code>x</code> and <code>y</code>, and if you only use one value it will be read as shorthand and repeated for both values (sort of like padding where <code>padding: 10px;</code> equals <code>padding: 10px 10px 10px 10px;</code>). This property isn't animatable.</p>
+<figure id='post-238252' class='align-right media-238252'><img sizes="(max-width: 800px) 100vw, 800px" srcset="https://cdn.css-tricks.com/wp-content/uploads/2016/02/scroll-snap-align-1.jpg 800w, https://cdn.css-tricks.com/wp-content/uploads/2016/02/scroll-snap-align-1-300x203.jpg 300w, https://cdn.css-tricks.com/wp-content/uploads/2016/02/scroll-snap-align-1-768x520.jpg 768w" src='//cdn.css-tricks.com/wp-content/uploads/2016/02/scroll-snap-align-1.jpg' alt='scroll-snap-align' /></figure>
+<h4>scroll-snap-padding</h4>
+<pre rel="CSS"><code class="language-css">scroll-snap-padding: &lt;length&gt; | &lt;percentage&gt;; </code></pre>
+<p>This property relates to the scroll container in the visual viewport. It works much like normal padding, with the same kind of value order. For example, <code>scroll-snap-padding: 75px 0 0;</code> would be top padding of <code>75px</code> and all others <code>0</code>. This property is animatable, so if you need to move scroll snap align, this would be a good way to do so.</p>
+<h3>Older CSS Scroll Snap Properties</h3>
+<p>As mentioned, the spec has been changing rapidly in the past year and there are already properties that are considered outdated, though are still good to know from a legacy support standpoint.</p>
+<h4>scroll-snap-points</h4>
+<pre rel="CSS"><code class="language-css">scroll-snap-points-&lt;x or y&gt;: none | repeat(&lt;length&gt;); </code></pre>
+<p> <br />
+<code>scroll-snap-point</code> addresses the axis that is the direction of the scroll. In the first Pen we saw, this property is set on the <code>x</code> axis. Here, we have it on the <code>y</code> axis (since it’s a vertical scroll) using <code>scroll-snap-points-y: repeat(100%);</code> The percentages refer to the padding box of whatever you’ve defined as the scroll container.</p>
+<p data-height="400" data-theme-id="1" data-slug-hash="43c9d13b23bc34a85bb3a5e2ea985958" data-default-tab="result" data-user="sdras" class='codepen'>See the Pen <a href='http://codepen.io/sdras/pen/43c9d13b23bc34a85bb3a5e2ea985958/'>Simple Scroll Snap Points</a> by Sarah Drasner (<a href='http://codepen.io/sdras'>@sdras</a>) on <a href='http://codepen.io'>CodePen</a>.</p>
+<h4>scroll-snap-destination</h4>
+<p>This property and <code>scroll-snap-coordinate</code> are very similar as far as values go. Where <code>scroll-snap-destination</code> refers to the parent element, <code>scroll-snap-coordinate</code> refers to the <em>element</em> itself. You might only need <code>scroll-snap-destination</code> to be specified if the snapping point is specified purely by the element rather than the container it sits in.</p>
+<pre rel="CSS"><code class="language-css">scroll-snap-destination: &lt;position&gt;;</code></pre>
+<p>This property allows you to specify at what point in the viewport the scroll should snap. For instance, say you want to cheat out your content by 100px so that two one panel is teased to one side of the other. The diagram below shows how it the scroll snap destination will allow you to easily adjust this parameter.</p>
+<figure id='post-238238' class='align-right media-238238'><img sizes="(max-width: 1000px) 100vw, 1000px" srcset="https://cdn.css-tricks.com/wp-content/uploads/2016/02/ssd1.jpg 1000w, https://cdn.css-tricks.com/wp-content/uploads/2016/02/ssd1-300x134.jpg 300w, https://cdn.css-tricks.com/wp-content/uploads/2016/02/ssd1-768x343.jpg 768w" src='//cdn.css-tricks.com/wp-content/uploads/2016/02/ssd1.jpg' alt='scroll-snap-destination' /></figure>
+<p>When defined as a percentage, the point is relative to the width and height of the scroll container.</p>
+<h4>scroll-snap-coordinate</h4>
+<pre rel="CSS"><code class="language-css">Scroll-snap-coordinate: none | &lt;position&gt;;</code></pre>
+<p>This property allows you to specify where the scroll should snap to an element. The position amount refers to the element’s border box. You might not need it unless you’re doing something pretty fancy. <code>scroll-snap-coordinate</code> is the only value that can apply to all elements on the page, all other scroll snap properties apply only to scroll containers.</p>
+<figure id='post-238239' class='align-right media-238239'><img sizes="(max-width: 1000px) 100vw, 1000px" srcset="https://cdn.css-tricks.com/wp-content/uploads/2016/02/ssd.jpg 1000w, https://cdn.css-tricks.com/wp-content/uploads/2016/02/ssd-300x130.jpg 300w, https://cdn.css-tricks.com/wp-content/uploads/2016/02/ssd-768x333.jpg 768w" src='//cdn.css-tricks.com/wp-content/uploads/2016/02/ssd.jpg' alt='scroll-snap-coordinate' /></figure>
+<p>These last two properties, <code>scroll-snap-destination</code> and <code>scroll-snap-coordinate</code> are <strong>animatable</strong> properties, while <code>scroll-snap-type</code> and <code>scroll-snap-points</code> &mdash; <x or y> are not &mdash; which makes sense.</p>
+<h3>More Resources</h3>
+<ul>
+<li><a href="https://drafts.csswg.org/css-snappoints/">CSS Scroll Snap Points Module Level 1 working draft</a></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap_Points">MDN reference</a></li>
+<li><a href="https://webkit.org/blog/4017/scroll-snapping-with-css-snap-points/">WebKit blog post</a></li>
+<li><a href="http://codepen.io/collection/XjOwrq/">CodePen collection</a></li>
+</ul>
+<h3>Conclusion</h3>
+<p>At the time of this post, the spec was updated about a month ago and is still moving. Support isn't ubiquitous yet, but even if you have to account for the older values that the polyfill requires, the code to make this work is small and sweet. It's incredibly fun to see what's coming up in CSS, and if you run experiments, by all means let the spec authors know what you're doing and what you find&mdash;it does affect what they work on. I'm still on the fence about using something like this in production yet. It would depend on how willing you are to iterate on that code if things change around in the future. In the meantime, though, the polyfill performs pretty well and it's exciting to see this kind of thing land in CSS.</p>
+
+        
+      </article>
+
+    </div>
+
+          <div class="bsap-doubles">
+        <div id="bsap_1250418" class="bsarocks bsap_3469a2a501a9e18091036aa0c89f9dcb"></div>
+      </div>
+    
+          <div class="module-comments">
+        <section id="comments">
+
+
+
+  <h1 class="h2 comments-title">
+    Comments
+  </h1>
+
+  <ol class="commentlist group">
+    
+    <li class="comment even thread-even depth-1" id="li-comment-1599970">
+
+      <div class="grid group comment-wrap" id="comment-1599970">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/cc17b130cd639d97678dc853c0f1c1c7?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/cc17b130cd639d97678dc853c0f1c1c7?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Tom</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1599970"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-02T07:51:13+00:00">March 2, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Hi.<br />
+As cool as it is, I don&#8217;t think this feature &#8220;is coming&#8221;.<br />
+I thing it was removed (deprecated) before it even went in.</p>
+<p>Please click the MDN link you provided and read the red &#8220;Deprecated&#8221; message on the top.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment odd alt depth-2" id="li-comment-1599971">
+
+      <div class="grid group comment-wrap" id="comment-1599971">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/f7cc4b9af270fa9a6e387369cde0ef78?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/f7cc4b9af270fa9a6e387369cde0ef78?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Esteban</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1599971"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-02T09:12:34+00:00">March 2, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Hi,<br />
+I think that speaks only about the property &#8216;scroll-snap-points-x&#8217; and not the full module, doesn&#8217;t it?</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment byuser comment-author-chriscoyier even depth-2" id="li-comment-1599976">
+
+      <div class="grid group comment-wrap" id="comment-1599976">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/8081b26e05bb4354f7d65ffc34cbbd67?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/8081b26e05bb4354f7d65ffc34cbbd67?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Chris Coyier</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1599976"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-02T12:05:32+00:00">March 2, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Please click the link to the spec we provided and see:</p>
+<blockquote><p>
+  Editor’s Draft, 28 January 2016
+</p></blockquote>
+<p>&#8230;which is super recent and I think is a good indicator this is moving forward.</p>
+<p>I&#8217;ll update that MDN link to point to a more-relevant sub-feature though, as that one does look like one of the &#8220;old&#8221; properties.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment byuser comment-author-sdrasner bypostauthor odd alt depth-2" id="li-comment-1599983">
+
+      <div class="grid group comment-wrap" id="comment-1599983">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Sarah Drasner</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1599983"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-02T19:36:17+00:00">March 2, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>I had updated it with the common link but something was reverted, fixed now! Here&#8217;s the link we meant: <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap_Points" rel="nofollow">https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Scroll_Snap_Points</a>.</p>
+<p>This full spec isn&#8217;t deprecated, but rather it moved to a different implementation. In the article I cover this, and also why it&#8217;s still valuable in this interim period to look at some of these old properties- primarily because the polyfill still uses them.</p>
+<p>The spec might still move again in the future, but luckily, even supporting the old values isn&#8217;t much code to achieve a lot.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment even thread-odd thread-alt depth-1" id="li-comment-1599977">
+
+      <div class="grid group comment-wrap" id="comment-1599977">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/a8170eae4c76530f3213c30abbd190c6?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/a8170eae4c76530f3213c30abbd190c6?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Nadya</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1599977"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-02T12:17:56+00:00">March 2, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>When will developers learn to leave scrolling to the user? I instantly close out any site that scrolljacks me for any reason at all. If you want it to &#8216;snap&#8217; to the next zone, provide an arrow for someone to click. <strong>Do Not Change Default Behaviors</strong>.</p>
+<p>Example of why this functionality is absolutely terrible:</p>
+<p>I use a vertical monitor. The content will often, if not always, rest either too high or too low. With this functionality, I can&#8217;t position it to comfortably read because a developer decided for me how far I should be able to scroll content. I either disable CSS to read their content (as if I&#8217;d bother?) or I put up with reading uncomfortably (hint: I won&#8217;t).</p>
+<p>For anyone who wants to add this behavior to their sites: think of your users! Offer it as an alternative that users need to <em>opt into</em> (e.g. clicking a left/right arrow) and DON&#8217;T BREAK DEFAULTS.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment odd alt depth-2" id="li-comment-1599978">
+
+      <div class="grid group comment-wrap" id="comment-1599978">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/7b167cd9f693e939b8243a8d36968d6a?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/7b167cd9f693e939b8243a8d36968d6a?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Damian</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1599978"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-02T13:47:05+00:00">March 2, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Hey Nadya, absolutely agree with you, however I think it actually comes down to the developers who implement the solution not catering for anything like a portrait mode rather than just the traditional landscape.</p>
+<p>With the right implementation it can work, however in most cases what you&#8217;re experiencing is correct. However, same can be said of any of the features of CSS.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment byuser comment-author-chriscoyier even depth-2" id="li-comment-1599979">
+
+      <div class="grid group comment-wrap" id="comment-1599979">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/8081b26e05bb4354f7d65ffc34cbbd67?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/8081b26e05bb4354f7d65ffc34cbbd67?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Chris Coyier</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1599979"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-02T14:31:36+00:00">March 2, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>I see both sides here.</p>
+<p>I&#8217;d worry this argument gets a little dogmatic.</p>
+<p>After all, what is a default scrolling behavior if not what the browser provides? And this is a scrolling behavior that the browser provides (or will).</p>
+<p>It&#8217;s more like &#8220;you like it if it&#8217;s well done and hate it if it&#8217;s not&#8221;.</p>
+<p>&#8220;Elastic scrolling&#8221; wasn&#8217;t always a thing. Not everybody liked it but most people do and most people just leave it alone. They don&#8217;t trot out the &#8220;never change scrolling ever!!&#8221; argument.</p>
+<p>These demos walk the line for me, depending on the experience. The first demo, in desktop Chrome, feels kinda not great to me. It feels kinda hijacked and opinionated about where it should be scrolling. But the same demo in Firefox feels WAY nicer. And I can imagine on a well-supported mobile browser, a handful of iterations from now, this will be as smooth and nice as elastic scrolling is.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment odd alt depth-2" id="li-comment-1599980">
+
+      <div class="grid group comment-wrap" id="comment-1599980">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/a8170eae4c76530f3213c30abbd190c6?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/a8170eae4c76530f3213c30abbd190c6?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Nadya</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1599980"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-02T14:58:34+00:00">March 2, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>@Damian</p>
+<blockquote><p>
+  Hey Nadya, absolutely agree with you, however I think it actually comes down to the developers who implement the solution not catering for anything like a portrait mode rather than just the traditional landscape.
+</p></blockquote>
+<p>That is part of the problem but it is one that I&#8217;m personally accustomed to. Many, many sites break for my &#8220;slightly wider than a tablet&#8221; screen size. I know this, expect this, and generally work around it (I use Stylish to change the CSS on any site I visit/read regularly)</p>
+<p>I&#8217;ve still had the &#8220;text not quite where I&#8217;d like to read it&#8221; issue with this exact same functionality but implemented in JS rather than CSS on landscape views. A good chunk of the problem is not testing how well it works for different window sizes, but it can never account for <em>where</em> people prefer to read.</p>
+<p>I like to read with text starting at about 1/5th down my monitor. Others prefer it in the dead middle. Others prefer scrolling down as they read the last line. When you dictate scrolling for these users, you no longer cater to any of them and actively break their experience.</p>
+<blockquote><p>
+  However, same can be said of any of the features of CSS.
+</p></blockquote>
+<p>I don&#8217;t equate deliberately taking control away from the user with failing to code for every possible screen size. About the only other breaking-UX CSS feature I can think of offhand is custom cursors. Thankfully, people stopped have mostly stopped using those.</p>
+<p>@Chris</p>
+<blockquote><p>
+  It’s more like “you like it if it’s well done and hate it if it’s not”.
+</p></blockquote>
+<p>My browser affords to me the ability to customize most everything I wish. I disable Smooth Scrolling. I can even decide to change my scroll speed so that my browser scrolls exactly how fast I want it to. I can choose to have it accelerate or remain constant as I continue to scroll.</p>
+<p>If I wanted these changed a different way &#8211; I&#8217;d change them myself. Not have 10 different ways of scrolling across 10 different sites because the devs thought they knew better than I.</p>
+<p>I don&#8217;t mind that Smooth Scroll was more popular than not. As long as it is something I can disable, I don&#8217;t care if it is made the default for others. The important part is that <strong>I am in control</strong> of it.</p>
+<p>FWIW I also back out of sites that force smooth scrolling. There is no such thing as &#8220;done well&#8221;. It&#8217;s an irritating experience and not one I care to put up with. I&#8217;m aware I&#8217;m part of a militant minority for user control.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment even depth-2" id="li-comment-1599997">
+
+      <div class="grid group comment-wrap" id="comment-1599997">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/10964f88679e65b66799af9f915c1604?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/10964f88679e65b66799af9f915c1604?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Chuck</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1599997"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-03T08:07:53+00:00">March 3, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>I think the single biggest issue with scroll-jacking is that, regardless of the on-screen experience intended for the user, there will always be one major thing that no browser or OS can fix: haptic feedback. Anyone using a mouse with a scroll wheel (or a touchpad/touchscreen, or any other physical scrolling mechanism) will be scrolling, swiping, pressing, pushing, pulling in a particular direction and expecting to see real-time feedback of their actions on the screen in front of them. Scroll-jacking breaks this expected feedback behaviour by altering how our physical interactions translate on screen.</p>
+<p>Any feature that makes the user feel like their hardware is malfunctioning is not something I&#8217;d like to see. /rant</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment odd alt depth-2" id="li-comment-1600000">
+
+      <div class="grid group comment-wrap" id="comment-1600000">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/9bd447630fc7fe13519626e687987c5d?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/9bd447630fc7fe13519626e687987c5d?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Grsmto</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600000"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-03T09:02:49+00:00">March 3, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>@Chuck I can&#8217;t agree more with you. And this is not related to how good the implementation is.<br />
+@Plopz So true. Having this feature displays the usual scrollbar but not behaving the same way is the problem. Just create a new browser component for this and OK I could potentially use it.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment even depth-2" id="li-comment-1600056">
+
+      <div class="grid group comment-wrap" id="comment-1600056">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/f707fa6760548904567df014d76a4f04?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/f707fa6760548904567df014d76a4f04?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Christian Sonne</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600056"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-05T13:59:31+00:00">March 5, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>At least in Firefox&#8217;s implementation, holding the scroll position for even a tiny bit overrides the snaps. A quick scroll-gesture will move in snaps, but if you hold position it stays put, respecting your desired scroll position.</p>
+<p>I don&#8217;t actually know if that is part of the standard, but if it isn&#8217;t, then it should be.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-even depth-1" id="li-comment-1599982">
+
+      <div class="grid group comment-wrap" id="comment-1599982">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/cc58970870994c2c60e2eb94c5488bba?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/cc58970870994c2c60e2eb94c5488bba?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Plopz</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1599982"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-02T16:02:44+00:00">March 2, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>I don&#8217;t think scrollbars are the right UI element to control this kind of experience. The issue is the scrollbar doesn&#8217;t change to designate what is going to happen. Perhaps if the scrollbar was redesigned to show the breakpoints. But this kind of behavior seems more suited to directional buttons (left, right arrows) or index buttons (1,2,3,4,5&#8230;).</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment even thread-odd thread-alt depth-1" id="li-comment-1600011">
+
+      <div class="grid group comment-wrap" id="comment-1600011">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/17f099b2000f614f393cdaa7311bf5cd?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/17f099b2000f614f393cdaa7311bf5cd?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Harsh Pandya</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600011"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-03T15:04:02+00:00">March 3, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>I would like to avoid any scrolling behavior on my site at this point. Until i would see some sophisticated solutions which works in all browsers and has real use case.</p>
+<p>Thanks,<br />
+HP</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-even depth-1" id="li-comment-1600015">
+
+      <div class="grid group comment-wrap" id="comment-1600015">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/546689bace5185eb8b148f9a332330f9?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/546689bace5185eb8b148f9a332330f9?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Novi</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600015"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-04T00:43:21+00:00">March 4, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>I have to admit, I&#8217;m not super psyched about this becoming a thing.  It might be acceptable at one point but in the meanwhile it would probably lead to even more annoying websites.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment even thread-odd thread-alt depth-1" id="li-comment-1600022">
+
+      <div class="grid group comment-wrap" id="comment-1600022">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/5e5814c280f0ae43eab18703d92d4e2d?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/5e5814c280f0ae43eab18703d92d4e2d?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Martin Pitt</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600022"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-04T06:47:26+00:00">March 4, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Hi Sarah, would you like to help contribute to the polyfill?</p>
+<p>I&#8217;ve already added a PR of my own: <a href="https://github.com/ckrack/scrollsnap-polyfill/pull/7" rel="nofollow">https://github.com/ckrack/scrollsnap-polyfill/pull/7</a></p>
+<p>It would be great if we could get in contact with ckrack to poke him and see if he can review the PRs.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment byuser comment-author-sdrasner bypostauthor odd alt depth-2" id="li-comment-1600028">
+
+      <div class="grid group comment-wrap" id="comment-1600028">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Sarah Drasner</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600028"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-04T08:56:53+00:00">March 4, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Hi Martin! Yeah, definitely! I&#8217;ll take a look this weekend. If it gets updated we don&#8217;t have to support the old values anymore.</p>
+<p>Thanks</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment even thread-even depth-1" id="li-comment-1600023">
+
+      <div class="grid group comment-wrap" id="comment-1600023">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/788de60b7cbd387e50404f5aeda46198?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/788de60b7cbd387e50404f5aeda46198?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Begin_Here</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600023"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-04T06:54:05+00:00">March 4, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>I&#8217;d almost rather see scroll disabled on these implementations with an added section navigation. I&#8217;ve always been against any sort of scroll-jacking, just at least provide a navigation so I don&#8217;t have to wait for the animation to complete or skip back a section because I scrolled too much. I want to be gliding  quickly through a site most of the time. This feature is always going to depend on the desired UX, &#8220;Do I want to control the user or let them control the product? How much control should I give them?&#8221; That all being said, it&#8217;s great to see some sort of standard coming along.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-odd thread-alt depth-1" id="li-comment-1600029">
+
+      <div class="grid group comment-wrap" id="comment-1600029">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/c57c6e2f6b1ea4f755fc51964bf7769e?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/c57c6e2f6b1ea4f755fc51964bf7769e?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Jonathan Weisberg</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600029"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-04T09:15:13+00:00">March 4, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>What if (for whatever reason), the user wants to scroll to the point in-between snap points?  Don&#8217;t jack my scroll bro!</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment byuser comment-author-sdrasner bypostauthor even depth-2" id="li-comment-1600058">
+
+      <div class="grid group comment-wrap" id="comment-1600058">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Sarah Drasner</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600058"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-05T14:17:54+00:00">March 5, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>You don&#8217;t have to use &#8216;mandatory&#8217;- you can also use &#8216;proximity&#8217;. I used mandatory for the demo because it&#8217;s better supported and shows the capabilities better.</p>
+<p>I do see what you&#8217;re saying in general, though, and why people are critical of it. I&#8217;m critical myself. But I think it&#8217;s still important to learn the tools because you might have a client use-case someday, and knowing what you&#8217;re critical of is useful anyways, because, as demonstrated in this very comment- there&#8217;s another way of working here :)</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-even depth-1" id="li-comment-1600054">
+
+      <div class="grid group comment-wrap" id="comment-1600054">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/7d970a816cc31e16adb0815650e56b72?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/7d970a816cc31e16adb0815650e56b72?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Lazza</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600054"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-05T10:55:28+00:00">March 5, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>I get 404 on every pen. Could you check them?</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  <ul class="children">
+
+    <li class="comment byuser comment-author-sdrasner bypostauthor even depth-2" id="li-comment-1600057">
+
+      <div class="grid group comment-wrap" id="comment-1600057">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/48cfd8342f9b9e5b7970f63afb0a8ee3?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Sarah Drasner</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600057"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-05T14:14:42+00:00">March 5, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>I don&#8217;t- can you please check your connection or in another browser?</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment odd alt depth-2" id="li-comment-1600071">
+
+      <div class="grid group comment-wrap" id="comment-1600071">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/7d970a816cc31e16adb0815650e56b72?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/7d970a816cc31e16adb0815650e56b72?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Lazza</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600071"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-06T13:10:34+00:00">March 6, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <blockquote><p>
+  can you please check your connection or in another browser?
+</p></blockquote>
+<p>Wow, the page goes 404 if third-party cookies are disabled or somewhat limited. What crazy system is that? I haven&#8217;t been in the industry for many years, but I thought that 404 meant &#8220;File not found&#8221; not &#8220;Man, I need cookies&#8221;. :)</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+
+    <li class="comment even thread-odd thread-alt depth-1" id="li-comment-1600128">
+
+      <div class="grid group comment-wrap" id="comment-1600128">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/0887faaf19731676293739952122229d?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/0887faaf19731676293739952122229d?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Andy Mercer</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600128"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-09T07:47:21+00:00">March 9, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>There are a lot of negative comments here, but let me add a positive use case for this:</p>
+<p>On mobile, many apps use a tab navigation model, with horizontal scrolling between panels. Think Facebook Messenger as an example. With scroll snapping, this sort of behavior can be implemented without requiring JS.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+
+    <li class="comment odd alt thread-even depth-1" id="li-comment-1600138">
+
+      <div class="grid group comment-wrap" id="comment-1600138">
+
+        <div class="comment-avatar grid-1-5">
+          <img alt='' src='https://secure.gravatar.com/avatar/cdeaa3664f03e9cf681abd3f03121dbe?s=160&#038;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&#038;r=pg' srcset='https://secure.gravatar.com/avatar/cdeaa3664f03e9cf681abd3f03121dbe?s=320&amp;d=https%3A%2F%2Fcss-tricks.com%2Fimages%2Fget-gravatar.png&amp;r=pg 2x' class='avatar avatar-160 photo' height='160' width='160' />        </div>
+
+        <div class="comment-body group grid-4-5">
+
+          <div class="comment-author-wrap vcard">
+            <div class="comment-author">Andrey</div> <div class="comment-time"><a href="https://css-tricks.com/introducing-css-scroll-snap-points/#comment-1600138"><span class="screen-reader">Permalink to comment</span>#</a> <time datetime="2016-03-09T18:25:40+00:00">March 9, 2016</time></div>
+            
+          </div>
+          
+          <div class="comment-content">
+
+            <p>Jesus, I hope that never gets into life.</p>
+
+            <div class="reply">
+                          </div><!-- .reply -->
+
+          </div>
+        </div>
+      </div>
+    
+  </li><!-- #comment-## -->
+  </ol>
+
+
+
+<div class="comments-closed">
+  This comment thread is closed. If you have important information to share, please <a href="/contact/">contact us</a>.
+</div>
+
+
+</section>      </div>
+    
+  </main>
+
+      <aside class="entry-unrelated sidebar">
+
+  
+  
+  <div class="module module-jobs">
+
+    <h4>Job Board</h4>
+
+    
+    <ul class="job-list">
+
+            <li>
+                <a href="http://codepen.io/url/job/rWXVkn">
+          <strong>
+            APT –  design/development/3D/motion          </strong>
+          is hiring a
+          💻 Creative Front-End Developer 📱        </a>
+      </li>
+            <li>
+                <a href="http://codepen.io/url/job/ZKPOQr">
+          <strong>
+            Bytion          </strong>
+          is hiring a
+          Front-End Web Developer        </a>
+      </li>
+            <li>
+                <a href="http://codepen.io/url/job/njPgYZ">
+          <strong>
+            Single Grain          </strong>
+          is hiring a
+          WordPress Developer [Marketing]        </a>
+      </li>
+      
+    </ul>
+
+    <div class="button-wrap">
+      <a href="/jobs/" class="button">See More Jobs</a>
+      &nbsp;
+      <a href="http://codepen.io/jobs/post/" class="button button-bold">Post a Job</a>
+    </div>
+
+  </div>
+
+  <div id="bsa-ad-1" class="launchbit-ad"></div>
+
+  <div class="module module-media-temple">
+
+    <a href="http://bit.ly/1O3LAHG" target="_blank" class="media-temple-ad-wrapper-link">
+  
+  <svg id="media-temple-ad" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 250">
+  <g id="all-backgrounds">
+    <rect x="0.2" y="0.2" width="125" height="125"/>
+    <rect x="125" fill="#232323" width="125" height="125"/>
+    <rect y="125" fill="#232323" width="125" height="125"/>
+    <rect x="125" y="125.4" width="125" height="125"/>
+  </g>
+  <g id="all-text">
+    <g id="text-ssds">
+      <path fill="#FFFFFF" d="M45,104.8c-0.1-0.1-0.2-0.2-0.2-0.4c0-0.3,0.2-0.6,0.5-0.6c0.1,0,0.3,0.1,0.3,0.1c0.9,0.8,1.9,1.2,3.2,1.2
+        c1.3,0,2.2-0.7,2.2-1.7v0c0-0.9-0.5-1.5-2.6-1.9c-2.3-0.5-3.4-1.2-3.4-2.9v0c0-1.6,1.4-2.7,3.3-2.7c1.3,0,2.3,0.3,3.2,1
+        c0.1,0.1,0.2,0.2,0.2,0.5c0,0.3-0.2,0.5-0.5,0.5c-0.1,0-0.2,0-0.3-0.1c-0.8-0.6-1.7-0.9-2.6-0.9c-1.3,0-2.1,0.7-2.1,1.6v0
+        c0,0.9,0.5,1.5,2.7,1.9c2.2,0.5,3.3,1.3,3.3,2.8v0c0,1.7-1.4,2.8-3.4,2.8C47.3,106.1,46.1,105.7,45,104.8z"/>
+      <path fill="#FFFFFF" d="M54,104.8c-0.1-0.1-0.2-0.2-0.2-0.4c0-0.3,0.2-0.6,0.5-0.6c0.1,0,0.3,0.1,0.3,0.1c0.9,0.8,1.9,1.2,3.2,1.2
+        c1.3,0,2.2-0.7,2.2-1.7v0c0-0.9-0.5-1.5-2.6-1.9c-2.3-0.5-3.4-1.2-3.4-2.9v0c0-1.6,1.4-2.7,3.3-2.7c1.3,0,2.3,0.3,3.2,1
+        c0.1,0.1,0.2,0.2,0.2,0.5c0,0.3-0.2,0.5-0.5,0.5c-0.1,0-0.2,0-0.3-0.1c-0.8-0.6-1.7-0.9-2.6-0.9c-1.3,0-2.1,0.7-2.1,1.6v0
+        c0,0.9,0.5,1.5,2.7,1.9c2.2,0.5,3.3,1.3,3.3,2.8v0c0,1.7-1.4,2.8-3.4,2.8C56.3,106.1,55.1,105.7,54,104.8z"/>
+      <path fill="#FFFFFF" d="M63.5,96.5c0-0.3,0.3-0.6,0.6-0.6H67c3.1,0,5.3,2.2,5.3,5v0c0,2.8-2.2,5-5.3,5H64c-0.3,0-0.6-0.3-0.6-0.6
+        V96.5z M67,104.9c2.5,0,4.1-1.7,4.1-3.9v0c0-2.2-1.6-4-4.1-4h-2.3v7.9H67z"/>
+      <path fill="#FFFFFF" d="M74.1,105.2c-0.1-0.1-0.2-0.2-0.2-0.4c0-0.3,0.2-0.5,0.5-0.5c0.1,0,0.2,0,0.3,0.1c0.8,0.5,1.5,0.8,2.3,0.8
+        c0.9,0,1.5-0.5,1.5-1.2v0c0-0.7-0.9-1-1.8-1.3c-1.2-0.3-2.4-0.7-2.4-2.1v0c0-1.3,1.1-2.1,2.5-2.1c0.8,0,1.6,0.2,2.4,0.6
+        c0.1,0.1,0.3,0.2,0.3,0.5c0,0.3-0.2,0.5-0.5,0.5c-0.1,0-0.2,0-0.2-0.1c-0.6-0.4-1.3-0.6-1.9-0.6c-0.9,0-1.4,0.5-1.4,1.1v0
+        c0,0.7,0.9,1,1.9,1.3c1.1,0.3,2.4,0.8,2.4,2.1v0c0,1.4-1.2,2.2-2.6,2.2C75.9,106.1,74.9,105.8,74.1,105.2z"/>
+    </g>
+    <g id="text-cdn">
+      <path fill="#FFFFFF" d="M44.3,224.5L44.3,224.5c0-2.9,2.1-5.2,5.1-5.2c1.6,0,2.6,0.5,3.6,1.3c0.1,0.1,0.2,0.3,0.2,0.5
+        c0,0.3-0.3,0.6-0.6,0.6c-0.2,0-0.3-0.1-0.4-0.1c-0.8-0.7-1.6-1.1-2.9-1.1c-2.2,0-3.9,1.8-3.9,4.1v0c0,2.3,1.7,4.1,3.9,4.1
+        c1.2,0,2.1-0.4,3-1.2c0.1-0.1,0.2-0.2,0.4-0.2c0.3,0,0.5,0.3,0.5,0.5c0,0.2-0.1,0.3-0.2,0.4c-1,0.9-2.1,1.5-3.7,1.5
+        C46.5,229.7,44.3,227.4,44.3,224.5z"/>
+      <path fill="#FFFFFF" d="M55.3,220.1c0-0.3,0.3-0.6,0.6-0.6h2.9c3.1,0,5.3,2.2,5.3,5v0c0,2.8-2.2,5-5.3,5h-2.9
+        c-0.3,0-0.6-0.3-0.6-0.6V220.1z M58.8,228.5c2.5,0,4.1-1.7,4.1-3.9v0c0-2.2-1.6-4-4.1-4h-2.3v7.9H58.8z"/>
+      <path fill="#FFFFFF" d="M66.5,220c0-0.3,0.3-0.6,0.6-0.6h0.2c0.3,0,0.4,0.1,0.6,0.3l6.1,7.7V220c0-0.3,0.2-0.6,0.6-0.6
+        c0.3,0,0.5,0.3,0.5,0.6v9c0,0.3-0.2,0.5-0.5,0.5h-0.1c-0.2,0-0.4-0.1-0.6-0.3l-6.2-7.9v7.7c0,0.3-0.2,0.6-0.6,0.6
+        c-0.3,0-0.5-0.3-0.5-0.6V220z"/>
+    </g>
+    <g id="text-autoscaling">
+      <path fill="#FFFFFF" d="M152.1,228.8l4.1-8.9c0.1-0.3,0.4-0.5,0.7-0.5h0.1c0.3,0,0.6,0.2,0.7,0.5l4.1,8.9c0,0.1,0.1,0.2,0.1,0.3
+        c0,0.3-0.2,0.5-0.5,0.5c-0.3,0-0.5-0.2-0.6-0.4l-1-2.3h-5.5l-1,2.3c-0.1,0.2-0.3,0.4-0.5,0.4c-0.3,0-0.5-0.2-0.5-0.5
+        C152,229,152,228.9,152.1,228.8z M159.2,225.8l-2.3-5.1l-2.3,5.1H159.2z"/>
+      <path fill="#FFFFFF" d="M169.9,229c0,0.3-0.2,0.6-0.5,0.6c-0.3,0-0.5-0.2-0.5-0.6v-0.8c-0.5,0.8-1.3,1.4-2.5,1.4
+        c-1.8,0-2.8-1.2-2.8-3v-4.1c0-0.3,0.2-0.6,0.5-0.6c0.3,0,0.6,0.2,0.6,0.6v3.8c0,1.4,0.7,2.2,2,2.2c1.3,0,2.2-0.9,2.2-2.3v-3.7
+        c0-0.3,0.2-0.6,0.5-0.6c0.3,0,0.5,0.2,0.5,0.6V229z"/>
+      <path fill="#FFFFFF" d="M172.8,227.6v-4.5h-0.6c-0.3,0-0.5-0.2-0.5-0.5c0-0.3,0.2-0.5,0.5-0.5h0.6v-1.7c0-0.3,0.2-0.6,0.5-0.6
+        c0.3,0,0.6,0.3,0.6,0.6v1.7h1.9c0.3,0,0.5,0.2,0.5,0.5c0,0.3-0.2,0.5-0.5,0.5h-1.9v4.3c0,0.9,0.5,1.2,1.2,1.2
+        c0.4,0,0.6-0.1,0.7-0.1c0.3,0,0.5,0.2,0.5,0.5c0,0.2-0.1,0.4-0.3,0.4c-0.3,0.1-0.7,0.2-1.1,0.2
+        C173.7,229.6,172.8,229.1,172.8,227.6z"/>
+      <path fill="#FFFFFF" d="M177.5,225.9L177.5,225.9c0-2.1,1.6-3.9,3.9-3.9c2.2,0,3.8,1.7,3.8,3.8v0c0,2.1-1.6,3.9-3.9,3.9
+        C179.1,229.7,177.5,227.9,177.5,225.9z M184.1,225.9L184.1,225.9c0-1.6-1.2-2.9-2.7-2.9c-1.6,0-2.7,1.3-2.7,2.9v0
+        c0,1.6,1.2,2.9,2.7,2.9C183,228.7,184.1,227.4,184.1,225.9z"/>
+      <path fill="#FFFFFF" d="M186.8,228.7c-0.1-0.1-0.2-0.2-0.2-0.4c0-0.3,0.2-0.5,0.5-0.5c0.1,0,0.2,0,0.3,0.1
+        c0.8,0.5,1.5,0.8,2.3,0.8c0.9,0,1.5-0.5,1.5-1.2v0c0-0.7-0.9-1-1.8-1.3c-1.2-0.3-2.4-0.7-2.4-2.1v0c0-1.3,1.1-2.1,2.5-2.1
+        c0.8,0,1.6,0.2,2.4,0.6c0.1,0.1,0.3,0.2,0.3,0.5c0,0.3-0.2,0.5-0.5,0.5c-0.1,0-0.2,0-0.2-0.1c-0.6-0.4-1.3-0.6-1.9-0.6
+        c-0.9,0-1.4,0.5-1.4,1.1v0c0,0.7,0.9,1,1.9,1.3c1.1,0.3,2.4,0.8,2.4,2.1v0c0,1.4-1.2,2.2-2.6,2.2
+        C188.7,229.7,187.6,229.3,186.8,228.7z"/>
+      <path fill="#FFFFFF" d="M193.8,225.9L193.8,225.9c0-2.1,1.6-3.9,3.8-3.9c1.2,0,2.1,0.5,2.7,1.1c0.1,0.1,0.2,0.2,0.2,0.4
+        c0,0.3-0.2,0.5-0.5,0.5c-0.1,0-0.3-0.1-0.4-0.1c-0.5-0.5-1.1-0.9-2-0.9c-1.5,0-2.6,1.3-2.6,2.9v0c0,1.6,1.2,2.9,2.7,2.9
+        c0.8,0,1.5-0.4,2.1-0.9c0.1-0.1,0.2-0.1,0.3-0.1c0.3,0,0.5,0.2,0.5,0.5c0,0.1-0.1,0.3-0.1,0.3c-0.7,0.7-1.5,1.2-2.8,1.2
+        C195.5,229.7,193.8,227.9,193.8,225.9z"/>
+      <path fill="#FFFFFF" d="M201.9,227.4L201.9,227.4c0-1.6,1.3-2.4,3.2-2.4c0.9,0,1.6,0.1,2.3,0.3V225c0-1.3-0.8-2-2.2-2
+        c-0.7,0-1.4,0.2-1.9,0.4c-0.1,0-0.1,0-0.2,0c-0.3,0-0.5-0.2-0.5-0.5c0-0.2,0.2-0.4,0.3-0.5c0.7-0.3,1.5-0.5,2.4-0.5
+        c1,0,1.8,0.3,2.4,0.8c0.5,0.5,0.8,1.2,0.8,2.2v4c0,0.3-0.2,0.5-0.5,0.5c-0.3,0-0.5-0.2-0.5-0.5v-0.7c-0.5,0.7-1.4,1.3-2.7,1.3
+        C203.3,229.7,201.9,228.9,201.9,227.4z M207.3,226.8v-0.7c-0.5-0.2-1.3-0.3-2.2-0.3c-1.4,0-2.2,0.6-2.2,1.5v0
+        c0,0.9,0.9,1.5,1.9,1.5C206.2,228.8,207.3,228,207.3,226.8z"/>
+      <path fill="#FFFFFF" d="M210.8,219.6c0-0.3,0.2-0.6,0.5-0.6c0.3,0,0.6,0.3,0.6,0.6v9.5c0,0.3-0.2,0.6-0.5,0.6s-0.6-0.2-0.6-0.6
+        V219.6z"/>
+      <path fill="#FFFFFF" d="M214.5,219.8c0-0.4,0.3-0.6,0.6-0.6c0.4,0,0.7,0.2,0.7,0.6v0.2c0,0.3-0.3,0.6-0.7,0.6
+        c-0.4,0-0.6-0.2-0.6-0.6V219.8z M214.6,222.6c0-0.3,0.2-0.6,0.5-0.6c0.3,0,0.6,0.2,0.6,0.6v6.4c0,0.3-0.2,0.6-0.5,0.6
+        c-0.3,0-0.6-0.2-0.6-0.6V222.6z"/>
+      <path fill="#FFFFFF" d="M218.2,222.6c0-0.3,0.2-0.6,0.5-0.6c0.3,0,0.6,0.2,0.6,0.6v0.8c0.5-0.8,1.3-1.4,2.5-1.4
+        c1.8,0,2.8,1.2,2.8,3v4.1c0,0.3-0.2,0.6-0.5,0.6c-0.3,0-0.6-0.2-0.6-0.6v-3.8c0-1.4-0.7-2.2-2-2.2c-1.3,0-2.2,0.9-2.2,2.3v3.7
+        c0,0.3-0.2,0.6-0.5,0.6s-0.6-0.2-0.6-0.6V222.6z"/>
+      <path fill="#FFFFFF" d="M227.2,231c-0.2-0.1-0.3-0.3-0.3-0.5c0-0.2,0.2-0.5,0.5-0.5c0.1,0,0.2,0,0.2,0.1c0.8,0.5,1.7,0.8,2.6,0.8
+        c1.6,0,2.7-0.9,2.7-2.6v-0.9c-0.6,0.9-1.5,1.6-2.9,1.6c-1.8,0-3.5-1.3-3.5-3.5v0c0-2.2,1.7-3.5,3.5-3.5c1.4,0,2.3,0.7,2.9,1.5
+        v-0.8c0-0.3,0.2-0.6,0.5-0.6c0.3,0,0.6,0.3,0.6,0.6v5.6c0,1.1-0.3,2-0.9,2.6c-0.7,0.7-1.6,1-2.8,1
+        C229.2,231.8,228.2,231.5,227.2,231z M233,225.5L233,225.5c0-1.5-1.3-2.5-2.7-2.5s-2.6,1-2.6,2.5v0c0,1.5,1.2,2.5,2.6,2.5
+        C231.7,228,233,227,233,225.5z"/>
+    </g>
+    <g id="text-backups">
+      <path fill="#FFFFFF" d="M159.1,96.5c0-0.3,0.3-0.6,0.6-0.6h3.7c1.1,0,2,0.3,2.6,0.9c0.4,0.4,0.6,1,0.6,1.6v0c0,1.3-0.8,2-1.6,2.3
+        c1.2,0.4,2.1,1,2.1,2.4v0c0,1.7-1.4,2.7-3.6,2.7h-3.9c-0.3,0-0.6-0.3-0.6-0.6V96.5z M163.1,100.4c1.4,0,2.3-0.6,2.3-1.8v0
+        c0-1-0.8-1.6-2.2-1.6h-3v3.4H163.1z M163.5,105c1.5,0,2.5-0.7,2.5-1.8v0c0-1.1-0.9-1.7-2.7-1.7h-3.2v3.5H163.5z"/>
+      <path fill="#FFFFFF" d="M168.6,103.8L168.6,103.8c0-1.6,1.3-2.4,3.2-2.4c0.9,0,1.6,0.1,2.3,0.3v-0.3c0-1.3-0.8-2-2.2-2
+        c-0.7,0-1.4,0.2-1.9,0.4c-0.1,0-0.1,0-0.2,0c-0.3,0-0.5-0.2-0.5-0.5c0-0.2,0.2-0.4,0.3-0.5c0.7-0.3,1.5-0.5,2.4-0.5
+        c1,0,1.8,0.3,2.4,0.8c0.5,0.5,0.8,1.2,0.8,2.2v4c0,0.3-0.2,0.5-0.5,0.5c-0.3,0-0.5-0.2-0.5-0.5v-0.7c-0.5,0.7-1.4,1.3-2.7,1.3
+        C170,106.1,168.6,105.3,168.6,103.8z M174.1,103.3v-0.7c-0.5-0.2-1.3-0.3-2.2-0.3c-1.4,0-2.2,0.6-2.2,1.5v0c0,0.9,0.9,1.5,1.9,1.5
+        C173,105.3,174.1,104.4,174.1,103.3z"/>
+      <path fill="#FFFFFF" d="M177,102.3L177,102.3c0-2.1,1.6-3.9,3.8-3.9c1.2,0,2.1,0.5,2.7,1.1c0.1,0.1,0.2,0.2,0.2,0.4
+        c0,0.3-0.2,0.5-0.5,0.5c-0.1,0-0.3-0.1-0.4-0.1c-0.5-0.5-1.1-0.9-2-0.9c-1.5,0-2.6,1.3-2.6,2.9v0c0,1.6,1.2,2.9,2.7,2.9
+        c0.8,0,1.5-0.4,2.1-0.9c0.1-0.1,0.2-0.1,0.3-0.1c0.3,0,0.5,0.2,0.5,0.5c0,0.1-0.1,0.3-0.1,0.3c-0.7,0.7-1.5,1.2-2.8,1.2
+        C178.6,106.1,177,104.4,177,102.3z"/>
+      <path fill="#FFFFFF" d="M185.6,96c0-0.3,0.2-0.6,0.5-0.6c0.3,0,0.6,0.3,0.6,0.6v6.8l4-4.1c0.1-0.1,0.3-0.2,0.4-0.2
+        c0.3,0,0.5,0.2,0.5,0.5c0,0.2-0.1,0.3-0.2,0.4l-2.4,2.4l2.6,3.3c0.1,0.1,0.1,0.2,0.1,0.4c0,0.3-0.2,0.5-0.5,0.5
+        c-0.2,0-0.3-0.1-0.5-0.3l-2.6-3.2l-1.5,1.5v1.4c0,0.3-0.2,0.6-0.5,0.6s-0.6-0.2-0.6-0.6V96z"/>
+      <path fill="#FFFFFF" d="M199.9,105.5c0,0.3-0.2,0.6-0.5,0.6c-0.3,0-0.5-0.2-0.5-0.6v-0.8c-0.5,0.8-1.3,1.4-2.5,1.4
+        c-1.8,0-2.8-1.2-2.8-3v-4.1c0-0.3,0.2-0.6,0.5-0.6c0.3,0,0.6,0.2,0.6,0.6v3.8c0,1.4,0.7,2.2,2,2.2c1.3,0,2.2-0.9,2.2-2.3v-3.7
+        c0-0.3,0.2-0.6,0.5-0.6c0.3,0,0.5,0.2,0.5,0.6V105.5z"/>
+      <path fill="#FFFFFF" d="M202.4,99.1c0-0.3,0.2-0.6,0.5-0.6c0.3,0,0.6,0.2,0.6,0.6v1c0.6-0.9,1.5-1.6,2.8-1.6
+        c1.8,0,3.5,1.4,3.5,3.8v0c0,2.4-1.7,3.8-3.5,3.8c-1.4,0-2.3-0.7-2.8-1.6v3.2c0,0.3-0.2,0.6-0.5,0.6c-0.3,0-0.6-0.2-0.6-0.6V99.1z
+         M208.7,102.3L208.7,102.3c0-1.8-1.2-2.9-2.6-2.9c-1.4,0-2.7,1.2-2.7,2.8v0c0,1.7,1.3,2.9,2.7,2.9
+        C207.6,105.1,208.7,104.1,208.7,102.3z"/>
+      <path fill="#FFFFFF" d="M211.5,105.2c-0.1-0.1-0.2-0.2-0.2-0.4c0-0.3,0.2-0.5,0.5-0.5c0.1,0,0.2,0,0.3,0.1
+        c0.8,0.5,1.5,0.8,2.3,0.8c0.9,0,1.5-0.5,1.5-1.2v0c0-0.7-0.9-1-1.8-1.3c-1.2-0.3-2.4-0.7-2.4-2.1v0c0-1.3,1.1-2.1,2.5-2.1
+        c0.8,0,1.6,0.2,2.4,0.6c0.1,0.1,0.3,0.2,0.3,0.5c0,0.3-0.2,0.5-0.5,0.5c-0.1,0-0.2,0-0.2-0.1c-0.6-0.4-1.3-0.6-1.9-0.6
+        c-0.9,0-1.4,0.5-1.4,1.1v0c0,0.7,0.9,1,1.9,1.3c1.1,0.3,2.4,0.8,2.4,2.1v0c0,1.4-1.2,2.2-2.6,2.2
+        C213.4,106.1,212.3,105.8,211.5,105.2z"/>
+    </g>
+  </g>
+  <g id="all-icons">
+    <path id="icon-autoscaling" fill="#FFFFFF" d="M173.9,206H160v-24.3h13.9V206z M163.5,185.2v17.3h6.9v-17.3H163.5z M194.7,206
+      h-13.9v-38.2h13.9V206z M184.3,171.3v31.2h6.9v-31.2H184.3z M215.5,206h-13.9v-55.5h13.9V206z M205.1,154v48.6h6.9V154H205.1z"/>
+    <path id="icon-ssds" fill="#FFFFFF" d="M47.9,22.8h27.5c2.6,0,4.8,0.9,6.7,2.8c1.8,1.8,2.8,4.1,2.8,6.7l5.9,41.2
+      c0.3,1,0.4,1.9,0.4,2.8c0,2.6-0.9,4.8-2.8,6.7c-1.8,1.8-4.1,2.8-6.7,2.8h-40c-2.6,0-4.8-0.9-6.7-2.8c-1.8-1.8-2.8-4.1-2.8-6.7
+      c0-0.9,0.1-1.8,0.4-2.8l5.9-41.2c0-2.6,0.9-4.8,2.8-6.7C43,23.7,45.3,22.8,47.9,22.8z M81.6,69.9H41.6c-1.1,0-2.1,0.4-3.1,1.3
+      c-1,0.8-1.7,1.9-2.1,3.1l-0.3,2.1l0,0.2v0.3l0.1,0.3l0,0.2l0.6,1.5l0.3,0.5l0.3,0.4l0.2,0.2c1.2,1.2,2.5,1.7,4,1.7h40.1
+      c0.8,0,1.4-0.1,1.8-0.3c0.4-0.2,0.6-0.3,0.6-0.3c0,0,0.1-0.1,0.2-0.1c0.1-0.1,0.3-0.2,0.5-0.3c0.2-0.1,0.6-0.4,1-1
+      c0.4-0.5,0.8-1,1-1.4c0.2-0.4,0.3-0.7,0.3-1c0-0.3,0-0.4,0-0.5v-0.3l0-0.2l-0.3-2.2c-0.4-1.2-1.1-2.3-2.1-3.1
+      C83.7,70.3,82.7,69.9,81.6,69.9z M75.3,26.7H47.9c-1.5,0-2.8,0.5-3.9,1.6c-1.1,1.1-1.6,2.4-1.6,3.9v0.3l-4.9,34.6
+      c1.3-0.8,2.7-1.1,4.1-1.1h40.1c1.5,0,2.9,0.4,4.1,1.1l-4.9-34.4l0-0.3v-0.3c0-1.5-0.6-2.8-1.6-3.9C78.1,27.3,76.9,26.7,75.3,26.7z
+       M79.8,74.4c0.4-0.4,0.8-0.6,1.4-0.6c0.5,0,1,0.2,1.4,0.6c0.4,0.4,0.6,0.8,0.6,1.4c0,0.5-0.2,1-0.6,1.4c-0.4,0.4-0.8,0.6-1.4,0.6
+      c-0.5,0-1-0.2-1.4-0.6c-0.4-0.4-0.6-0.8-0.6-1.4C79.3,75.3,79.5,74.8,79.8,74.4z"/>
+    <path id="icon-cdn" fill="#FFFFFF" d="M58.9,150.7c3.8,0,7.4,0.7,10.9,2.2c3.5,1.5,6.5,3.5,9,6s4.5,5.5,6,9
+      c1.5,3.5,2.2,7.1,2.2,10.9c0,3.8-0.7,7.4-2.2,10.9c-1.5,3.5-3.5,6.5-6,9c-2.5,2.5-5.5,4.5-9,6c-3.5,1.5-7.1,2.2-10.9,2.2
+      c-3.8,0-7.4-0.7-10.9-2.2c-3.5-1.5-6.5-3.5-9-6c-2.5-2.5-4.5-5.5-6-9c-1.5-3.5-2.2-7.1-2.2-10.9c0-3.8,0.7-7.4,2.2-10.9
+      c1.5-3.5,3.5-6.5,6-9c2.5-2.5,5.5-4.5,9-6C51.5,151.5,55.1,150.7,58.9,150.7z M34.6,178.8c0,3.2,0.6,6.3,1.9,9.4H43
+      c-0.6-3.1-1-5.9-1-8.4s0.1-4.7,0.4-6.5h-7.2C34.8,175.1,34.6,176.9,34.6,178.8z M36.5,169.5H43c1.1-5,2.8-9.2,5.4-12.6
+      c-2.7,1.3-5.1,3-7.1,5.2C39.2,164.2,37.6,166.7,36.5,169.5z M44,191.9h-5.6c2.5,3.9,5.8,6.8,10,8.8C46.6,198.3,45.1,195.4,44,191.9
+      z M57,173.2H46.2c-0.3,1.8-0.4,4-0.4,6.6c0,2.7,0.4,5.4,1.1,8.4H57V173.2z M57,169.5v-14.7c-2.6,0.7-4.8,2.8-6.9,6.1
+      c-1.5,2.5-2.6,5.4-3.3,8.6H57z M57,191.9h-9.1c2.3,6.2,5.4,9.9,9.1,11V191.9z M60.8,169.5H71c-0.7-3.2-1.9-6.1-3.3-8.6
+      c-2-3.4-4.3-5.4-6.8-6.1V169.5z M60.8,173.2v15H71c0.7-2.9,1.1-5.7,1.1-8.4c0-2.7-0.1-4.9-0.4-6.6H60.8z M60.8,191.9v11
+      c3.7-1.1,6.8-4.7,9.1-11H60.8z M74.8,169.5h6.6c-1.2-2.8-2.8-5.2-4.8-7.4c-2.1-2.2-4.4-3.9-7.1-5.2
+      C71.9,160.2,73.7,164.4,74.8,169.5z M79.4,191.9h-5.6c-1.1,3.5-2.5,6.4-4.4,8.8C73.6,198.8,76.9,195.8,79.4,191.9z M75.7,179.7
+      c0,2.6-0.3,5.4-1,8.4h6.6c1.3-3,1.9-6.1,1.9-9.4c0-1.9-0.2-3.8-0.7-5.6h-7.2C75.6,175,75.7,177.2,75.7,179.7z"/>
+    <path id="icon-backups" fill="#FFFFFF" d="M172.3,75.8h-4.6c-3.8,0-7.1-1.3-9.8-4c-2.7-2.7-4-5.7-4-9.2c0-3.4,0.9-6.3,2.7-8.7
+      c1.8-2.4,4.1-4,6.9-5c0.9-5.4,3.5-10,7.8-13.6c4.3-3.6,9.2-5.5,14.9-5.5c4.6,0,8.9,1.3,12.7,3.8c3.8,2.5,6.6,5.9,8.4,10
+      c4.3,0.1,8,1.7,11.1,4.9c3.1,3.1,4.6,6.9,4.6,11.2c0,2.7-0.7,5.3-2.1,7.8c-1.4,2.4-3.3,4.4-5.8,6s-5.2,2.3-8.2,2.3h-2.3v-4.6h2.3
+      c2.2,0,4.1-0.6,6-1.8c1.8-1.2,3.2-2.6,4.1-4.3c1-1.7,1.4-3.5,1.4-5.4c0-3.1-1.1-5.8-3.3-8c-2.2-2.3-4.8-3.4-7.9-3.5l-2.9-0.1
+      l-1.2-2.7c-1.5-3.3-3.7-6-6.8-8c-3.1-2-6.6-3-10.7-3c-4.1,0-7.8,1.4-11.2,4.3c-3.4,2.9-5.5,6.5-6.3,10.9l-0.5,2.8l-2.7,0.8
+      c-1.9,0.6-3.4,1.7-4.6,3.4c-1.2,1.6-1.8,3.6-1.8,5.8c0,2.3,0.9,4.3,2.7,6.1c1.8,1.8,4,2.7,6.5,2.7h4.6V75.8z M190.7,85h-4.6V57
+      l-9.9,9.8l-3.2-3.3l15.5-15.4l15.3,15.4l-3.2,3.3l-9.9-9.9V85z"/>
+  </g>
+  <g id="media-temple-logo">
+    <path id="logo-4" fill="#FFFFFF" d="M188,96.9c5.6,8.4,9.3,18.5,9.3,28.5c0,11.9-4.7,21.6-9.4,28.4h-5.7c4.2-9.3,7-17.2,7-28.7
+      c0-13.2-4.7-23.3-6.8-27.9c-0.1-0.1-0.2-0.3-0.2-0.4L188,96.9L188,96.9z"/>
+    <path id="logo-3" fill="#FFFFFF" d="M180.8,119.7h-10.2v10.1c0,3.6,0,4.8,4.2,4.8c2,0,3.7-0.2,5.6-0.6h0.4l1.3,5.1
+      c-4.9,0.9-10.3,1-11.8,1c-4.6,0-10.5-0.7-12.7-2.6c-1.9-1.5-2.1-3.1-2.1-6.9v-11h-6.9v-5.3h6.9v-5l15.1-3.9v8.9h10.2V119.7z"/>
+    <path id="logo-2" fill="#FFFFFF" d="M81.7,114.1v3.4h0.2c6.2-3.7,12.5-4,16.3-4c10.3,0,13.7,2.9,15.1,4c2.4-1.4,7.5-4,16.2-4
+      c17.4,0,17.4,6.9,17.4,9.7v16.2h-14.1V125c0-3,0-6.3-7.5-6.3c-3.7,0-7.5,1.1-8.8,2.8c-1.2,1.4-1.7,2.7-1.7,5.8v12.2h-14.1v-13.9
+      c0-4.3,0.1-6.9-7.3-6.9c-3.7,0-7.5,1-8.9,2.4c-1.1,1.1-1.9,2.3-1.9,6v12.3h-14v-25.3C68.6,114.1,81.7,114.1,81.7,114.1z"/>
+    <path id="logo-1" fill="#FFFFFF" d="M61.8,153.7c-5.6-8.4-9.3-18.5-9.3-28.5c0-11.9,4.7-21.6,9.4-28.4h5.7c-4.2,9.3-7,17.2-7,28.7
+      c0,13.2,4.7,23.3,6.8,27.9c0.1,0.1,0.2,0.3,0.2,0.4L61.8,153.7L61.8,153.7z"/>
+  </g>
+  </svg>
+
+  <p>CSS-Tricks uses and recommends Media Temple web hosting. Their exceptional service and support keep this site fast. Use coupon code <b>CSSTRICKS</b> to save 20% for the first&nbsp;year.</p>
+  
+  <span class="button full-width-button">
+    Save 20% on Web Hosting
+  </span>
+  
+</a>
+  </div>
+
+  <a href="https://ad.doubleclick.net/ddm/clk/303181152;128762502;s" class="module module-ad wufoo-ad-6" id="wufoo-ad-6">
+
+  <svg viewBox="0 0 612 412" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <g class="wufoo-logo">
+      <path id="w" d="M106,177.61L61.82,78.31l29.92-5.82,13.52,37.39c4.19,11.67,8.74,25.19,12.51,35.5l0.31-.06c-0.74-12-1-24.93-1.16-38l-0.81-39.54L145.87,62l14.28,38.84c4.16,11.52,7.62,21.89,11.29,33.34l0.31-.06C171,122.2,170.49,109.51,170,97L168.7,57.51,196.92,52l-5.37,108.93-30.38,5.91L146.3,127.5c-3.31-8.8-6.59-18.25-10.38-30.31l-0.31.06c0.7,12.67,1.21,22.65,1.16,32.27l0,42.09Z"
+        stroke="#231f20" />
+      <path id="u" d="M231.82,81.64l-8.34,59.42c-2.23,15.87,1.95,25.65,13,27.2,11.2,1.57,17.8-5.91,20.14-22.55l8.34-59.42,28.16,4L285,148.11c-4.54,32.36-23,46.42-52.41,42.29-28.78-4-41.66-21.87-36.92-55.63l8-57.09Z" stroke="#231f20" />
+      <path id="f" d="M286.14,65.84l67.77-5.65,1.92,23-39.44,3.29L318,106.05,355.11,103l1.9,22.85-37.09,3.09L323.26,169l-28.33,2.36Z" stroke="#231f20" />
+      <path id="o-1" d="M461,130.16c0,34.1-20.43,55.78-53.11,55.78-32.84,0-50.91-24.67-50.91-54.05,0-30.8,20.27-55.31,52.64-55.31C443.75,76.58,461,101.88,461,130.16Zm-74,1.26c0,19.8,8.64,32.06,22.31,32.06S431,150.12,431,131.1C431,112.88,422.85,99,409.18,99,395.67,99,387,111.93,387,131.42Z"
+        stroke="#231f20" />
+      <path id="o-2" d="M550.18,104.47c0,34.1-20.43,55.78-53.11,55.78-32.84,0-50.91-24.67-50.91-54.05,0-30.8,20.27-55.31,52.64-55.31C532.9,50.89,550.18,76.19,550.18,104.47Zm-74,1.26c0,19.8,8.64,32.06,22.31,32.06s21.68-13.36,21.68-32.37c0-18.23-8.17-32.06-21.84-32.06C484.81,73.36,476.17,86.25,476.17,105.73Z"
+        stroke="#231f20" />
+    </g>
+
+    <rect x="60" y="331" width="490" height="63" fill="#fff" stroke="#231f20" />
+
+    <text transform="translate(59 315)" font-size="31" fill="#231f20" font-weight="700">Build custom web forms easily.</text>
+    <text transform="translate(77 371)" font-size="31" fill="#969696">Let's get started!</text>
+
+    <g id="dino">
+      <path fill="#E41E26" d="M533.6,232.7c-0.3-0.1-0.6-0.2-0.9-0.3C533,232.5,533.3,232.6,533.6,232.7z M535.1,233.1
+		c-0.3,0-0.6-0.1-0.9-0.2C534.5,233,534.7,233,535.1,233.1z M536.6,233.2c-0.3,0-0.7,0-1-0.1C535.9,233.2,536.3,233.2,536.6,233.2z
+		 M531.2,231.7c0.3,0.1,0.6,0.3,0.8,0.4C531.8,232,531.5,231.8,531.2,231.7z M538.6,233.2c-0.5,0.1-1,0.1-1.5,0.1
+		C537.6,233.3,538.1,233.3,538.6,233.2z M528.4,229.9c0.3,0.2,0.6,0.4,0.8,0.6C528.9,230.3,528.7,230.1,528.4,229.9z M524.2,226.1
+		c0.3,0.3,0.6,0.6,0.9,0.9C524.8,226.7,524.5,226.4,524.2,226.1z M527,228.8c0.3,0.2,0.6,0.5,0.8,0.7
+		C527.5,229.2,527.3,229,527,228.8z M525.6,227.5c0.3,0.3,0.6,0.5,0.8,0.8C526.1,228,525.9,227.8,525.6,227.5z M518.7,219.4
+		c0.3,0.5,0.7,0.9,1,1.4C519.4,220.3,519.1,219.9,518.7,219.4z M517.4,217.4c0.4,0.5,0.7,1.1,1.1,1.6
+		C518.1,218.5,517.8,218,517.4,217.4z M520.1,221.2c0.3,0.4,0.6,0.8,0.9,1.2L520.1,221.2z M521.4,223c0.3,0.4,0.6,0.8,0.9,1.1
+		C522,223.7,521.7,223.3,521.4,223z M522.8,224.6c0.3,0.3,0.6,0.7,0.9,1C523.4,225.2,523.1,224.9,522.8,224.6z M529.8,230.9
+		c0.3,0.2,0.6,0.3,0.8,0.5C530.4,231.2,530.1,231,529.8,230.9z" />
+      <path fill="#8EC23F" d="M536.6,233.2c-0.3,0-0.7,0-1-0.1C535.9,233.2,536.3,233.2,536.6,233.2z M535.1,233.1
+		c-0.3,0-0.6-0.1-0.9-0.2C534.5,233,534.7,233,535.1,233.1z M533.6,232.7c-0.3-0.1-0.6-0.2-0.9-0.3
+		C533,232.5,533.3,232.6,533.6,232.7z M531.2,231.7c0.3,0.1,0.6,0.3,0.8,0.4C531.8,232,531.5,231.8,531.2,231.7z M538.6,233.2
+		c-0.5,0.1-1,0.1-1.5,0.1C537.6,233.3,538.1,233.3,538.6,233.2z M525.6,227.5c0.3,0.3,0.6,0.5,0.8,0.8
+		C526.1,228,525.9,227.8,525.6,227.5z M524.2,226.1c0.3,0.3,0.6,0.6,0.9,0.9C524.8,226.7,524.5,226.4,524.2,226.1z M528.4,229.9
+		c0.3,0.2,0.6,0.4,0.8,0.6C528.9,230.3,528.7,230.1,528.4,229.9z M522.8,224.6c0.3,0.3,0.6,0.7,0.9,1
+		C523.4,225.2,523.1,224.9,522.8,224.6z M521.4,223c0.3,0.4,0.6,0.8,0.9,1.1C522,223.7,521.7,223.3,521.4,223z M517.4,217.4
+		c0.4,0.5,0.7,1.1,1.1,1.6C518.1,218.5,517.8,218,517.4,217.4z M518.7,219.4c0.3,0.5,0.7,0.9,1,1.4
+		C519.4,220.3,519.1,219.9,518.7,219.4z M520.1,221.2c0.3,0.4,0.6,0.8,0.9,1.2L520.1,221.2z M527,228.8c0.3,0.2,0.6,0.5,0.8,0.7
+		C527.5,229.2,527.3,229,527,228.8z M529.8,230.9c0.3,0.2,0.6,0.3,0.8,0.5C530.4,231.2,530.1,231,529.8,230.9z" />
+
+      <linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="643.465" y1="316.6403" x2="597.6864" y2="82.4081" gradientTransform="matrix(0.9533 -0.3021 0.3021 0.9533 -50.5851 215.0953)">
+        <stop offset="6.000000e-03" style="stop-color:#1E7086" />
+        <stop offset="0.176" style="stop-color:#33839D" />
+        <stop offset="0.348" style="stop-color:#4192B1" />
+        <stop offset="0.473" style="stop-color:#4699BA" />
+        <stop offset="0.613" style="stop-color:#4293B2" />
+        <stop offset="0.792" style="stop-color:#3685A0" />
+        <stop offset="0.991" style="stop-color:#207187" />
+        <stop offset="1" style="stop-color:#1E7086" />
+      </linearGradient>
+      <path fill="url(#SVGID_2_)" d="M639.5,190.8c-3.4-36.5,17.6-118.2-108.5-109.7l0,0c0,0-23.1,1-21.9,23.3
+		c1.2,22.4,6.2,36.9,9.6,50.4c0,0-21.8,20.1-16.1,33.8c5.7,13.7,20.7,46.7,35.9,44.6c15.3-2.1,48.4-15.3,61.4-23.1
+		c0,0,7,72.4,9.4,99.9c0.7,7.9,2.1,22.4,5.2,41.2c18.6-9.2,37.3-18.3,56.1-27.2C654.3,275.8,641.9,216.3,639.5,190.8z" />
+
+      <ellipse transform="matrix(0.9533 -0.3021 0.3021 0.9533 -15.9028 180.912)" fill="#FFFFFF" cx="576.9" cy="141.9" rx="13" ry="22.9" />
+
+      <ellipse transform="matrix(0.9533 -0.3021 0.3021 0.9533 -16.5344 179.6383)" fill="#231815" cx="572.5" cy="143.3" rx="8.3" ry="14.7" />
+      <path fill="#85BFD2" d="M621.6,237.7c-1.1-8.9-9.4-42.7-11.6-46.2c-2.1-3.4-4.9-18.6-47.2,7.1c-31.2,18.9-42.9,18.3-46.8,16.7
+		c6.5,10.3,14.5,18.9,22.5,17.8c15.2-2.1,48.4-15.3,61.4-23.1c0,0,7,72.4,9.4,99.9c0.7,7.9,2.1,22.4,5.2,41.2
+		c8.1-4,16.2-8,24.3-11.9C627.4,287.8,622.2,242.4,621.6,237.7z" />
+      <g opacity="0.6">
+
+        <linearGradient id="SVGID_3_" gradientUnits="userSpaceOnUse" x1="506.196" y1="467.0849" x2="553.5162" y2="428.8841" gradientTransform="matrix(0.9533 -0.3021 -0.3021 -0.9533 134.293 798.5026)">
+          <stop offset="0" style="stop-color:#7AB3C4" />
+          <stop offset="0.87" style="stop-color:#7AB3C4" />
+          <stop offset="1" style="stop-color:#7AB3C4" />
+        </linearGradient>
+        <path fill="url(#SVGID_3_)" d="M517.3,217.2c-0.4-0.6-0.8-1.2-1.2-1.8c0,0,0,0,0,0C516.5,216,516.9,216.6,517.3,217.2z" />
+
+        <linearGradient id="SVGID_4_" gradientUnits="userSpaceOnUse" x1="553.1611" y1="525.1908" x2="600.4362" y2="487.0253" gradientTransform="matrix(0.9533 -0.3021 -0.3021 -0.9533 134.293 798.5026)">
+          <stop offset="0" style="stop-color:#7AB3C4" />
+          <stop offset="0.87" style="stop-color:#7AB3C4" />
+          <stop offset="1" style="stop-color:#7AB3C4" />
+        </linearGradient>
+        <path fill="url(#SVGID_4_)" d="M538.2,100c12.1-9.4,47.7-11.3,71-6c-16-9.9-40.5-15.4-78.2-12.9c0,0-23.1,1-21.9,23.3
+			s6.2,36.9,9.6,50.4c0,0-21.8,20.1-16.1,33.8c2.7,6.5,7.5,17.4,13.5,26.7c3.5,1.4,13,2,36.6-10.9c-0.4-1.7-1.2-4-2.6-6.8
+			c-6-11.7-16.1-20.8-6.2-35.3C553.8,147.8,524.3,110.8,538.2,100z" />
+      </g>
+      <path fill="#1E7086" d="M533.8,137.1c2.6,9.5,1.4,13-1,13.7c-2.4,0.7-5-1.8-7.6-11.3c-2.6-9.5-2.8-17.7-0.4-18.4
+		C527.1,120.5,531.2,127.6,533.8,137.1z" />
+
+      <linearGradient id="SVGID_5_" gradientUnits="userSpaceOnUse" x1="681.5992" y1="201.3821" x2="624.5172" y2="323.9237" gradientTransform="matrix(0.9533 -0.3021 0.3021 0.9533 -50.5851 215.0953)">
+        <stop offset="0" style="stop-color:#7AB3C4" />
+        <stop offset="0.86" style="stop-color:#7AB3C4" />
+        <stop offset="1" style="stop-color:#7AB3C4" />
+      </linearGradient>
+      <path opacity="0.4" fill="url(#SVGID_5_)" enable-background="new    " d="M639.8,193.5c-3.4,3.6-9,11.7-7,23.6
+		c0,0,7.2,57.4,25.2,112.9c4.2-2,8.3-4,12.5-6C654.9,277.5,642.7,220.3,639.8,193.5z" />
+
+      <linearGradient id="SVGID_6_" gradientUnits="userSpaceOnUse" x1="611.5856" y1="236.8385" x2="647.111" y2="236.8385" gradientTransform="matrix(0.9533 -0.3021 0.3021 0.9533 -50.5851 215.0953)">
+        <stop offset="0" style="stop-color:#4699BA" />
+        <stop offset="0.951" style="stop-color:#4699BA" />
+        <stop offset="1" style="stop-color:#4699BA" />
+      </linearGradient>
+      <path fill="url(#SVGID_6_)" d="M623.9,218.4c-3.2-25.8-11.1-40.6-11.1-40.6c3.7-7.1-2.9-17.7-2.9-17.7
+		c5.7,13.7-27.3,27.3-27.3,27.3l-0.2,0.9c23.7-10.1,25.8,0.5,27.6,3.3c2.1,3.4,10.5,37.3,11.6,46.2c0.6,4.7,5.8,50.1,17.2,101.6
+		c2.3-1.1,4.5-2.2,6.8-3.3C637.6,304.6,626.9,242.5,623.9,218.4z" />
+
+      <linearGradient id="SVGID_7_" gradientUnits="userSpaceOnUse" x1="540.0744" y1="428.1269" x2="622.0959" y2="428.1269" gradientTransform="matrix(0.9533 -0.3021 -0.3021 -0.9533 134.293 798.5026)">
+        <stop offset="0" style="stop-color:#FFFFFF" />
+        <stop offset="0.87" style="stop-color:#FFFFFF" />
+        <stop offset="1" style="stop-color:#FFFFFF" />
+      </linearGradient>
+      <path opacity="0.35" fill="url(#SVGID_7_)" enable-background="new    " d="M538.6,233.2c15.3-2.1,48.4-15.3,61.4-23.1
+		c0.3-11.9-18.7,0-33,3.6c-9.6,2.4-14-3.9-15.8-8.4c-22.5,12-31.6,11.4-35.1,10C522.6,225.7,530.5,234.3,538.6,233.2z" />
+
+      <linearGradient id="SVGID_8_" gradientUnits="userSpaceOnUse" x1="592.8458" y1="312.0763" x2="606.6599" y2="312.0763" gradientTransform="matrix(0.9533 -0.3021 0.3021 0.9533 -50.5851 215.0953)">
+        <stop offset="0" style="stop-color:#FFFFFF" />
+        <stop offset="1" style="stop-color:#FFFFFF" />
+      </linearGradient>
+      <path opacity="0.35" fill="url(#SVGID_8_)" enable-background="new    " d="M617.7,315.7l-8.1-1.9c0.8,8.3,2.2,21.3,4.8,37.4
+		c3.1-1.5,6.3-3.1,9.4-4.6C619.5,327.7,617.7,315.7,617.7,315.7z" />
+    </g>
+  </svg>
+  
+  <div style="padding: 35px;">
+    <span class="button full-width-button">
+      Sign Up Now!
+    </span>
+  </div>
+
+</a>
+
+
+
+<img src="https://ad.doubleclick.net/ddm/ad/N7439.1063086.CSS-TRICKS.COM/B7043538.128762502;sz=1x1;ord=1482353107;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=?" alt="">
+
+</aside>
+  
+</div>
+
+
+  </div>
+  <form action="//chriscoyier.us2.list-manage.com/subscribe/post?u=155f5a9ccc4e24c318130cace&amp;id=197f127a68" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+
+    <h4>We have a pretty good<sup>*</sup> newsletter.</h4>
+
+    <p class="mc-field-group">
+      <label for="mce-EMAIL" class="screen-reader">Email Address</label>
+      <input type="email" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="your@email.com">
+      <input type="submit" value="Subscribe" name="Subscribe" id="mc-embedded-subscribe" class="button button-outline">
+    </p>
+    <div id="mce-responses" class="clear">
+      <div class="response" id="mce-error-response" style="display:none"></div>
+      <div class="response" id="mce-success-response" style="display:none"></div>
+    </div>
+    <div style="position: absolute; left: -5000px;"><input type="text" name="b_155f5a9ccc4e24c318130cace_197f127a68" value=""></div>
+
+  </form>
+
+  <div class="footer-wrap">
+
+    <footer class="site-footer site-footer-colophon">
+
+      <div class="colophon">
+        <p>CSS-Tricks* is created, written by, and maintained by <a href="http://chriscoyier.net">Chris Coyier</a> and <a href="/about/">a team</a> of swell people. It is built on <a href="http://wordpress.org/">WordPress</a>, hosted by <a href="http://bit.ly/1n2DZjU">Media Temple</a>, and the assets are served by <a href="http://tracking.maxcdn.com/c/13088/3982/378">MaxCDN</a>. The fonts are Source Sans Pro and Source Code Pro. It is made possible through <a href="/advertising/">sponsorships</a> from products and services we like.</p>
+
+        <p class="mega-big-time-warning"><small>*May or may not contain any actual "CSS" or "Tricks".</small></p>
+      </div>
+
+    </footer>
+
+    <footer class="site-footer site-footer-links">
+      <nav>
+        <a href="/contact/">Contact</a>
+        <a href="/about/">About</a>
+        <a href="/archives/">Archives</a>
+        <a href="/advertising/">Advertise</a>
+        <a href="/guest-posting/">Guest Posting</a>
+        <a href="/license/">License</a>
+        <a href="/shop/">Shop</a>
+        <a href="/subscription-options/">Subscribe</a>
+        <a href="http://feeds.feedburner.com/CssTricks">RSS</a>
+      </nav>
+    </footer>
+
+  </div>
+
+  <svg width="0" height="0" class="screen-reader">
+
+  <defs>
+
+    <path id="shape-search" d="M3.327,96.684C5.534,98.895,8.434,100,11.331,100s5.797-1.105,8.004-3.316l21.321-21.322
+    c5.83,3.188,12.393,4.897,19.223,4.897c10.721,0,20.798-4.172,28.379-11.752c15.646-15.644,15.646-41.105,0.002-56.755
+    C80.677,4.171,70.598,0,59.877,0C49.159,0,39.08,4.171,31.504,11.752c-7.581,7.576-11.756,17.655-11.756,28.376
+    c0,6.832,1.71,13.396,4.9,19.226L3.327,80.675C-1.096,85.094-1.096,92.266,3.327,96.684z M59.879,68.938
+    c-7.695,0-14.93-2.996-20.371-8.435c-5.443-5.442-8.439-12.677-8.439-20.375c0-7.695,2.996-14.933,8.439-20.372
+    c5.441-5.44,12.676-8.436,20.369-8.436c7.698,0,14.936,2.997,20.378,8.436c11.231,11.236,11.231,29.515,0,40.747
+    C74.812,65.941,67.575,68.938,59.879,68.938z"/>
+
+  </defs>
+
+</svg>
+
+	<script>var pollsL10n = {"ajax_url":"https:\/\/css-tricks.com\/wp-admin\/admin-ajax.php","text_wait":"Your last request is still being processed. Please wait a while ...","text_valid":"Please choose a valid poll answer.","text_multiple":"Maximum number of choices allowed: ","show_loading":"0","show_fading":"1"};</script><script>var markdownify = {"ajax_url":"\/wp-admin\/admin-ajax.php","nonce":"7da6354fe3"};</script><script>var bblpAJAX = {"ajaxurl":"https:\/\/css-tricks.com\/wp-admin\/admin-ajax.php"};</script><script type='text/javascript' src='https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-14/js/lib/jquery-3.1.1.min.js'></script>
+<script type='text/javascript' src='https://cdn.css-tricks.com/wp-includes/js/wp-embed.min.js?ver=4.7'></script>
+<script type='text/javascript' src='https://cdn.css-tricks.com/wp-content/uploads/minqueue-cache/minqueue-b86f83f0-af2a92b2.js'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-201651.js' async defer></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:4.4.2',blog:'45537868',post:'238222',tz:'-7',srv:'css-tricks.com'} ]);
+	_stq.push([ 'clickTrackerInit', '45537868', '238222' ]);
+</script>
+
+  
+<script>
+  __remote_addr = "109.167.207.1";
+</script>
+
+<script src='https://cdn.css-tricks.com/wp-content/themes/CSS-Tricks-14/js/min/global-min.js?v=3.0'></script>
+<script async src="//assets.codepen.io/assets/embed/ei.js"></script>
+
+
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-68528-29', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</body>
+
+</html>
