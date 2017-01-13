@@ -6,10 +6,11 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sergio Cuéllar</title>
 	<meta name="author" content="Sergio Cuéllar Sagaón">
-	<meta name="description" content="Mi sitio personal">
+	<meta name="description" content="Mi página web">
 	<meta name="keywords" content="CV, Curriculum, Web, Developer, Programer, Career, Job, Professional,  Tech, noticias, tecnologia, mecatronica">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed --> 
@@ -23,16 +24,16 @@
 				<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 			<![endif]-->
 </head>
-<body data-spy="scroll" data-target="#principales" data-offset="70">      <!-- data-spy="scroll" data-target="#principales" data-offset="0"    PARA SCROLLSPY EN SECCIONES CON BOOTSTRAP-->
+<body data-spy="scroll" data-target="#principales" data-offset="50">      <!-- data-spy="scroll" data-target="#principales" data-offset="50"    PARA MENU ESTATICO CON CLASES DE BOOTSTRAP-->
 	<header id="header">
-		<nav class="navbar navbar-inverse"><!--QUITAR ESTA ETIQUETA Y DEJAR SOLO CONTAINER-FLUID-->
+		<nav class="navbar navbar-inverse">
 			<div class="conteiner-fluid">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span><!--<span class="glyphicon glyphicon-menu-hamburger"></span>--></button>
 					<a class="navbar-brand" href="index.html" title="Sergio Cuéllar"></a> <!--190 x 90 px      max: 200 x 100 px--><!--<img src="" alt="Sergio Cuéllar Logo">-->
-					<nav id="principales">
-						<a class="" href="#SobreMi" title="Toda la información que necesiten sobre mi">Sobre Mi</a><a class="btn btn-lg" href="#Contacto" title="Ponte en contacto conmigo">Contacto</a>
-					</nav><!--USAR <UL> CON LA CLASE NAV!!  PARA QUE FUNCIONES EL SCROLLSPY Y ACTIVE LOS BOTONES-->
+					<div id="principales">   <!-- data-spy="affix" data-offset-top="600"    PARA MENU ESTATICO CON CLASES DE BOOTSTRAP-->
+						<a class="" href="#section1" title="Toda la información que necesiten sobre mi">Sobre Mi</a><a class="btn btn-lg" href="#section2" title="Ponte en contacto conmigo">Contacto</a>
+					</div>
 				</div>
 				<div class="collapse navbar-collapse" id="defaultNavbar1">
 					<form class="navbar-form navbar-right" role="search">
@@ -54,14 +55,14 @@
 							<a href="https://https://plus.google.com/u/0/102099103252953213898/about" title="Google+" target="_blank" id="goog"><!--<img src="" alt=""/>--></a>
 						</div>
 					</div>
-					<ul class="nav nav-pills nav-stacked"><!--AGREGAR ETIQUETA NAV-->
+					<ul class="nav nav-pills nav-stacked">
 						<!--<li><a href="carrera.html" accesskey="c">Sobre Mi</a></li>-->
-						<li><a href="CV.html" accesskey="c">CV</a></li>
+						<li><a href="tecnologia.html" accesskey="t">CV</a></li>
 						<!--<li><a href="deportes.html" accesskey="d">Deportes</a></li>-->
-						<li><a href="Portafolio.html" accesskey="p">Portafolio</a></li>
+						<li><a href="noticias.html" accesskey="n">Portafolio</a></li>
 						<li><a href="innivabroadcast.html">Innova Broadcast</a></li>
 						<!--<li><a href="contacto.html">Contacto</a></li>-->
-						<li><a href="Informacion.html" accesskey="i">Información</a></li>
+						<li><a href="informacion.html">Información</a></li>
 
 <!--             SOBRE MI(en pagina principal descripcion breve(con link a otra pagina con descripcion completa))        CONTACTO(en pagina principal, datos basicos con enlace a contacto completo)                    -->
 <!--   CV(en secciones(incluir cartas de referencia en carusel) )    PORTAFOLIO(trabajos)    INFORMACION     *InnovaBroadcast(hasta no tener otra pagina que incluir)*   *(NOTICIAS y TECNOLOGIA solo si lo decido)*-->
@@ -74,18 +75,17 @@
 			</div>
 		</nav>
 	</header>
-	<!--JUGAR CON CLASES DE COLUMNAS EN TODA LA PAGINA-->
 	<main id="main">
-		<section class="container-fluid non">
+		<section class="container-fluid non" id="section1">
 			<div class="row">
 				<aside class="col-sm-2"></aside>
 				<article class="col-sm-8">
-					<p class="text-right col-sm-6 col-sm-offset-6">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, hic officia quo, facilis veritatis porro, quaerat pariatur ut possimus quod necessitatibus sint voluptas soluta enim a ea? Ut, sapiente, error! Doloribus deserunt repellat, quos reiciendis est ullam aut, minima qui corporis nam similique accusamus quae ad, quasi, nostrum cumque dolores optio earum. Suscipit id inventore quo atque rem aliquam temporibus labore pariatur aspernatur, voluptas sint cum reiciendis officia quos repellendus, non minima dolore tempora odio!</p>
+					<p class="text-right">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque, hic officia quo, facilis veritatis porro, quaerat pariatur ut possimus quod necessitatibus sint voluptas soluta enim a ea? Ut, sapiente, error! Doloribus deserunt repellat, quos reiciendis est ullam aut, minima qui corporis nam similique accusamus quae ad, quasi, nostrum cumque dolores optio earum. Suscipit id inventore quo atque rem aliquam temporibus labore pariatur aspernatur, voluptas sint cum reiciendis officia quos repellendus, non minima dolore tempora odio!</p>
 				</article>
 				<aside class="col-sm-2"></aside>
 			</div>
 		</section>
-		<section class="container-fluid par" id="SobreMi">
+		<section class="container-fluid par" id="section2">
 			<div class="row">
 				<aside class="col-sm-2"></aside>
 				<article class="col-sm-8">
@@ -94,7 +94,7 @@
 				<aside class="col-sm-2"></aside>
 			</div>
 		</section>
-		<section class="container-fluid non" id="Contacto">
+		<section class="container-fluid non" id="section3">
 			<div class="row">
 				<aside class="col-sm-2"></aside>
 				<article class="col-sm-8">
@@ -115,6 +115,19 @@
 		</ul>
 		<span id="copyright">INNOVA BROADCAST&reg; es una marca comercial registrada en México y en otros países.<br>Estos términos y todos los materiales asociados, así como logotipos e imágenes son copyright de INNOVA BROADCAST&reg;&copy;.</span>
   </footer>
-<script src="4 PRUEBA DE MENU.js"></script>
+<!--<script src="4 PRUEBA DE MENU.js"></script>-->
+<script>
+$(document).ready(function(){
+    /* affix the navbar before scroll below NAV */
+    $("#principales").affix({offset: {top: $("#principales").offset().top} });/*offset = distancia del top de la pagina al elemento que quiero que se fije para que inicie el AFFIX   */
+	
+	
+	//$("header").affix({offset: {top: $("#section1").offset().top} });
+	/*$(document).ready(function(){
+     affix the navbar after scroll below header 
+    $(".navbar").affix({offset: {top: $("header").outerHeight(true)} });
+});*/
+});
+</script>
 </body>
 </html>

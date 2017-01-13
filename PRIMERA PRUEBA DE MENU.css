@@ -17,7 +17,7 @@ html, body, header{
 	bottom: 7%;/*10%     7%*/
 	width: 100%;
 	text-align: center;
-	padding: 2px;/*5px SIN SER BOTONES DE BOOTSTRAP      2px SIENDO BOTONES*/
+	padding: 2px;
 }
 #principales a {
 	border: 2px solid rgba(230,230,230,1.00);
@@ -117,28 +117,49 @@ footer{
 
 
 
+/*.affix {
+      top: 0;
+      width: 100%;
+	opacity: inherit;
+	position: fixed;
+  }
+		.navbar{
+			margin: 0;
+		}
+		
+		El DIV despues del NAV poner 50px(tamaño de la barra fijada) de margen superior
+		.affix+section{
+			margin-top: 50px;
+		}
+		
+		#section1 {padding-top:50px;height:500px;color: #fff; background-color: #1E88E5;}
+  #section2 {padding-top:50px;height:500px;color: #fff; background-color: #673ab7;}
+  #section3 {padding-top:50px;height:500px;color: #fff; background-color: #ff9800;}
+*/
 
 
 
-#header.fixed .navbar-form{       /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  */
+
+
+.fixed .navbar-form{       /*Cambiar a  .fixedMain   si se usa la otra funcion en el  JS  */
 	position: fixed;
 	top: 0;
 	right: 0;
 	margin: 10px;
 	z-index: 2;
 }
-#header.fixed .navbar-brand{      /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  */
+.fixed .navbar-brand{      /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  */
 	position: fixed;
 	z-index: 2;
 }
-#header.fixed #principales{
+.fixed #principales{
 	position: fixed;
 	top: 0;
 	max-height: 70px;
 	background-color: rgba(34,34,34,0.85);
 	z-index: 1;
 }
-#header.fixed .navbar-toggle{
+.fixed .navbar-toggle{
 	position: fixed;
 }
 
@@ -176,6 +197,4 @@ footer{
 }
 
 
-}
-#icon {
 }
