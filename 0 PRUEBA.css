@@ -1,0 +1,72 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+.navbar-brand {
+	min-width: 130px;
+	background-color: rgba(110,110,110,1.00);
+}
+#centro {
+	min-height: 80vh;
+}
+#enlaces {
+	float: right;
+	padding: 20px 0px;
+	clear: both;
+}
+#enlaces a {
+	width: 35px;
+	margin: 5px 0px;
+	height: 35px;
+	display: block;
+	background-color: rgba(100,100,100,1.00);
+}
+.navbar.navbar-inverse {
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+}
+#defaultNavbar1 nav {
+	text-align: center;
+}
+#principales ul {
+	text-align: center;
+}
+.nav.nav-pills.nav-stacked li {
+	min-width: 150px;
+	margin: 0px 5px;
+	display: inline-block;
+}
+main section {
+	min-height: 100vh;
+	/*min-height: 600px;*/   /*SOLO APLICAR EN MEDIA:WIDTH GRANDE!!! */
+}
+.container-fluid.non {
+	background-color: rgba(130,130,130,1.00);
+}
+.container-fluid.par {
+	background-color: rgba(54,54,54,1.00);
+}
+#main .row article {
+	padding: 15px;
+}
+footer{
+	padding: 15px;
+	color: rgba(255,255,255,1.00);
+	background-color: rgba(34,34,34,1.00);
+}
+.breadcrumb{
+	background: rgba(34,34,34,0.00)
+}
+.breadcrumb > li + li:before {
+    color: #ccc;
+    content: "\2654  ";   /*   /    \00BB     \21FF    \2502 <ESTE    \2506   \25C8   \2654   \2656   \2659   \2662   \2758   \2759   */
+    padding: 0px 5px;
+}
+#icon{
+	color: black;
+	font-size: 30pt;
+}
+#icon:hover{
+	color: rgba(255,255,255,1.00);
+}

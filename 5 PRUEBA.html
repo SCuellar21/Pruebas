@@ -14,7 +14,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed --> 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link href="PRIMERA PRUEBA DE MENU.css" rel="stylesheet" type="text/css">
+	<link href="1 PRUEBA DE MENU.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -23,7 +23,7 @@
 				<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 			<![endif]-->
 </head>
-<body data-spy="scroll" data-target="#principales" data-offset="70">      <!-- data-spy="scroll" data-target="#principales" data-offset="0"    PARA SCROLLSPY EN SECCIONES CON BOOTSTRAP-->
+<body>      <!-- data-spy="scroll" data-target="#principales" data-offset="0"    PARA SCROLLSPY EN SECCIONES CON BOOTSTRAP-->
 	<header id="header">
 		<nav class="navbar navbar-inverse"><!--QUITAR ESTA ETIQUETA Y DEJAR SOLO CONTAINER-FLUID-->
 			<div class="conteiner-fluid">
@@ -31,7 +31,10 @@
 					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span><!--<span class="glyphicon glyphicon-menu-hamburger"></span>--></button>
 					<a class="navbar-brand" href="index.html" title="Sergio Cuéllar"></a> <!--190 x 90 px      max: 200 x 100 px--><!--<img src="" alt="Sergio Cuéllar Logo">-->
 					<nav id="principales">
-						<a class="" href="#SobreMi" title="Toda la información que necesiten sobre mi">Sobre Mi</a><a class="btn btn-lg" href="#Contacto" title="Ponte en contacto conmigo">Contacto</a>
+						<ul class="nav">
+							<li><a href="#SobreMi" title="Toda la información que necesiten sobre mi">Sobre Mi</a></li>
+							<li><a class="btn btn-lg" href="#Contacto" title="Ponte en contacto conmigo">Contacto</a></li>
+						</ul>						
 					</nav><!--USAR <UL> CON LA CLASE NAV!!  PARA QUE FUNCIONES EL SCROLLSPY Y ACTIVE LOS BOTONES-->
 				</div>
 				<div class="collapse navbar-collapse" id="defaultNavbar1">
@@ -59,7 +62,7 @@
 						<li><a href="CV.html" accesskey="c">CV</a></li>
 						<!--<li><a href="deportes.html" accesskey="d">Deportes</a></li>-->
 						<li><a href="Portafolio.html" accesskey="p">Portafolio</a></li>
-						<li><a href="innivabroadcast.html">Innova Broadcast</a></li>
+						<li><a href="#">Innova Broadcast</a></li>
 						<!--<li><a href="contacto.html">Contacto</a></li>-->
 						<li><a href="Informacion.html" accesskey="i">Información</a></li>
 
@@ -69,7 +72,7 @@
 				
 <!--Contacto(completo, con formulario para enviarme correo y formulario para que el usuario deje sus datos y/o comentarios)-->
 					
-						</ul>
+					</ul>
 				</div>
 			</div>
 		</nav>

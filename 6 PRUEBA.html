@@ -4,18 +4,17 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>PAGINA SECUNDARIA</title>
+	<title>Sergio Cuéllar</title>
 	<meta name="author" content="Sergio Cuéllar Sagaón">
 	<meta name="description" content="Mi sitio personal">
 	<meta name="keywords" content="CV, Curriculum, Web, Developer, Programer, Career, Job, Professional,  Tech, noticias, tecnologia, mecatronica">
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed --> 
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<link href="1 PRUEBA DE MENU.css" rel="stylesheet" type="text/css">
+	<link href="6 PRUEBA DE MENU.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="css/font-awesome.min.css">
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -24,45 +23,56 @@
 				<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 			<![endif]-->
 </head>
-<body data-spy="scroll" data-target="#principales" data-offset="70">      <!-- data-spy="scroll" data-target="#principales" data-offset="0"    PARA SCROLLSPY EN SECCIONES CON BOOTSTRAP-->
-	<header id="header">
-		<nav class="navbar navbar-inverse"><!--QUITAR ESTA ETIQUETA Y DEJAR SOLO CONTAINER-FLUID-->
-			<div class="conteiner-fluid">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span><!--<span class="glyphicon glyphicon-menu-hamburger"></span>--></button>
-					<a class="navbar-brand" href="index.html" title="Sergio Cuéllar"></a> <!--190 x 90 px      max: 200 x 100 px--><!--<img src="" alt="Sergio Cuéllar Logo">-->
-					<nav id="principales">
-						<a class="" href="#SobreMi" title="Toda la información que necesiten sobre mi">Sobre Mi</a><a class="btn btn-lg" href="#Contacto" title="Ponte en contacto conmigo">Contacto</a>
-					</nav><!--USAR <UL> CON LA CLASE NAV!!  PARA QUE FUNCIONES EL SCROLLSPY Y ACTIVE LOS BOTONES-->
-				</div>
-				<div class="collapse navbar-collapse" id="defaultNavbar1">
-					<form class="navbar-form navbar-right" role="search">
-						<div class="input-group">
-							<input type="text" class="form-control" placeholder="Search for...">
-							<span class="input-group-btn">
-								<button class="btn btn-default" type="button">Go!</button>
-							</span>
-						</div>
-					</form>
-					<ul class="nav nav-pills nav-stacked"><!--AGREGAR ETIQUETA NAV-->
-						<!--<li><a href="carrera.html" accesskey="c">Sobre Mi</a></li>-->
-						<li><a href="tecnologia.html" accesskey="t">CV</a></li>
-						<!--<li><a href="deportes.html" accesskey="d">Deportes</a></li>-->
-						<li><a href="noticias.html" accesskey="n">Portafolio</a></li>
-						<li><a href="innivabroadcast.html">Innova Broadcast</a></li>
-						<!--<li><a href="contacto.html">Contacto</a></li>-->
-						<li><a href="informacion.html">Información</a></li>
-
-<!--             SOBRE MI(en pagina principal descripcion breve(con link a otra pagina con descripcion completa))        CONTACTO(en pagina principal, datos basicos con enlace a contacto completo)                    -->
-<!--   CV(en secciones(incluir cartas de referencia en carusel) )    PORTAFOLIO(trabajos)    INFORMACION     *InnovaBroadcast(hasta no tener otra pagina que incluir)*   *(NOTICIAS y TECNOLOGIA solo si lo decido)*-->
-				
-				
-<!--Contacto(completo, con formulario para enviarme correo y formulario para que el usuario deje sus datos y/o comentarios)-->
-					
-						</ul>
-				</div>
+<body>      <!-- data-spy="scroll" data-target="#principales" data-offset="0"    PARA SCROLLSPY EN SECCIONES CON BOOTSTRAP-->
+	<header id="header" class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span><!--<span class="glyphicon glyphicon-menu-hamburger"></span>--></button>
+			<a class="navbar-brand" href="index.html" title="Sergio Cuéllar"></a> <!--190 x 90 px      max: 200 x 100 px--><!--<img src="" alt="Sergio Cuéllar Logo">-->
+		</div>
+		
+		<div id="centro" class="hidden-xs">  <!--QUITAR HIDDEN CLASS SI QUIERO MOSTRAR ENLACES SOCIALES-->
+			<div id="enlaces">
+				<a href="https://mx.linkedin.com/in/SergioCuellarSagaon" title="Linkedin" target="_blank" id="Linkedin"><span class="fa fa-linkedin-square fa-3x fa-inverse" id="icon"></span></a>   <!--<span> class="fa fa-facebook-square fa-2x"></span>   DENTRO DEL LINK   USANDO FONTAWESOM ICONS-->
+				<a href="https://www.fb.com/Sergio.Cuellar21" title="Facebook" target="_blank" id="Fb"><span class="fa fa-facebook-square fa-2x fa-inverse"></span></a>
+				<a href="https://www.twitter.com/@SergioArmandoCS" title="Twitter" target="_blank" id="Twit"><span class="fa-stack fa-lg">
+					<span class="fa fa-square-o fa-stack-2x fa-inverse"></span>
+					<span class="fa fa-facebook fa-stack-1x fa-inverse"></span>
+				</span></a>
+				<a href="https://https://plus.google.com/u/0/102099103252953213898/about" title="Google+" target="_blank" id="goog"><!--<img src="" alt=""/>--></a>
 			</div>
-		</nav>
+		</div>
+		<nav id="principales">
+			<ul class="nav">
+				<li><a href="#SobreMi" title="Toda la información que necesiten sobre mi">Sobre Mi</a></li>
+				<li><a class="btn btn-lg" href="#Contacto" title="Ponte en contacto conmigo">Contacto</a></li>
+			</ul>						
+		</nav><!--USAR <UL> CON LA CLASE NAV!!  PARA QUE FUNCIONES EL SCROLLSPY Y ACTIVE LOS BOTONES-->
+		<div class="collapse navbar-collapse" id="defaultNavbar1">
+			<form class="navbar-form navbar-right" role="search">
+				<div class="input-group">
+					<input type="text" class="form-control" placeholder="Search for...">
+					<span class="input-group-btn">
+						<button class="btn btn-default" type="button">Go!</button>
+					</span>
+				</div>
+			</form>
+			<ul class="nav nav-pills nav-stacked"><!--AGREGAR ETIQUETA NAV-->
+				<!--<li><a href="carrera.html" accesskey="c">Sobre Mi</a></li>-->
+				<li><a href="CV.html" accesskey="c">CV</a></li>
+				<!--<li><a href="deportes.html" accesskey="d">Deportes</a></li>-->
+				<li><a href="Portafolio.html" accesskey="p">Portafolio</a></li>
+				<li><a href="#">Innova Broadcast</a></li>
+				<!--<li><a href="contacto.html">Contacto</a></li>-->
+				<li><a href="Informacion.html" accesskey="i">Información</a></li>
+
+	<!--             SOBRE MI(en pagina principal descripcion breve(con link a otra pagina con descripcion completa))        CONTACTO(en pagina principal, datos basicos con enlace a contacto completo)                    -->
+	<!--   CV(en secciones(incluir cartas de referencia en carusel) )    PORTAFOLIO(trabajos)    INFORMACION     *InnovaBroadcast(hasta no tener otra pagina que incluir)*   *(NOTICIAS y TECNOLOGIA solo si lo decido)*-->
+
+
+	<!--Contacto(completo, con formulario para enviarme correo y formulario para que el usuario deje sus datos y/o comentarios)-->
+
+				</ul>
+		</div>
 	</header>
 	<!--JUGAR CON CLASES DE COLUMNAS EN TODA LA PAGINA-->
 	<main id="main">
