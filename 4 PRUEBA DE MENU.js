@@ -1,28 +1,51 @@
-//var MainOffset = $('#centro').offset().top;
-var HEADEROffset = $('#principales').offset().top;        //en lugar de     pageYOffset
-$(window).scroll(function(){
-  if ($(window).scrollTop() >= HEADEROffset){
-		$('#header').addClass('fixed');
-	}
-  else{
-		$('#header').removeClass('fixed');
-	}
-	
-	
-	
-
-//if ($(window).scrollTop() >= MainOffset){
-//		$('#header').addClass('fixedMain');
-//	}
-//  else{
-//		$('#header').removeClass('fixedMain');
-//	}
-});
-
-
 $(document).ready(function(){
-	//AFFIX      FUNCIONA PERO NO SE APLICA POR LA REGLA DE #PRINCIPALES: position:absolute!!!!****DEBE SER RELATIVE
+	
+	var HeaderOffset = $('#principales').offset().top;        //en lugar de     pageYOffset
+	$(window).scroll(function(){
+		if ($(window).scrollTop() >= HeaderOffset){
+			$('#header').addClass('fixed');
+		}
+		else{
+			$('#header').removeClass('fixed');
+		}
+	});
+	
+	var LogoFormOffset = $('main').offset().top;      //menos 64px!! (altura de la barra)   DEPENDIENDO DEL EFECTO QUE QUIERA
+	$(window).scroll(function(){
+		if ($(window).scrollTop() >= LogoFormOffset){
+			$('.navbar-form').addClass('fixed');
+			$('.navbar-header').addClass('fixed');
+      //$('#principales').css("background-color", "MISMO PERO SIN TRASPARENCIA");
+		}
+		else{
+			$('.navbar-form').removeClass('fixed');
+			$('.navbar-header').removeClass('fixed');
+			//$('#principales').css("background-color", "CON TRASPARENCIA");
+		}
+	});
+	
+	var SobreMiOffset = $('#SobreMi').offset().top;
+	var ContactoOffset = $('#Contacto').offset().top;
+	$(window).scroll(function(){
+		if ($(window).scrollTop() >= SobreMiOffset && $(window).scrollTop() <= ContactoOffset){
+			$('#Contacto').removeClass("ClaseOnScroll");
+			$('#SobreMi').addClass("ClaseOnScroll");
+		}
+		else if ($(window).scrollTop() >= ContactoOffset){
+			$('#SobreMi').removeClass("ClaseOnScroll");
+			$('#Contacto').addClass("ClaseOnScroll");
+		}
+		else{
+			$('#SobreMi').removeClass("ClaseOnScroll");
+			$('#Contacto').removeClass("ClaseOnScroll");
+		}
+	});
+	
+	
+	
+	//AFFIX      FUNCIONA PERO CONVIENE USAR LA FUNCION DE ARRIBA
 	$("#principales").affix({offset: {top: $("#principales").offset().top} });
+	
 	
 	//ACTIVE     FUNCIONA PERO NO CON LOS PRINCIPALES     CREO QUE POR LAS REGLAS CSS ESTABLECIDAS(QUITARLAS PARA PROBAR)                     DEBE SER RELAVIVE(li = psition:relative) PARA FUNCIONAR
 	//$('.nav li').click(function(event){
@@ -33,7 +56,7 @@ $(document).ready(function(){
 	
 	// SROLLSPY  FUNCION DE   W3.COM
   // Add scrollspy to <body>
-  $('body').scrollspy({target: "#principales", offset: 50});   
+  $('body').scrollspy({target: "#principales", offset: 0});   
 
   // Add smooth scrolling on all links inside the navbar
   $("#principales a").on('click', function(event) {

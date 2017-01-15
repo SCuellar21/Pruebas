@@ -29,8 +29,9 @@
 #defaultNavbar1 nav {
 	text-align: center;
 }
-#principales ul {
-	text-align: center;
+#principales{
+	height: 64px;
+	padding: 10px;
 }
 .nav.nav-pills.nav-stacked li {
 	min-width: 150px;
@@ -39,6 +40,7 @@
 }
 main section {
 	min-height: 100vh;
+	padding-top: 64px;
 	/*min-height: 600px;*/   /*SOLO APLICAR EN MEDIA:WIDTH GRANDE!!! */
 }
 .container-fluid.non {
@@ -69,4 +71,48 @@ footer{
 }
 #icon:hover{
 	color: rgba(255,255,255,1.00);
+}
+
+
+
+.fixed #secundarios{
+	margin-top: 64px;
+}
+.fixed #principales{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgba(34,34,34,0.85);
+	z-index: 1;
+	padding: 10px;
+}
+/*.fixed .navbar-form{       /*Cambiar a  .fixedMain   si se usa la otra funcion en el  JS  
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 2;
+	margin: 15px 0px;
+}
+.fixed .navbar-header{      /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  
+	position: fixed;
+	z-index: 2;
+}*/
+.navbar-form.fixed{       /*Cambiar a  .fixedMain   si se usa la otra funcion en el  JS  */
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 2;
+	margin: 15px 0px;
+}
+.navbar-header.fixed{      /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  */
+	position: fixed;
+	z-index: 2;
+}
+
+
+
+
+
+.ClaseOnScroll{        /*IMPORTANTE*/
 }

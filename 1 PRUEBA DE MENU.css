@@ -125,19 +125,12 @@ footer{
 	opacity: inherit;
 	z-index: 9999;
   }
-		.navbar{
-			margin: 0;
-		}
 		
-		El DIV despues del NAV poner 50px(tamaño de la barra fijada) de margen superior
-		.affix+section{
-			margin-top: 50px;
-		}
+El DIV despues del NAV poner 50px(tamaño de la barra fijada) de margen superior
+.affix+section{
+	margin-top: 50px;
+}
 */
-
-
-
-
 
 .fixed .navbar-form{       /*Cambiar a  .fixedMain   si se usa la otra funcion en el  JS  */
 	position: fixed;
