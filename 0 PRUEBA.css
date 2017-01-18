@@ -2,46 +2,63 @@
 	margin: 0px;
 	padding: 0px;
 }
+.navbar.navbar-inverse {
+	margin: 0;
+	border: 0;
+	border-radius: 0;
+	/*min-height: 100vh;*/
+}
 .navbar-brand {
 	min-width: 130px;
 	background-color: rgba(110,110,110,1.00);
 }
-#centro {
-	min-height: 80vh;
-}
+#centro {  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/      /******Importante*****/
+	min-height: calc(100vh - 111px);  /*   AJUSTAR CON LA ALTURA DE #defaultNavbar1   (100vh - ALTURA) */
+}  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/                                                                               /******Importante*****/
 #enlaces {
 	float: right;
 	padding: 20px 0px;
 	clear: both;
 }
 #enlaces a {
-	width: 35px;
 	margin: 5px 0px;
+	width: 35px;
 	height: 35px;
 	display: block;
 	background-color: rgba(100,100,100,1.00);
 }
-.navbar.navbar-inverse {
-	margin: 0;
-	border: 0;
-	border-radius: 0;
-}
 #defaultNavbar1 nav {
 	text-align: center;
 }
-#principales{
-	height: 64px;
-	padding: 10px;
+#principales{  /*AJUSTA LA ALTURA DEL BLOQUE DE LO MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/      /******Importante*****/
+	padding: 10px 0;      /*JUGAR CON LA SEPARACION DE LOS BOTONES*/
+}  /*AJUSTA LA ALTURA DEL BLOQUE DE LO MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/                  /******Importante*****/
+#principales li{
+	min-width: 150px;     /*JUGAR CON LOS TAMAÑOS DE LOS BOTONES*/
+	margin: 0px 15px;
+	display: inline-block;
 }
-.nav.nav-pills.nav-stacked li {
-	min-width: 150px;
+a.btn-lg {
+	border: 2px solid #c2c2c2;
+}
+.nav-tabs{
+	border-bottom: 0;
+}
+.nav-tabs li {
+	min-width: 200px;     /*JUGAR CON LOS TAMAÑOS DE LOS BOTONES*/
 	margin: 0px 5px;
 	display: inline-block;
 }
+.nav-tabs li a {    /* QUITAR TRASPARENTE AL BORDE */
+	border-top: 1px solid rgba(100,100,100,1.00);
+	border-right: 1px solid rgba(100,100,100,1.00);
+	border-bottom: 0px solid rgba(100,100,100,1.00);
+	border-left: 1px solid rgba(100,100,100,1.00);
+}
+
 main section {
-	min-height: 100vh;
-	padding-top: 64px;
-	/*min-height: 600px;*/   /*SOLO APLICAR EN MEDIA:WIDTH GRANDE!!! */
+	height: 100vh;
+	padding: 68px 0;        /*  AJUSTAR A LA ALTURA DE LA BARRA!  */
 }
 .container-fluid.non {
 	background-color: rgba(130,130,130,1.00);
@@ -49,9 +66,10 @@ main section {
 .container-fluid.par {
 	background-color: rgba(54,54,54,1.00);
 }
-#main .row article {
+.row article {
 	padding: 15px;
 }
+
 footer{
 	padding: 15px;
 	color: rgba(255,255,255,1.00);
@@ -65,6 +83,7 @@ footer{
     content: "\2654  ";   /*   /    \00BB     \21FF    \2502 <ESTE    \2506   \25C8   \2654   \2656   \2659   \2662   \2758   \2759   */
     padding: 0px 5px;
 }
+
 #icon{
 	color: black;
 	font-size: 30pt;
@@ -74,9 +93,8 @@ footer{
 }
 
 
-
 .fixed #secundarios{
-	margin-top: 64px;
+	margin-top: 68px;          /*  AJUSTAR SEGUN ALTURA DE LA BARRA */
 }
 .fixed #principales{
 	position: fixed;
@@ -87,30 +105,17 @@ footer{
 	z-index: 1;
 	padding: 10px;
 }
-/*.fixed .navbar-form{       /*Cambiar a  .fixedMain   si se usa la otra funcion en el  JS  
-	position: fixed;
-	top: 0;
-	right: 0;
-	z-index: 2;
-	margin: 15px 0px;
-}
-.fixed .navbar-header{      /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  
-	position: fixed;
-	z-index: 2;
-}*/
 .navbar-form.fixed{       /*Cambiar a  .fixedMain   si se usa la otra funcion en el  JS  */
 	position: fixed;
 	top: 0;
 	right: 0;
 	z-index: 2;
-	margin: 15px 0px;
+	margin: 17px 0px;        /*AJUSTAR PARA CENTRAR SEGUN LA ALTURA DE LA BARRA  (ALTURA DE LA BARRA - ALTURA DE FORM / 2 ) */
 }
 .navbar-header.fixed{      /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  */
 	position: fixed;
 	z-index: 2;
 }
-
-
 
 
 
