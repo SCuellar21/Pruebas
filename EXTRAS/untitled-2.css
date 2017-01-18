@@ -10,10 +10,10 @@
 	display: block;
 	background-color: #555353;
 }
-#header-todo #defaultNavbar1 {
+#header-todo #Menu {
 	padding: 0px;
 }
-#header #header-todo #defaultNavbar1 {
+#header #header-todo #Menu {
 }
 
 body {
@@ -52,7 +52,7 @@ body {
 	z-index: 0;
 
 }
-#header-todo #defaultNavbar1 {
+#header-todo #Menu {
 	z-index: 2000;
 }
 

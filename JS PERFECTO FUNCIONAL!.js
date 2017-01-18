@@ -3,9 +3,9 @@ $(document).ready(function(){
 	//Viewport: It is your device screen.
 	//Window: It is your browser window. The window can be as big as viewport or smaller.
 	//Document: It is the webpage. It can be bigger than viewport or even bigger than window. 
-	//var height = $("#defaultNavbar1").height();
-	//$('#centro').height(screen.height - $("#defaultNavbar1").height());  //"screen.height" SI FUNCIONA (type NUMERO) "height"(variable) (type STRING) NO FUNCIONA 
-	//document.getElementById("demo").innerHTML = screen.height - $("#defaultNavbar1").height();
+	//var height = $("#Menu").height();
+	//$('#centro').height(screen.height - $("#Menu").height());  //"screen.height" SI FUNCIONA (type NUMERO) "height"(variable) (type STRING) NO FUNCIONA 
+	//document.getElementById("demo").innerHTML = screen.height - $("#Menu").height();
 	
 	var HeaderOffset = $('#principales').offset().top,        //en lugar de     pageYOffset
 			LogoFormOffset = $('main').offset().top,

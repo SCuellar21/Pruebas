@@ -2,18 +2,21 @@
 	margin: 0px;
 	padding: 0px;
 }
+#header{
+	height: 100vh;
+	background-color: rgba(0,0,0,1.00)
+}
 .navbar.navbar-inverse {
 	margin: 0;
 	border: 0;
 	border-radius: 0;
-	min-height: 100vh;
 }
 .navbar-brand {
 	min-width: 130px;
 	background-color: rgba(110,110,110,1.00);
 }
 #centro {  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/      /******Importante*****/
-	min-height: calc(100vh - 111px);  /*   AJUSTAR CON LA ALTURA DE #defaultNavbar1   (100vh - ALTURA) */
+	min-height: calc(100vh - 111px);  /*   AJUSTAR CON LA ALTURA DE #Menu   (100vh - ALTURA) */
 }  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/                                                                               /******Importante*****/
 #centro aside {
 	float: right;
@@ -27,20 +30,20 @@
 	display: block;
 	background-color: rgba(100,100,100,1.00);
 }
-#defaultNavbar1 {
+#Menu {
 	text-align: center;
 }
 #principales{  /*AJUSTA LA ALTURA DEL BLOQUE DE LO MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/      /******Importante*****/
 	padding: 10px 0;      /*JUGAR CON LA SEPARACION DE LOS BOTONES*/
 }  /*AJUSTA LA ALTURA DEL BLOQUE DE LO MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/                  /******Importante*****/
-#defaultNavbar1 nav li{
+#Menu nav li{
 	display: inline-block;
 	margin: 0px 5px;
 }
 #principales li{
 	min-width: 150px;     /*JUGAR CON LOS TAMAÑOS DE LOS BOTONES*/
 }
-a.btn-lg {
+a.btn {
 	border: 2px solid #c2c2c2;
 }
 .nav-tabs{
@@ -91,7 +94,7 @@ footer{
 	color: rgba(255,255,255,1.00);
 }
 
-
+/* EFECTOS PARA BARRA FIJA! */
 .fixed #secundarios{
 	margin-top: 68px;          /*  AJUSTAR SEGUN ALTURA DE LA BARRA */
 }
@@ -113,6 +116,7 @@ footer{
 }
 .navbar-header.fixed{      /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  */
 	position: fixed;
+	width: 100%;
 	z-index: 2;
 }
 
@@ -126,29 +130,38 @@ footer{
 
 
 @media screen and (max-width:767px){
-	#header{
-		z-index: 1;
-	}
-	.navbar-header {
-		position: fixed;
-		width: 100%;
+	#Menu {
+		padding-bottom: 3px;         /* margin del "#Menu nav li"  +  X   =  8px */
+		border-radius: 0 0 5px 5px;  /*NO SE ESTA APLICANDO   HAY QUE APLICARLO MAS ARRIBA (EN EL NAVBAR) */
 		z-index: 2;
 	}
-	#defaultNavbar1   {
-		padding-bottom: 8px;
-		border-radius: 0 0 5px 5px;
-		z-index: 2;
-	}
-	#secundarios li {
+	#Menu nav li{
 		display: block;
-		margin-bottom: 5px;
-		margin-left: auto;
-		margin-right: auto;
+		margin: 0 0 5px 0;
 	}
-	#secundarios a {
+	#Menu a {
 		border: 1px solid rgba(100,100,100,1.00);
 		border-radius: 4px;
+		margin: 0;
 	}
+	#secundarios, .fixed #secundarios {
+		margin: 0px;
+	}
+	#principales2{
+		text-align: center;
+		padding-top: calc(100vh - 48px - 10px);/* (100vh - ALTURA DE LA BARRA #principales - ESPACIO AL BOTTOM) */
+	}
+	#principales2 li{
+		display: inline-block;
+		float: none;
+		min-width: 100px;
+		/*max-width: 150px;*/
+		margin: 0 5px;
+		
+	}
+	
+	/* EFECTOS PARA BARRA FIJA! */
+	
 	
 }
 

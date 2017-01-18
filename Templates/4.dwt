@@ -30,13 +30,13 @@
 		<nav class="navbar navbar-inverse">
 			<div class="conteiner-fluid">
 				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span><!--<span class="glyphicon glyphicon-menu-hamburger"></span>--></button>
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#Menu"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span><!--<span class="glyphicon glyphicon-menu-hamburger"></span>--></button>
 					<a class="navbar-brand" href="../index.html" title="Sergio Cuéllar"></a> <!--190 x 90 px      max: 200 x 100 px--><!--<img src="" alt="Sergio Cuéllar Logo">-->
 					<div id="principales">   <!-- data-spy="affix" data-offset-top="600"    PARA MENU ESTATICO CON CLASES DE BOOTSTRAP-->
 						<a class="" href="../contenido/html/sobre_mi.html" title="Toda la información que necesiten sobre mi">Sobre Mi</a><a class="btn btn-lg" href="../contenido/html/contacto.html" title="Ponte en contacto conmigo">Contacto</a>
 					</div>
 				</div>
-				<div class="collapse navbar-collapse" id="defaultNavbar1">
+				<div class="collapse navbar-collapse" id="Menu">
 					<form class="navbar-form navbar-right" role="search">
 						<div class="input-group">
 							<input type="text" class="form-control" placeholder="Search for...">
