@@ -6,7 +6,7 @@
 	margin: 0;
 	border: 0;
 	border-radius: 0;
-	/*min-height: 100vh;*/
+	min-height: 100vh;
 }
 .navbar-brand {
 	min-width: 130px;
@@ -15,28 +15,30 @@
 #centro {  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/      /******Importante*****/
 	min-height: calc(100vh - 111px);  /*   AJUSTAR CON LA ALTURA DE #defaultNavbar1   (100vh - ALTURA) */
 }  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/                                                                               /******Importante*****/
-#enlaces {
+#centro aside {
 	float: right;
 	padding: 20px 0px;
 	clear: both;
 }
-#enlaces a {
+#centro aside a {
 	margin: 5px 0px;
 	width: 35px;
 	height: 35px;
 	display: block;
 	background-color: rgba(100,100,100,1.00);
 }
-#defaultNavbar1 nav {
+#defaultNavbar1 {
 	text-align: center;
 }
 #principales{  /*AJUSTA LA ALTURA DEL BLOQUE DE LO MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/      /******Importante*****/
 	padding: 10px 0;      /*JUGAR CON LA SEPARACION DE LOS BOTONES*/
 }  /*AJUSTA LA ALTURA DEL BLOQUE DE LO MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/                  /******Importante*****/
+#defaultNavbar1 nav li{
+	display: inline-block;
+	margin: 0px 5px;
+}
 #principales li{
 	min-width: 150px;     /*JUGAR CON LOS TAMAÑOS DE LOS BOTONES*/
-	margin: 0px 15px;
-	display: inline-block;
 }
 a.btn-lg {
 	border: 2px solid #c2c2c2;
@@ -46,13 +48,10 @@ a.btn-lg {
 }
 .nav-tabs li {
 	min-width: 200px;     /*JUGAR CON LOS TAMAÑOS DE LOS BOTONES*/
-	margin: 0px 5px;
-	display: inline-block;
 }
 .nav-tabs li a {    /* QUITAR TRASPARENTE AL BORDE */
 	border-top: 1px solid rgba(100,100,100,1.00);
 	border-right: 1px solid rgba(100,100,100,1.00);
-	border-bottom: 0px solid rgba(100,100,100,1.00);
 	border-left: 1px solid rgba(100,100,100,1.00);
 }
 
@@ -117,7 +116,45 @@ footer{
 	z-index: 2;
 }
 
-
-
 .ClaseOnScroll{        /*IMPORTANTE*/
+	
+}
+
+
+
+
+
+
+@media screen and (max-width:767px){
+	#header{
+		z-index: 1;
+	}
+	.navbar-header {
+		position: fixed;
+		width: 100%;
+		z-index: 2;
+	}
+	#defaultNavbar1   {
+		padding-bottom: 8px;
+		border-radius: 0 0 5px 5px;
+		z-index: 2;
+	}
+	#secundarios li {
+		display: block;
+		margin-bottom: 5px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+	#secundarios a {
+		border: 1px solid rgba(100,100,100,1.00);
+		border-radius: 4px;
+	}
+	
+}
+
+@media screen and (min-width:768px) and (max-width:991px){
+}
+@media screen and (min-width:992px) and (max-width:1199px){
+}
+@media screen and (min-width:1200px){
 }
