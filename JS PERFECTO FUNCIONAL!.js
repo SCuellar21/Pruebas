@@ -7,20 +7,33 @@ $(document).ready(function(){
 	//$('#centro').height(screen.height - $("#Menu").height());  //"screen.height" SI FUNCIONA (type NUMERO) "height"(variable) (type STRING) NO FUNCIONA 
 	//document.getElementById("demo").innerHTML = screen.height - $("#Menu").height();
 	
-	var HeaderOffset = $('#principales').offset().top,        //en lugar de     pageYOffset
-			LogoFormOffset = $('main').offset().top,
+	if ($(window).width() <= 767) { //PHONE
+  	$(".navbar").addClass("navbar-fixed-top");
+	}                     //PHONE
+	else if ($(window).width() > 767 && $(window).width() <= 991) { //TABLET
+		
+	}         //TABLET
+	else if ($(window).width() > 991 && $(window).width() <= 1199) { //DESKTOP SM
+		
+	}    //DESKTOP SM
+	else { //DESKTOP LG
+		
+	}                                                              //DESKTOP LG
+	
+	var PrincipalesOffset = $('#principales').offset().top,        //en lugar de     pageYOffset
+			MainOffset = $('main').offset().top,
 			SobreMiOffset = $('#SobreMi').offset().top,
 			ContactoOffset = $('#Contacto').offset().top;
 	$(window).scroll(function(){
 		// para fijar la barra de #principales
-		if ($(window).scrollTop() >= HeaderOffset){
+		if ($(window).scrollTop() >= PrincipalesOffset){
 			$('#header').addClass('fixed');
 		}
 		else{
 			$('#header').removeClass('fixed');
 		}
 		// para el LOGO y FORM se fijen a la barra
-		if ($(window).scrollTop() >= LogoFormOffset){  //menos 64px!! (altura de la barra)   DEPENDIENDO DEL EFECTO QUE QUIERA
+		if ($(window).scrollTop() >= MainOffset){  //menos 64px!! (altura de la barra)   DEPENDIENDO DEL EFECTO QUE QUIERA
 			$('.navbar-form').addClass('fixed');
 			$('.navbar-header').addClass('fixed');
       //$('#principales').css("background-color", "MISMO PERO SIN TRASPARENCIA");

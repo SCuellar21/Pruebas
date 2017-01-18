@@ -4,9 +4,9 @@
 }
 #header{
 	height: 100vh;
-	background-color: rgba(0,0,0,1.00)
+	background-color: rgba(34,34,34,1.00);
 }
-.navbar.navbar-inverse {
+.navbar {
 	margin: 0;
 	border: 0;
 	border-radius: 0;
@@ -35,7 +35,7 @@
 }
 #principales{  /*AJUSTA LA ALTURA DEL BLOQUE DE LO MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/      /******Importante*****/
 	padding: 10px 0;      /*JUGAR CON LA SEPARACION DE LOS BOTONES*/
-}  /*AJUSTA LA ALTURA DEL BLOQUE DE LO MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/                  /******Importante*****/
+}  /*AJUSTA LA ALTURA DEL BLOQUE DE LOS MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/                  /******Importante*****/
 #Menu nav li{
 	display: inline-block;
 	margin: 0px 5px;
@@ -107,16 +107,15 @@ footer{
 	z-index: 1;
 	padding: 10px;
 }
-.navbar-form.fixed{       /*Cambiar a  .fixedMain   si se usa la otra funcion en el  JS  */
+.navbar-form.fixed{
 	position: fixed;
 	top: 0;
 	right: 0;
 	z-index: 2;
 	margin: 17px 0px;        /*AJUSTAR PARA CENTRAR SEGUN LA ALTURA DE LA BARRA  (ALTURA DE LA BARRA - ALTURA DE FORM / 2 ) */
 }
-.navbar-header.fixed{      /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  */
+.navbar-header.fixed{
 	position: fixed;
-	width: 100%;
 	z-index: 2;
 }
 
@@ -129,8 +128,15 @@ footer{
 
 
 
-@media screen and (max-width:767px){
+@media screen and (max-width:767px){      /*PHONE*/
+	#header{
+		padding-top: calc(100vh - 50px - 10px);   /* (100vh - ALTURA DE LA BARRA #principales - ESPACIO AL BOTTOM) */
+	}
+	.navbar .navbar-header{
+		background-color: rgba(54,54,54,1.00);
+	}
 	#Menu {
+		background-color: rgba(34,34,34,1.00);
 		padding-bottom: 3px;         /* margin del "#Menu nav li"  +  X   =  8px */
 		border-radius: 0 0 5px 5px;  /*NO SE ESTA APLICANDO   HAY QUE APLICARLO MAS ARRIBA (EN EL NAVBAR) */
 		z-index: 2;
@@ -144,12 +150,9 @@ footer{
 		border-radius: 4px;
 		margin: 0;
 	}
-	#secundarios, .fixed #secundarios {
-		margin: 0px;
-	}
 	#principales2{
 		text-align: center;
-		padding-top: calc(100vh - 48px - 10px);/* (100vh - ALTURA DE LA BARRA #principales - ESPACIO AL BOTTOM) */
+		padding: 3px 0;        /*PARA QUE QUEDE DEL MISMO ALTO QUE LA BARRA Y NO SE NOTE EL EFECTO CUANDO SE FIJEN A ELLA*/
 	}
 	#principales2 li{
 		display: inline-block;
@@ -157,17 +160,31 @@ footer{
 		min-width: 100px;
 		/*max-width: 150px;*/
 		margin: 0 5px;
-		
+	}
+	
+	main section{
+		padding: 50px 0;
 	}
 	
 	/* EFECTOS PARA BARRA FIJA! */
+	.fixed #secundarios {
+		margin: 0px;
+	}       /*HASTA QUE NO SE ACOMODEN LAS CLASES FIX EN CADA MEDIA QUERY*/
+	.fixed #principales2{
+		position: fixed;
+		top: 0;
+		left: calc( (100vw - 224px) / 2);
+		z-index: 9999;
+	}
 	
-	
-}
+}  /*PHONE*/
 
-@media screen and (min-width:768px) and (max-width:991px){
-}
-@media screen and (min-width:992px) and (max-width:1199px){
-}
-@media screen and (min-width:1200px){
-}
+@media screen and (min-width:768px) and (max-width:991px){  /*TABLET*/
+	
+}  /*TABLET*/
+@media screen and (min-width:992px) and (max-width:1199px){  /*DESKTOP SM*/
+	
+}  /*DESKTOP SM*/
+@media screen and (min-width:1200px){  /*DESKTOP LG*/
+	
+}  /*DESKTOP LG*/

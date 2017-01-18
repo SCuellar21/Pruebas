@@ -7,59 +7,67 @@ $(document).ready(function(){
 	//$('#centro').height(screen.height - $("#Menu").height());  //"screen.height" SI FUNCIONA (type NUMERO) "height"(variable) (type STRING) NO FUNCIONA 
 	//document.getElementById("demo").innerHTML = screen.height - $("#Menu").height();
 	
-	if ($(window).width() < 768) {
-   $(".navbar").addClass("navbar-fixed-top");
+	if ($(window).width() <= 767) { //PHONE
+  	$(".navbar").addClass("navbar-fixed-top");
+		
+		var PrincipalesOffset = $('#principales2').offset().top;        //en lugar de     pageYOffset
+		$(window).scroll(function(){
+			if ($(window).scrollTop() >= PrincipalesOffset){
+				$('#header').addClass('fixed');
+			}
+			else{
+				$('#header').removeClass('fixed');
+			}
+		});
 	}
-	//else {
-	//	 alert('More than 768');
-	//}
-	
-	var HeaderOffset = $('#principales').offset().top;        //en lugar de     pageYOffset
-	$(window).scroll(function(){
-		if ($(window).scrollTop() >= HeaderOffset){
-			$('#header').addClass('fixed');
-		}
-		else{
-			$('#header').removeClass('fixed');
-		}
-	});
-	
-	var LogoFormOffset = $('main').offset().top;      //menos 64px!! (altura de la barra)   DEPENDIENDO DEL EFECTO QUE QUIERA
-	$(window).scroll(function(){
-		if ($(window).scrollTop() >= LogoFormOffset){
-			$('.navbar-form').addClass('fixed');
-			$('.navbar-header').addClass('fixed');
-      //$('#principales').css("background-color", "MISMO PERO SIN TRASPARENCIA");
-		}
-		else{
-			$('.navbar-form').removeClass('fixed');
-			$('.navbar-header').removeClass('fixed');
-			//$('#principales').css("background-color", "CON TRASPARENCIA");
-		}
-	});
-	
-	var SobreMiOffset = $('#SobreMi').offset().top;
-	var ContactoOffset = $('#Contacto').offset().top;
-	$(window).scroll(function(){
-		if ($(window).scrollTop() >= SobreMiOffset && $(window).scrollTop() <= ContactoOffset){
-			$('#Contacto').removeClass("ClaseOnScroll");
-			$('#SobreMi').addClass("ClaseOnScroll");
-		}
-		else if ($(window).scrollTop() >= ContactoOffset){
-			$('#SobreMi').removeClass("ClaseOnScroll");
-			$('#Contacto').addClass("ClaseOnScroll");
-		}
-		else{
-			$('#SobreMi').removeClass("ClaseOnScroll");
-			$('#Contacto').removeClass("ClaseOnScroll");
-		}
-	});//INSERVIBLE SI NO SE USA ".ClaseOnScroll"
-	
-	
+	//else if ($(window).width() > 767 && $(window).width() <= 991) { //TABLET
+//		
+//	}
+//	else if ($(window).width() > 991 && $(window).width() <= 1199) { //DESKTOP SM
+//		
+//	}
+	else {
+		var PrincipalesOffset = $('#principales').offset().top,        //en lugar de     pageYOffset
+				MainOffset = $('main').offset().top,
+				SobreMiOffset = $('#SobreMi').offset().top,
+				ContactoOffset = $('#Contacto').offset().top;
+		$(window).scroll(function(){
+			// para fijar la barra de #principales
+			if ($(window).scrollTop() >= PrincipalesOffset){
+				$('#header').addClass('fixed');
+			}
+			else{
+				$('#header').removeClass('fixed');
+			}
+			// para el LOGO y FORM se fijen a la barra
+			if ($(window).scrollTop() >= MainOffset){  //menos 64px!! (altura de la barra)   DEPENDIENDO DEL EFECTO QUE QUIERA
+				$('.navbar-form').addClass('fixed');
+				$('.navbar-header').addClass('fixed');
+				//$('#principales').css("background-color", "MISMO PERO SIN TRASPARENCIA");
+			}
+			else{
+				$('.navbar-form').removeClass('fixed');
+				$('.navbar-header').removeClass('fixed');
+				//$('#principales').css("background-color", "CON TRASPARENCIA");
+			}
+			// para ajustar las secciones cuando se SALTE a ellas   (OPCIONAL)
+			if ($(window).scrollTop() >= SobreMiOffset && $(window).scrollTop() <= ContactoOffset){
+				$('#Contacto').removeClass("ClaseOnScroll");
+				$('#SobreMi').addClass("ClaseOnScroll");
+			}
+			else if ($(window).scrollTop() >= ContactoOffset){
+				$('#SobreMi').removeClass("ClaseOnScroll");
+				$('#Contacto').addClass("ClaseOnScroll");
+			}
+			else{
+				$('#SobreMi').removeClass("ClaseOnScroll");
+				$('#Contacto').removeClass("ClaseOnScroll");
+			}//INSERVIBLE SI NO SE USA ".ClaseOnScroll"
+		});
+	}
 	
 	//AFFIX      FUNCIONA PERO CONVIENE USAR LA FUNCION DE ARRIBA
 	//$("#principales").affix({offset: {top: $("#principales").offset().top} });
-	
 	
 	//ACTIVE     FUNCIONA PERO NO CON LOS PRINCIPALES     CREO QUE POR LAS REGLAS CSS ESTABLECIDAS(QUITARLAS PARA PROBAR)                     DEBE SER RELAVIVE(li = psition:relative) PARA FUNCIONAR
 	//$('.nav li').click(function(event){
