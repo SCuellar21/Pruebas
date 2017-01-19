@@ -19,6 +19,54 @@ $(document).ready(function(){
 				$('#header').removeClass('fixed');
 			}
 		});
+		
+		//AFFIX      FUNCIONA PERO CONVIENE USAR LA FUNCION DE ARRIBA
+		//$("#principales").affix({offset: {top: $("#principales").offset().top} });
+
+		//ACTIVE     FUNCIONA PERO NO CON LOS PRINCIPALES     CREO QUE POR LAS REGLAS CSS ESTABLECIDAS(QUITARLAS PARA PROBAR)                     DEBE SER RELAVIVE(li = psition:relative) PARA FUNCIONAR
+		//$('.nav li').click(function(event){
+	//		$('.active').removeClass('active');
+	//		$(this).addClass('active');
+	//	});
+
+		//$('.nav li').click(function(e) {
+	//		var $this = $(this);
+	//		if (!$this.hasClass('active')) {
+	//			$this.addClass('active');
+	//		}
+	//		e.preventDefault();
+	//	});
+
+
+		// SROLLSPY  FUNCION DE   W3.COM
+		// Add scrollspy to <body>
+		$('body').scrollspy({target: "#principales2", offset: 0});
+		// PARA REFRESH EN CASO DE AGREGAR O QUITAR ELELMENTOS (TALVEZ CAMBIO DE TAMAÑO DE LA PANTALLA)
+		//$('body').each(function () {
+		//	var $spy = $(this).scrollspy('refresh')
+		//})
+
+		// Add smooth scrolling on all links inside the navbar
+		$("#principales2 a").on('click', function(event) {
+			// Make sure this.hash has a value before overriding default behavior
+			if (this.hash !== "") {
+				// Prevent default anchor click behavior
+				event.preventDefault();
+
+				// Store hash
+				var hash = this.hash;
+
+				// Using jQuery's animate() method to add smooth page scroll
+				// The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+				$('html, body').animate({
+					scrollTop: $(hash).offset().top
+				}, 800, function(){
+
+					// Add hash (#) to URL when done scrolling (default click behavior)
+					window.location.hash = hash;
+				});
+			}  // End if
+		});
 	}
 	//else if ($(window).width() > 767 && $(window).width() <= 991) { //TABLET
 //		
@@ -64,54 +112,55 @@ $(document).ready(function(){
 				$('#Contacto').removeClass("ClaseOnScroll");
 			}//INSERVIBLE SI NO SE USA ".ClaseOnScroll"
 		});
+		
+		//AFFIX      FUNCIONA PERO CONVIENE USAR LA FUNCION DE ARRIBA
+		//$("#principales").affix({offset: {top: $("#principales").offset().top} });
+
+		//ACTIVE     FUNCIONA PERO NO CON LOS PRINCIPALES     CREO QUE POR LAS REGLAS CSS ESTABLECIDAS(QUITARLAS PARA PROBAR)                     DEBE SER RELAVIVE(li = psition:relative) PARA FUNCIONAR
+		//$('.nav li').click(function(event){
+	//		$('.active').removeClass('active');
+	//		$(this).addClass('active');
+	//	});
+
+		//$('.nav li').click(function(e) {
+	//		var $this = $(this);
+	//		if (!$this.hasClass('active')) {
+	//			$this.addClass('active');
+	//		}
+	//		e.preventDefault();
+	//	});
+
+
+		// SROLLSPY  FUNCION DE   W3.COM
+		// Add scrollspy to <body>
+		$('body').scrollspy({target: "#principales", offset: 0});
+		// PARA REFRESH EN CASO DE AGREGAR O QUITAR ELELMENTOS (TALVEZ CAMBIO DE TAMAÑO DE LA PANTALLA)
+		//$('body').each(function () {
+		//	var $spy = $(this).scrollspy('refresh')
+		//})
+
+		// Add smooth scrolling on all links inside the navbar
+		$("#principales a").on('click', function(event) {
+			// Make sure this.hash has a value before overriding default behavior
+			if (this.hash !== "") {
+				// Prevent default anchor click behavior
+				event.preventDefault();
+
+				// Store hash
+				var hash = this.hash;
+
+				// Using jQuery's animate() method to add smooth page scroll
+				// The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+				$('html, body').animate({
+					scrollTop: $(hash).offset().top
+				}, 800, function(){
+
+					// Add hash (#) to URL when done scrolling (default click behavior)
+					window.location.hash = hash;
+				});
+			}  // End if
+		});
 	}
 	
-	//AFFIX      FUNCIONA PERO CONVIENE USAR LA FUNCION DE ARRIBA
-	//$("#principales").affix({offset: {top: $("#principales").offset().top} });
-	
-	//ACTIVE     FUNCIONA PERO NO CON LOS PRINCIPALES     CREO QUE POR LAS REGLAS CSS ESTABLECIDAS(QUITARLAS PARA PROBAR)                     DEBE SER RELAVIVE(li = psition:relative) PARA FUNCIONAR
-	//$('.nav li').click(function(event){
-//		$('.active').removeClass('active');
-//		$(this).addClass('active');
-//	});
-	
-	//$('.nav li').click(function(e) {
-//		var $this = $(this);
-//		if (!$this.hasClass('active')) {
-//			$this.addClass('active');
-//		}
-//		e.preventDefault();
-//	});
-
-	
-	// SROLLSPY  FUNCION DE   W3.COM
-  // Add scrollspy to <body>
-  $('body').scrollspy({target: "#principales", offset: 0});
-	// PARA REFRESH EN CASO DE AGREGAR O QUITAR ELELMENTOS (TALVEZ CAMBIO DE TAMAÑO DE LA PANTALLA)
-	//$('body').each(function () {
-	//	var $spy = $(this).scrollspy('refresh')
-	//})
-
-  // Add smooth scrolling on all links inside the navbar
-  $("#principales a").on('click', function(event) {
-    // Make sure this.hash has a value before overriding default behavior
-    if (this.hash !== "") {
-      // Prevent default anchor click behavior
-      event.preventDefault();
-
-      // Store hash
-      var hash = this.hash;
-
-      // Using jQuery's animate() method to add smooth page scroll
-      // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 800, function(){
-   
-        // Add hash (#) to URL when done scrolling (default click behavior)
-        window.location.hash = hash;
-      });
-    }  // End if
-  });
 	
 });
