@@ -64,7 +64,7 @@ a.btn {
 }
 
 main section {
-	height: 100vh;
+	min-height: 100vh;
 	padding: 68px 0;        /*  AJUSTAR A LA ALTURA DE LA BARRA!  */
 }
 .container-fluid.non {
