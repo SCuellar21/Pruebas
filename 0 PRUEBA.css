@@ -4,20 +4,20 @@
 }
 #header{
 	height: 100vh;
-	background-color: rgba(34,34,34,1.00);
+	/*background-color: rgba(34,34,34,1.00);*/
+	background: url(img/MW-EC045_comput_ZH_20151224095234-negroPRUEBA@1x.png);
+	background-size: 100vw 100vh;
 }
 .navbar {
 	margin: 0;
 	border: 0;
 	border-radius: 0;
-	background-color: rgba(34,34,34,0.00);   /*USAR SI SE UNA UNA CLASE DE ESTILO PARA EL .NAVBAR (invers / default) PARA QUITAR EL COLOR Y QUE SE VEAN REDONDAS LAS ESQUINAS EN LA VISTA DE TELEFONOS*/
-}
-.navbar-header{
-	background-color: rgba(34,34,34,1.00);
+	background: rgba(34,34,34,0.00);   /*USAR SI SE UNA UNA CLASE DE ESTILO PARA EL .NAVBAR (invers / default) PARA QUITAR EL COLOR*/
 }
 .navbar-brand {
-	min-width: 130px;
-	background-color: rgba(110,110,110,1.00);
+	width: 250px;
+	height: 94px;
+	background: url("logo 1.2.2@1,25x.png") no-repeat border-box;
 }
 #centro {  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/      /******Importante*****/
 	min-height: calc(100vh - 111px);  /*   AJUSTAR CON LA ALTURA DE #Menu   (100vh - ALTURA) */
@@ -91,6 +91,7 @@ footer{
     padding: 0px 5px;
 }
 
+
 /* EFECTOS PARA BARRA FIJA! */
 .fixed #secundarios{
 	margin-top: 68px;          /*  AJUSTAR SEGUN ALTURA DE LA BARRA */
@@ -115,6 +116,12 @@ footer{
 	position: fixed;
 	z-index: 2;
 }
+.fixed .navbar-brand{
+	width: 180px;
+	height: 68px;
+	background-size: cover;
+	/*background-repeat: no-repeat;*/     /*SOLO EN CASO DE QUE SOBRE SALGA*/
+}
 
 #icon{
 	color: black;
@@ -136,6 +143,9 @@ footer{
 @media screen and (max-width:767px){      /*PHONE*/
 	#header{
 		padding-top: calc(100vh - 50px - 10px);   /* (100vh - ALTURA DE LA BARRA #principales - ESPACIO AL BOTTOM) */
+	}
+	.navbar-header{
+		background-color: rgba(34,34,34,1.00);
 	}
 	#Menu {
 		padding-bottom: 3px;         /* margin del "#Menu nav li"  +  X   =  8px */
