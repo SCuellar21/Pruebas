@@ -17,7 +17,7 @@
 .navbar-brand {
 	width: 250px;
 	height: 94px;
-	background: url("logo 1.2.2@1,25x.png") no-repeat border-box;
+	background: url("img/logo 1.2.2@1,25x.png") no-repeat border-box;
 }
 #centro {  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/      /******Importante*****/
 	min-height: calc(100vh - 111px);  /*   AJUSTAR CON LA ALTURA DE #Menu   (100vh - ALTURA) */
@@ -35,7 +35,7 @@
 	background-color: rgba(100,100,100,1.00);
 }
 #Menu {
-	background-color: rgba(34,34,34,1.00);
+	/*background-color: rgba(34,34,34,1.00);*/
 	text-align: center;
 }
 #principales{  /*AJUSTA LA ALTURA DEL BLOQUE DE LO MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/      /******Importante*****/
@@ -67,10 +67,10 @@ main section {
 	min-height: 100vh;
 	padding: 68px 0;        /*  AJUSTAR A LA ALTURA DE LA BARRA!  */
 }
-.container-fluid.non {
+.non {
 	background-color: rgba(130,130,130,1.00);
 }
-.container-fluid.par {
+.par {
 	background-color: rgba(54,54,54,1.00);
 }
 .row article {
@@ -89,6 +89,11 @@ footer{
     color: #ccc;
     content: "\2654  ";   /*   /    \00BB     \21FF    \2502 <ESTE    \2506   \25C8   \2654   \2656   \2659   \2662   \2758   \2759   */
     padding: 0px 5px;
+}
+.brand {
+	display: block;
+	float: none;
+	margin: 15px auto 0;
 }
 
 
@@ -143,9 +148,15 @@ footer{
 @media screen and (max-width:767px){      /*PHONE*/
 	#header{
 		padding-top: calc(100vh - 50px - 10px);   /* (100vh - ALTURA DE LA BARRA #principales - ESPACIO AL BOTTOM) */
+		background: url(img/MW-EC045_comput_ZH_20151224095234-negro@0,5x.png);
 	}
 	.navbar-header{
 		background-color: rgba(34,34,34,1.00);
+	}
+	.navbar-brand{
+		width: 150px;
+		height: 50px;
+		background-size: 150px 50px;
 	}
 	#Menu {
 		padding-bottom: 3px;         /* margin del "#Menu nav li"  +  X   =  8px */
@@ -178,7 +189,24 @@ footer{
 		padding: 50px 0;
 	}
 	
-	/* EFECTOS PARA BARRA FIJA! */
+	.breadcrumb a{
+		display: inline-block;
+		text-align: center;
+		min-width: 25vw;
+	}
+	.breadcrumb > li:before, .breadcrumb > li:after {
+    color: #ccc;
+    content: " \2654";   /*   /    \00BB     \21FF    \2502 <ESTE    \2506   \25C8   \2654   \2656   \2659   \2662   \2758   \2759   */
+    padding: 0;
+	}
+
+		
+	/* EFECTO5 PARA BARRA FIJA! */
+	.fixed .navbar-brand{
+		width: 150px;
+		height: 50px;
+		background-size: 150px 50px;
+	}
 	.fixed #secundarios {
 		margin: 0px;
 	}       /*HASTA QUE NO SE ACOMODEN LAS CLASES FIX EN CADA MEDIA QUERY*/
@@ -188,6 +216,7 @@ footer{
 		left: calc( (100% - 224px) / 2);
 		z-index: 9999;
 	}
+	
 }  /*PHONE*/   /*COMPLETO (hasta hacer mas cambios)*/
 
 @media screen and (min-width:768px) and (max-width:991px){  /*TABLET*/
@@ -199,3 +228,11 @@ footer{
 @media screen and (min-width:1200px){  /*DESKTOP LG*/
 	
 }  /*DESKTOP LG*/
+
+img {
+	max-width: 300px;
+	max-height: 300px;
+	float: right;
+	border-radius: 15px;
+	margin-left: 15px;
+}

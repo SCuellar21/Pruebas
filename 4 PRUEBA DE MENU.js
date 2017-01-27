@@ -1,6 +1,10 @@
 // **NO HACER COMENTARIO A NINGUNA VARIABLE!!**   (DEJAN DE FUNCIONAR LOS EFECTOS DE BOOTSTRAP  (CLASE .active EN LOS BOTONES  Y SCROLLSPY ) )
 $(document).ready(function(){
-	//Viewport: It is your device screen.
+	//$(window).resize(function(){          //PARA REFRESH DE LA PAGINA Y QUE SE APLIQUEN BIEN LOS ESTILOS
+	//	location.reload();
+	//});//$('#principales2 a').onclick(document.location.reload());
+	
+	//Viewport/Screen: It is your device screen.
 	//Window: It is your browser window. The window can be as big as viewport or smaller.
 	//Document: It is the webpage. It can be bigger than viewport or even bigger than window. 
 	//var height = $("#Menu").height();
