@@ -1,99 +1,87 @@
 @charset "utf-8";
-html, body, header{
+*{
 	margin: 0px;
 	padding: 0px;
 }
-body{      /*TAL VEZ USAR PARA QUE LOS BOTONES PRINCIPALES FUNCIONEN CON SCROLLSPY*/
-	position: relative;
+.header-prin{
+	height: 100vh;
+	/*background-color: rgba(34,34,34,1.00);*/
+	background: url(img/MW-EC045_comput_ZH_20151224095234-negroPRUEBA@1x.png);
+	background-size: 100vw 100vh;
 }
-.navbar.navbar-inverse {
+.header-sec{
+	height: auto;
+	background: rgba(34,34,34,1.00);
+}
+.navbar {
+	margin: 0;
 	border: 0;
 	border-radius: 0;
-	margin: 0px;
+	background: rgba(34,34,34,0.00);   /*USAR SI SE UNA UNA CLASE DE ESTILO PARA EL .NAVBAR (invers / default) PARA QUITAR EL COLOR*/
 }
-.navbar-brand{
-	background-color: #848484;
-	min-width: 130px;
+.navbar-brand {
+	width: 250px;
+	height: 94px;
+	background: url("img/logo 1.2.2@1,25x.png") no-repeat border-box;
 }
-#principales {
-	position: relative;
-	text-align: center;
-	padding: 2px;/*2 o 5px dependiendo de los botones de bootstrap*/
-}
-#principales a {
-	border: 2px solid rgba(230,230,230,1.00);
-	background-color: #555353;
-	display: inline-block;
-	min-width: 120px;
-	padding: 10px;
-	text-decoration: none;
-	color: rgba(230,230,230,1.00);
-	margin: 1%;
-}
-#principales a:hover {
-	background-color: rgba(230,230,230,1.00);
-	border-color: rgba(20,20,20,1.00);
-	color: rgba(20,20,20,1.00);
-}
-#enlaces {
+.centro {  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/      /******Importante*****/
+	min-height: calc(100vh - 111px);  /*   AJUSTAR CON LA ALTURA DE .menu   (100vh - ALTURA) */
+}  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/                                                                               /******Importante*****/
+.centro aside {
 	float: right;
-	clear: left;
-	padding: 20px 0px;        /*ajustar segun la altura deseada*/
+	padding: 20px 0px;
+	clear: both;
 }
-#enlaces a {
+.centro aside a {
+	margin: 5px 0px;
 	width: 35px;
 	height: 35px;
-	margin: 5px 0px;
 	display: block;
-	background-color: #555353;
+	background-color: rgba(100,100,100,1.00);
 }
-.navbar ul {
+.menu {
+	/*background-color: rgba(34,34,34,1.00);*/
 	text-align: center;
-	/*border-radius: 0px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;*/
 }
-.navbar ul li {
+.principales{  /*AJUSTA LA ALTURA DEL BLOQUE DE LO MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/      /******Importante*****/
+	padding: 10px 0;      /*JUGAR CON LA SEPARACION DE LOS BOTONES*/
+}  /*AJUSTA LA ALTURA DEL BLOQUE DE LOS MENUS!    RELACION DIRECCTA CON LA ALTURA DEL BLOQUE PRINCIPAL*/                  /******Importante*****/
+.menu nav li{
 	display: inline-block;
-	margin-right: 5px;
-	margin-left: 5px;
-	min-width: 150px;
-	/*border-radius: 0px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;*/
+	margin: 0px 5px;
 }
-.nav li a {
-	border-left: 2px solid #7C7C7C;
-	border-right: 2px solid #7C7C7C;
-	border-bottom: 0px solid #7C7C7C;
-	border-top: 2px solid #7C7C7C;
-	/*border-radius: 0px;
-	border-bottom-left-radius: 0px;
-	border-bottom-right-radius: 0px;*/
+.principales li{
+	min-width: 150px;     /*JUGAR CON LOS TAMAÑOS DE LOS BOTONES*/
 }
-#centro {
-	height: 85vh;
-	min-height: 600px;
+a.btn {
+	border: 2px solid #c2c2c2;
 }
-
-
+.nav-tabs{
+	border-bottom: 0;
+}
+.nav-tabs li {
+	min-width: 200px;     /*JUGAR CON LOS TAMAÑOS DE LOS BOTONES*/
+}
+.nav-tabs li a {    /* QUITAR TRASPARENTE AL BORDE */
+	border-top: 1px solid rgba(100,100,100,1.00);
+	border-right: 1px solid rgba(100,100,100,1.00);
+	border-left: 1px solid rgba(100,100,100,1.00);
+}
 
 main section {
-	min-height: 90vh;
-	/*min-height: 600px;*/   /*SOLO APLICAR EN MEDIA:WIDTH GRANDE!!! */
+	min-height: 100vh;
+	padding: 68px 0;        /*  AJUSTAR A LA ALTURA DE LA BARRA!  */
 }
-.container-fluid.non {
+.non {
 	background-color: rgba(130,130,130,1.00);
 }
-.container-fluid.par {
+.par {
 	background-color: rgba(54,54,54,1.00);
 }
-#main .row div {
+.row article {
 	padding: 15px;
-	
-    display:inline-block;
-    vertical-align:middle;
 }
+
 footer{
 	padding: 15px;
 	color: rgba(255,255,255,1.00);
@@ -107,6 +95,44 @@ footer{
     content: "\2654  ";   /*   /    \00BB     \21FF    \2502 <ESTE    \2506   \25C8   \2654   \2656   \2659   \2662   \2758   \2759   */
     padding: 0px 5px;
 }
+.brand {
+	display: block;
+	float: none;
+	margin: 15px auto 0;
+}
+
+
+/* EFECTOS PARA BARRA FIJA! */
+.fixed .secundarios{
+	margin-top: 68px;          /*  AJUSTAR SEGUN ALTURA DE LA BARRA */
+}
+.fixed .principales{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: rgba(34,34,34,0.85);
+	z-index: 1;
+	padding: 10px;
+}
+.navbar-form.fixed{
+	position: fixed;
+	top: 0;
+	right: 0;
+	z-index: 2;
+	margin: 17px 0px;        /*AJUSTAR PARA CENTRAR SEGUN LA ALTURA DE LA BARRA  (ALTURA DE LA BARRA - ALTURA DE FORM / 2 ) */
+}
+.navbar-header.fixed{
+	position: fixed;
+	z-index: 2;
+}
+.fixed .navbar-brand{
+	width: 180px;
+	height: 68px;
+	background-size: cover;
+	/*background-repeat: no-repeat;*/     /*SOLO EN CASO DE QUE SOBRE SALGA*/
+}
+
 #icon{
 	color: black;
 	font-size: 30pt;
@@ -115,83 +141,103 @@ footer{
 	color: rgba(255,255,255,1.00);
 }
 
+.ClaseOnScroll{        /*IMPORTANTE*/
+	
+}
 
 
 
-/*.affix {
-      top: 0;
-      width: 100%;
-	opacity: inherit;
-	z-index: 9999;
-  }
-		.navbar{
-			margin: 0;
-		}
+
+
+
+@media screen and (max-width:767px){      /*PHONE*/
+	.header{
+		padding-top: calc(100vh - 50px - 10px);   /* (100vh - ALTURA DE LA BARRA .principales - ESPACIO AL BOTTOM) */
+		background: url(img/MW-EC045_comput_ZH_20151224095234-negro@0,5x.png);
+	}
+	.navbar-header{
+		background-color: rgba(34,34,34,1.00);
+	}
+	.navbar-brand{
+		width: 150px;
+		height: 50px;
+		background-size: 150px 50px;
+	}
+	.menu {
+		padding-bottom: 3px;         /* margin del ".menu nav li"  +  X   =  8px */
+		border-radius: 0 0 5px 5px;  /*NO SE ESTA APLICANDO   HAY QUE APLICARLO MAS ARRIBA (EN EL NAVBAR) */
+		z-index: 2;
+	}
+	.menu nav li{
+		display: block;
+		margin: 0 0 5px 0;
+	}
+	.menu a {
+		border: 1px solid rgba(100,100,100,1.00);
+		border-radius: 4px;
+		margin: 0;
+	}
+	.principales2{
+		text-align: center;
+		padding: 3px 0;        /*PARA QUE QUEDE DEL MISMO ALTO QUE LA BARRA Y NO SE NOTE EL EFECTO CUANDO SE FIJEN A ELLA*/
+	}
+	.principales2 li{
+		display: inline-block;
+		float: none;
+		min-width: 100px;
+		/*max-width: 150px;*/
+		margin: 0 5px;
+		z-index: 9999;
+	}
+	
+	main section{
+		padding: 50px 0;
+	}
+	
+	.breadcrumb a{
+		display: inline-block;
+		text-align: center;
+		min-width: 25vw;
+	}
+	.breadcrumb > li:before, .breadcrumb > li:after {
+    color: #ccc;
+    content: " \2654";   /*   /    \00BB     \21FF    \2502 <ESTE    \2506   \25C8   \2654   \2656   \2659   \2662   \2758   \2759   */
+    padding: 0;
+	}
+
 		
-		El DIV despues del NAV poner 50px(tamaño de la barra fijada) de margen superior
-		.affix+section{
-			margin-top: 50px;
-		}
-*/
+	/* EFECTO5 PARA BARRA FIJA! */
+	.fixed .navbar-brand{
+		width: 150px;
+		height: 50px;
+		background-size: 150px 50px;
+	}
+	.fixed .secundarios {
+		margin: 0px;
+	}       /*HASTA QUE NO SE ACOMODEN LAS CLASES FIX EN CADA MEDIA QUERY*/
+	.fixed .principales2{
+		position: fixed;
+		top: 0;
+		left: calc( (100% - 224px) / 2);
+		z-index: 9999;
+	}
+	
+}  /*PHONE*/   /*COMPLETO (hasta hacer mas cambios)*/
 
+@media screen and (min-width:768px) and (max-width:991px){  /*TABLET*/
+	
+}  /*TABLET*/
+@media screen and (min-width:992px) and (max-width:1199px){  /*DESKTOP SM*/
+	
+}  /*DESKTOP SM*/
+@media screen and (min-width:1200px){  /*DESKTOP LG*/
+	
+}  /*DESKTOP LG*/
 
-
-
-
-.fixed .navbar-form{       /*Cambiar a  .fixedMain   si se usa la otra funcion en el  JS  */
-	position: fixed;
-	top: 0;
-	right: 0;
-	margin: 10px;
-	z-index: 2;
-}
-.fixed .navbar-brand{      /*Cambiar a  .fixedMain   si se una la otra funcion en el  JS  */
-	position: fixed;
-	z-index: 2;
-}
-.fixed #principales{
-	position: fixed;
-	top: 0;
-	max-height: 70px;
-	background-color: rgba(34,34,34,0.85);
-	z-index: 1;
-}
-.fixed .navbar-toggle{
-	position: fixed;
-}
-
-
-
-
-
-
-@media screen and (max-width:767px){
-.navbar-brand {
-	max-width: 130px;
-}
-#principales {
-	position: static;
-}
-#principales a {
-	padding: 5px;
+img {
+	max-width: 300px;
+	max-height: 300px;
 	float: right;
-}
-#Menu   {
-	/*min-height: 390px;*/
-	padding-bottom: 2px;
-}
-.navbar div ul {
-	display: block;
-}
-.navbar ul li {
-	display: block;
-	margin-bottom: 5px;
-	margin-left: auto;
-	margin-right: auto;
-}
-.nav li a {
-	border: 2px solid #7C7C7C;
-}
-
-
+	border-radius: 15px;
+	margin-left: 15px;
 }
