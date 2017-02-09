@@ -10,8 +10,21 @@
 	background-size: 100vw 100vh;
 }
 .header-sec{
-	height: auto;
 	background: rgba(34,34,34,1.00);
+}
+.header-sec .secundarios{
+	background: rgba(34,34,34,1.00);
+	position: absolute;
+	width: 100%;
+	top: 94px;
+	left: 0;
+	border-radius: 0 0 10px 10px;
+}
+.header-sec .principales{
+	position: absolute;
+	top: 15px;
+	left: 0;
+	width: 100%;
 }
 .navbar {
 	margin: 0;
@@ -19,10 +32,14 @@
 	border-radius: 0;
 	background: rgba(34,34,34,0.00);   /*USAR SI SE UNA UNA CLASE DE ESTILO PARA EL .NAVBAR (invers / default) PARA QUITAR EL COLOR*/
 }
+.navbar-header{
+	z-index: 9999;
+}
 .navbar-brand {
 	width: 250px;
 	height: 94px;
 	background: url("img/logo 1.2.2@1,25x.png") no-repeat border-box;
+	z-index: 9999;
 }
 .centro {  /*AJUSTA LA ALTURA DE EL BLOQUE PRINCIPAL!*/      /******Importante*****/
 	min-height: calc(100vh - 111px);  /*   AJUSTAR CON LA ALTURA DE .menu   (100vh - ALTURA) */
@@ -49,6 +66,13 @@
 .menu nav li{
 	display: inline-block;
 	margin: 0px 5px;
+}
+.boton-menu{
+	position: fixed;
+	top: 12px;
+	right: 0;
+	margin: 15px;
+	z-index: 9999;
 }
 .principales li{
 	min-width: 150px;     /*JUGAR CON LOS TAMAÑOS DE LOS BOTONES*/
@@ -106,6 +130,9 @@ footer{
 .fixed .secundarios{
 	margin-top: 68px;          /*  AJUSTAR SEGUN ALTURA DE LA BARRA */
 }
+/*.header-sec.fixed .secundarios{
+	margin-top: 64px;
+}*/
 .fixed .principales{
 	position: fixed;
 	top: 0;
